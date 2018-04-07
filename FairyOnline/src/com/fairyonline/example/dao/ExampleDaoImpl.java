@@ -31,9 +31,10 @@ public class ExampleDaoImpl {/*驼峰式命名*/
 		System.out.println("out dao");
 	}
 	
+	
 	/*get*//*查询*/
 	/*驼峰式的命名方式；
-	 * 在每个方法上标注上种类，是List、id 还是name 等等*/
+	 * 在每个方法上标注上种类，是List、id 还是name 等等 */
 	//List
 	public List<Example> getList(){
 		Query q=this.sessionFactory.getCurrentSession().createQuery("from Example");

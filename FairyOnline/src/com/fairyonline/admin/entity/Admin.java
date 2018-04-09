@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity
+
 @Table(name="Admin")
 public class Admin {
 	private String UserName;

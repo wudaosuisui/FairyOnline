@@ -11,7 +11,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name="Admin")
 public class Admin {
 	private String UserName;
-	private String PassWord;
+	
 	
 	@Id
 	@GenericGenerator(name="loginId", strategy="assigned")

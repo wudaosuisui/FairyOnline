@@ -3,7 +3,7 @@ package com.fairyonline.admin.dao;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class AdminDaoImpl {
+public class AdminDaoImp {
 	@Resource
 	private SessionFactory sessionFactory;
 	public List<Admin> findAll(){

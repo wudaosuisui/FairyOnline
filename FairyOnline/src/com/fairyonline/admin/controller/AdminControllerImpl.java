@@ -11,7 +11,7 @@ public class AdminControllerImpl {
 	public String login(String name,String password,HttpServletRequest request) {
 		if(adminServiceImpl.findByNamePsd(name, password)) {
 			request.getSession().setAttribute("admin", name);
-			return "redirect:/admin/index.html";
+			return "redirect:/admin/html/index.html";
 		}else {
 			String msg = "输入错误";
 			request.getSession().setAttribute("error",msg);

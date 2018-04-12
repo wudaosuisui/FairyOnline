@@ -12,9 +12,9 @@ public class AdminDaoImpl {
 		return list;
 	}
 	
-	public Admin findByNamePsd(String name, String password) {
-		Query q = this.sessionFactory.getCurrentSession().createQuery("from Admin where name=? and password=?");
-		q.setString(0,name);
+	public Admin findByNamePsd(String userName, String password) {
+		Query q = this.sessionFactory.getCurrentSession().createQuery("from Admin where userName=? and password=?");
+		q.setString(0,userName);
 		q.setString(1, password);
 		Admin admin = (Admin) q.uniqueResult();
         return admin;

@@ -8,9 +8,9 @@ public class AdminControllerImpl {
 	private AdminServiceImpl adminServiceImpl;
 	
 	@RequestMapping("/login")
-	public String login(String name,String password,HttpServletRequest request) {
-		if(adminServiceImpl.findByNamePsd(name, password)) {
-			request.getSession().setAttribute("admin", name);
+	public String login(String userName,String password,HttpServletRequest request) {
+		if(adminServiceImpl.findByNamePsd(userName, password)) {
+			request.getSession().setAttribute("admin", userName);
 			return "redirect:/admin/html/index.html";
 		}else {
 			String msg = "输入错误";

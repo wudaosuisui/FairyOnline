@@ -11,8 +11,8 @@ public class AdminServiceImpl {
 		List<Admin> list = adi.findAll();
 		return list;
 	}
-	public boolean findByNamePsd(String name,String password) {
-		Admin admin = adi.findByNamePsd(name, password);
+	public boolean findByNamePsd(String userName,String password) {
+		Admin admin = adi.findByNamePsd(userName, password);
 		if(admin!=null) {
 			return true;
 		}

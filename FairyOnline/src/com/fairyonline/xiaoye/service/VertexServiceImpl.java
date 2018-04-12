@@ -1,5 +1,7 @@
 package com.fairyonline.xiaoye.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.hibernate.Session;
@@ -21,14 +23,39 @@ public class VertexServiceImpl {
 	
 	/*添加节点*/
 	public void Add(Vertex vertex) {
-		System.out.println("get sivers");
 		Session session = sessionFactory.openSession();
-		System.out.println("open session success!");
 		this.vertexDaoImpl.save(vertex);
 		session.close();
-		System.out.println("out sivers");
 	}
-	
+	/*获取节点*/
+//	get list
+	public List<Vertex> getList(){
+		return this.vertexDaoImpl.getList();
+	}
+//	ById
+	public Vertex getById(int id ) {
+		Session session = sessionFactory.openSession();
+		return this.vertexDaoImpl.getById(id);
+	}
+	/*修改节点*/
+//	update
+	public void update(Vertex ver) {
+		this.vertexDaoImpl.update(ver);
+	}
+//	public
+	/*删除节点*/
+	//删除节点ByVertex
+	public void deleteByVertex(Vertex ver) {
+		Session session = sessionFactory.openSession();
+		this.vertexDaoImpl.delete(ver);
+		session.close();
+	}
+	//删除节点Byid
+	public void deleteById(int id) {
+	Session session = sessionFactory.openSession();
+	this.vertexDaoImpl.deleteById(id);
+	session.close();
+}
 	
 }
 

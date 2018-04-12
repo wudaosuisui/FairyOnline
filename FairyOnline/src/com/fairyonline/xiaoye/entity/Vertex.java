@@ -11,66 +11,54 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name="vertex")
 public class Vertex {
 	
-	private int id;
-	private int sign;//标记   对节点进行分类
-	private String name;//这个字符串   可以由多个名称合并
+	private int id;	
+	private int FirstSideId;
+	private int LastSideId;
+	/*someThing others*/
+//	private String name;//这个字符串   可以由多个名称合并
+//	private int sign;//标记   对节点进行分类
 //	private String detail;//详情
 //	private String correlation;//相关内容
 //	private int hot;//热度
-	public Vertex() {}
-	public Vertex(int sign,String name) {
-		this.sign = sign;
-		this.name = name;
-		System.out.println("println Vertex : "+getSign()+" "+getName());
+	
+	/*构造函数*/
+	//默认构造
+	public Vertex() {
 	}
-	/*public Vertex(int id ,int sign,String name) {
-		this.id =id;
-		this.sign = sign;
-		this.name = name;
-		System.out.println("println Vertex : "+getSign()+" "+getName());
-	}*/
+	//全构造
+	public Vertex(int id, int firstSideId, int lastSideId) {
+		/*super();*/
+		this.id = id;
+		FirstSideId = firstSideId;
+		LastSideId = lastSideId;
+	}
+	//一般构造
+	public Vertex(int firstSideId, int lastSideId) {
+		/*super();*/
+		FirstSideId = firstSideId;
+		LastSideId = lastSideId;
+	}
+	/*setter&getter*/
 	@Id
 	@GeneratedValue(generator="my_gen")
     @GenericGenerator(name="my_gen", strategy="increment")
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public int getSign() {
-		return sign;
+	public int getFirstSideId() {
+		return FirstSideId;
 	}
-
-	public void setSign(int sign) {
-		this.sign = sign;
+	public void setFirstSideId(int firstSideId) {
+		FirstSideId = firstSideId;
 	}
-
-	public String getName() {
-		return name;
+	public int getLastSideId() {
+		return LastSideId;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setLastSideId(int lastSideId) {
+		LastSideId = lastSideId;
 	}
-
-//	public String getDetail() {
-//		return detail;
-//	}
-//
-//	public void setDetail(String detail) {
-//		this.detail = detail;
-//	}
-//
-//	public String getCorrelation() {
-//		return correlation;
-//	}
-//
-//	public void setCorrelation(String correlation) {
-//		this.correlation = correlation;
-//	}
-	
 	
 }

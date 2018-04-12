@@ -1,4 +1,4 @@
-package com.bear.online.teacher.service;
+package com.fairyonline.teacher.service;
 
 import javax.annotation.Resource;
 

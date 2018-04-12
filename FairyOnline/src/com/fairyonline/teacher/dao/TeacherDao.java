@@ -1,4 +1,4 @@
-package com.bear.online.teacher.dao;
+package com.fairyonline.teacher.dao;
 import javax.annotation.Resource;
 
 import org.hibernate.Session;

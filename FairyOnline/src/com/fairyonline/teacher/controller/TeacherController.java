@@ -1,4 +1,4 @@
-package com.bear.online.teacher.controller;
+package com.fairyonline.teacher.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;

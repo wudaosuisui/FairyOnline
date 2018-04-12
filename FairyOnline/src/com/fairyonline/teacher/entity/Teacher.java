@@ -1,4 +1,4 @@
-package com.bear.online.entity;
+package com.fairyonline.teacher.entity;
 import java.util.HashSet;
 import java.util.Set;
 

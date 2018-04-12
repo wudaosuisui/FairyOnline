@@ -9,5 +9,5 @@
 <body>
 <h1>Success</h1>
 </body>
-<a href="../Xiaoye/AddVertex.jsp">Back to AddVertex</a>
+<a href="../Xiaoye/Test.jsp">Back to AddJsp</a>
 </html>

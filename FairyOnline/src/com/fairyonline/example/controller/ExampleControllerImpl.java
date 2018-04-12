@@ -25,5 +25,4 @@ public class ExampleControllerImpl {/*ÍÕ·åÊ½ÃüÃû*/
 		exampleServiceImple.Add(example);
 		return "Example/Example";
 	}
-	
 }

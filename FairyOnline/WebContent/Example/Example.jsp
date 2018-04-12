@@ -7,11 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>示例页面</h2>
+<h2>示例页面 </h2>
 <h3>../a/b</h3>
 <form action="../example/Add" method = "post">
 <input  type="submit" value="test"/>
 </form>
+
 
 </body>
 </html>

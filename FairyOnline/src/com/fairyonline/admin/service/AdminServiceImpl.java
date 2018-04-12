@@ -1,6 +1,13 @@
 package com.fairyonline.admin.service;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
+
+import com.fairyonline.admin.dao.AdminDaoImpl;
+import com.fairyonline.admin.entity.Admin;
 
 @Service
 public class AdminServiceImpl {

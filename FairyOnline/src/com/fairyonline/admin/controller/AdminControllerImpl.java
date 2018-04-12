@@ -1,6 +1,12 @@
 package com.fairyonline.admin.controller;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.fairyonline.admin.service.AdminServiceImpl;
 
 @Controller
 public class AdminControllerImpl {

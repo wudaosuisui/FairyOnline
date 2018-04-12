@@ -20,22 +20,62 @@ public class VertexDaoImpl {
 	
 	/*save*/
 	public void save(Vertex vertex) {
-		System.out.println("get dao");
 		Session session = sessionFactory.getCurrentSession();//获取sessio
-		System.out.println("get session");
 		Transaction tra = session.beginTransaction();//开启事务
 		session.save(vertex);
-		System.out.println("get dao");
 		session.flush();
 		tra.commit();
-		System.out.println("out dao");
 	}
 	/*get*/
 	
-	/*get List*/
+//	get List
 	public List<Vertex> getList(){
 		Query q=this.sessionFactory.getCurrentSession().createQuery("from Vertex");
 		return q.list();
+	}
+//	get by id
+	public Vertex getById(int id ) {
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tra = session.beginTransaction();
+		Vertex ver = session.get(Vertex.class, id);
+		tra.commit();
+		session.close();
+		return ver;
+		}
+	/*update*/
+//	update 
+	public void update(Vertex ver) {
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tra = session.beginTransaction();
+		session.update(ver);
+		session.flush();
+		tra.commit();
+	}
+//	update by id  (无用)
+//	public void updateById(int id ) {
+//		Session session = sessionFactory.getCurrentSession();
+//		Transaction tra = session.beginTransaction();
+//		Vertex ver = session.get(Vertex.class,id);
+//		session.update(ver);
+//		session.flush();
+//		tra.commit();
+//	}
+	/*delete*/
+//	delete by vertex 
+	public void delete(Vertex ver) {
+		Session session = sessionFactory.getCurrentSession(); 
+		Transaction tra = session.beginTransaction();
+		session.delete(ver);
+		session.flush();
+		tra.commit();
+	}
+//	delete by id
+	public void deleteById(int id ) {
+		Session session = sessionFactory.getCurrentSession(); 
+		Transaction tra = session.beginTransaction();
+		Vertex ver = session.get(Vertex.class,id);
+		session.delete(ver);
+		tra.commit();
 	}
 }
 

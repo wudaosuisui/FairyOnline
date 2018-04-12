@@ -1,6 +1,14 @@
 package com.fairyonline.admin.dao;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+
+import com.fairyonline.admin.entity.Admin;
 
 @Repository
 public class AdminDaoImpl {

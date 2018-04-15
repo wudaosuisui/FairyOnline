@@ -50,11 +50,7 @@ public class VertexController {
 		System.out.println(ver.getId() +"       "+ver.getFirstSideId()+"       "+ver.getLastSideId());
 		return "Xiaoye/success";
 	}
-	//	@RequestMapping("/AddVertex")
-//	public String getList() {
-//
-//		return "Xiaoye/success";
-//	}
+	
 	@RequestMapping("/AddSide")
 	public String AddSide() {
 		System.out.println("get controller");

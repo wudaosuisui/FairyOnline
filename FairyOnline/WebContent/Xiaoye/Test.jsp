@@ -11,19 +11,19 @@
 <table border="1">
 <tr>
 <td>
-<h1>====&nbsp;&nbsp;Get&nbsp;&nbsp;===</h1>
+<h1>====&nbsp;&nbsp;Vertex&nbsp;&nbsp;===</h1>
 </td>
 <td>
-<h1>====&nbsp;&nbsp;Add&nbsp;&nbsp;===</h1>
+<h1>====&nbsp;&nbsp;Side&nbsp;&nbsp;===</h1>
 </td>
 <td>
-<h1>====&nbsp;&nbsp;red&nbsp;&nbsp;===</h1>
+<h1>====&nbsp;&nbsp;File&nbsp;&nbsp;===</h1>
 </td>
 </tr>
 <tr>
 <!-- get -->
 <td>
-<h2>get Vertex List</h2>
+	<h2>get Vertex List</h2>
 	<form action="../vertex/getList" method = "post"> 
 	<input type="text" name="id" value="1">
 	<input  type="submit" value="test"/>
@@ -34,7 +34,12 @@
 	<input type="text" name="id" value="19">
 	<input  type="submit" value="test"/>
 	</form>
-
+	
+	<h2>only Add Vertex</h2>
+	<form action="../vertex/AddVertex" method = "post"> 
+	<!-- <input type="text" name="name" value="name"> -->
+	<input  type="submit" value="test"/>
+	</form>
 </td>
 <!-- add -->
 <td>
@@ -43,13 +48,7 @@
 	<!-- <input type="text" name="name" value="name"> -->
 	<input  type="submit" value="test"/>
 	</form>
-	
-	<h2>only Add Vertex</h2>
-	<form action="../vertex/AddVertex" method = "post"> 
-	<!-- <input type="text" name="name" value="name"> -->
-	<input  type="submit" value="test"/>
-	</form>
-	
+
 	<h2>jump to success.jsp</h2>
 	<form action="success.jsp" method = "post"> 
 	<input type="text" name="name" value="name">
@@ -57,7 +56,16 @@
 	</form>
 </td>
 <td>
+	<h2>red & Slice File test</h2>
+	<form action="../File/raSliceFile" method = "post" enctype="multipart/form-data" > 
+	<input  type="submit" value="test"/>
+	</form>
 
+	<h2>red & save File test</h2>
+	<form action="../File/rasFile" method = "post" enctype="multipart/form-data" > 
+	<input  type="submit" value="test"/>
+	</form>
+	
 	<h2>red File test</h2>
 	<form action="../File/redFile" method = "post" enctype="multipart/form-data" > 
 	<input  type="submit" value="test"/>
@@ -65,7 +73,7 @@
 	
 	<h2>write File test</h2>
 	<form action="../File/writeFile" method = "post" enctype="multipart/form-data" > 
-	<textarea rows="10" cols="30" name="textarea" value="  write test"></textarea>
+	<textarea rows="10" cols="10" name="textarea" value="  write test"></textarea>
 	<input  type="submit" value="test"/>
 	</form>
 

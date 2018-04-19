@@ -13,17 +13,17 @@ import org.springframework.stereotype.Repository;
 import com.fairyonline.example.entity.Example;
 
 @Repository
-public class ExampleDaoImpl {/*ÍÕ·åÊ½ÃüÃû*/
+public class ExampleDaoImpl {/*é©¼å³°å¼å‘½å*/
 	
 	@Resource
 	private SessionFactory sessionFactory;
 	
-	/*Ã¿Ò»Àà·½·¨£¬·ÖºÃÀà£»
-	 * Dao²ãÖ»×öÒ»ÏÂ¼¸Àà²Ù×÷£¬²»Òª½«service²ãµÄ¹¦ÄÜ²åÈë½øÀ´*/
-	/*save*//*±£´æ*/
+	/*æ¯ä¸€ç±»æ–¹æ³•ï¼Œåˆ†å¥½ç±»ï¼›
+	 * Daoå±‚åªåšä¸€ä¸‹å‡ ç±»æ“ä½œï¼Œä¸è¦å°†serviceå±‚çš„åŠŸèƒ½æ’å…¥è¿›æ¥*/
+	/*save*//*ä¿å­˜*/
 	public void save(Example example) {
-		Session session = sessionFactory.getCurrentSession();//»ñÈ¡sessio
-		Transaction tra = session.beginTransaction();//¿ªÆôÊÂÎñ
+		Session session = sessionFactory.getCurrentSession();//è·å–sessio
+		Transaction tra = session.beginTransaction();//å¼€å¯äº‹åŠ¡
 		session.save(example);
 		System.out.println("save success!");
 		session.flush();
@@ -31,10 +31,9 @@ public class ExampleDaoImpl {/*ÍÕ·åÊ½ÃüÃû*/
 		System.out.println("out dao");
 	}
 	
-	
-	/*get*//*²éÑ¯*/
-	/*ÍÕ·åÊ½µÄÃüÃû·½Ê½£»
-	 * ÔÚÃ¿¸ö·½·¨ÉÏ±ê×¢ÉÏÖÖÀà£¬ÊÇList¡¢id »¹ÊÇname µÈµÈ */
+	/*get*//*æŸ¥è¯¢*/
+	/*é©¼å³°å¼çš„å‘½åæ–¹å¼ï¼›
+	 * åœ¨æ¯ä¸ªæ–¹æ³•ä¸Šæ ‡æ³¨ä¸Šç§ç±»ï¼Œæ˜¯Listã€id è¿˜æ˜¯name ç­‰ç­‰*/
 	//List
 	public List<Example> getList(){
 		Query q=this.sessionFactory.getCurrentSession().createQuery("from Example");
@@ -42,7 +41,7 @@ public class ExampleDaoImpl {/*ÍÕ·åÊ½ÃüÃû*/
 	}
 	//id
 	//name
-	/*update*//*¸üĞÂ*/
+	/*update*//*æ›´æ–°*/
 	
-	/*delete*//*É¾³ı*/
+	/*delete*//*åˆ é™¤*/
 }

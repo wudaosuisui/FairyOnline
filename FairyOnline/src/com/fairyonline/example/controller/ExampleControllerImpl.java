@@ -8,21 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fairyonline.example.entity.Example;
 import com.fairyonline.example.service.ExampleServiceImpl;
-import com.fairyonline.xiaoye.entity.Vertex;
-import com.fairyonline.xiaoye.service.VertexServiceImpl;
 
 @Controller
 @Repository
-@RequestMapping("/example")/*¸ü¸Ä³É¶ÔÓ¦µÄÃû×Ö£»Àà¶ÔÓ¦µØÖ·*/
-public class ExampleControllerImpl {/*ÍÕ·åÊ½ÃüÃû*/
+@RequestMapping("/example")/*æ›´æ”¹æˆå¯¹åº”çš„åå­—ï¼›ç±»å¯¹åº”åœ°å€*/
+public class ExampleControllerImpl {/*é©¼å³°å¼å‘½å*/
 	@Resource
 	private ExampleServiceImpl exampleServiceImple;
 
-	@RequestMapping(value="/Add")/*·½·¨¶ÔÓ¦µØÖ·*/
-	public String Add() {/*ÍÕ·åÊ½ÃüÃû*/
+	@RequestMapping(value="/Add")/*æ–¹æ³•å¯¹åº”åœ°å€*/
+	public String Add() {/*é©¼å³°å¼å‘½å*/
 		System.out.println("get add");
 		Example example = new Example("exampleName");
 		exampleServiceImple.Add(example);
 		return "Example/Example";
 	}
+	
 }

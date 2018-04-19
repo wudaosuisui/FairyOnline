@@ -19,15 +19,15 @@ public class ExampleServiceImpl {
 	@Resource
 	private ExampleDaoImpl exampleDaoImpl;
 	
-	/*Ã¿Ò»¸ö·½·¨ÉÏ£¬¶¼ÒªÓĞ¸Ã·½·¨µÄ¼òµ¥ËµÃ÷¡£*/
-	/*Ìí¼Ó¶ÔÏó*/
+	/*æ¯ä¸€ä¸ªæ–¹æ³•ä¸Šï¼Œéƒ½è¦æœ‰è¯¥æ–¹æ³•çš„ç®€å•è¯´æ˜ã€‚*/
+	/*æ·»åŠ å¯¹è±¡*/
 	public void Add(Example example) {
 		Session session = sessionFactory.openSession();
 		this.exampleDaoImpl.save(example);
-		session.close();//session´ò¿ªºó ¼ÇµÃ¹Ø±Õ
+		session.close();//sessionæ‰“å¼€å è®°å¾—å…³é—­
 	}
-	/*É¾³ı¶ÔÏó*/
-	/*¸üĞÂ¶ÔÏó*/
-	/*¡£¡£¡£*/
+	/*åˆ é™¤å¯¹è±¡*/
+	/*æ›´æ–°å¯¹è±¡*/
+	/*ã€‚ã€‚ã€‚*/
 	
 }

@@ -1,6 +1,12 @@
-package com.fairyonline.admins.service;
+package com.fairyonline.admin.service;
+
+import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.fairyonline.admin.dao.AdminsDaoImpl;
+import com.fairyonline.admin.entity.Admins;
 
 @Service
 @Transactional(readOnly=false)

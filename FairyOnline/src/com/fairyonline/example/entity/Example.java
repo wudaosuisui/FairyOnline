@@ -8,24 +8,24 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name="Example")/*Êı¾İ¿âsqlµ¼Èëºó£¬ÒÑ¾­ÓĞ½¨Á¢ºÃµÄ ¶ÔÓ¦µÄ±í£¬Í³Ò»ÓÃ±íµÄÃû×Ö½¨Á¢Àà£»ÃüÃûÒª¹æ·¶*/
+@Table(name="Example")/*æ•°æ®åº“sqlå¯¼å…¥åï¼Œå·²ç»æœ‰å»ºç«‹å¥½çš„ å¯¹åº”çš„è¡¨ï¼Œç»Ÿä¸€ç”¨è¡¨çš„åå­—å»ºç«‹ç±»ï¼›å‘½åè¦è§„èŒƒ*/
 public class Example {
 	
 	private int id ;
 	private String name;
 	
-	//¹¹Ôìº¯Êı
-	/* 1.Ò»¸ö²»º¬ÈÎºÎ²ÎÊıµÄ¹¹Ôìº¯Êı
-	 * 2.ÈÎÒâĞèÒªµÄ¹¹Ôìº¯Êı*/
+	//æ„é€ å‡½æ•°
+	/* 1.ä¸€ä¸ªä¸å«ä»»ä½•å‚æ•°çš„æ„é€ å‡½æ•°
+	 * 2.ä»»æ„éœ€è¦çš„æ„é€ å‡½æ•°*/
 	public Example() {};
 	public Example(String name) {
 		this.name = name;
 	}
 	
 	//setter & getter 
-	/*²ÉÓÃ±ê×¼µÄset get·½·¨£¬²»ÈİÒ×²úÉúÃüÃûÉÏµÄ´íÎó
-	 * ÓÒ¼ü-¡· Source-¡·Generate Getter and Setters¡­*/
-	 /*×ÔÔöµÄid,ÓÃÕâ3ĞĞ×¢ÊÍ¼´¿É*/
+	/*é‡‡ç”¨æ ‡å‡†çš„set getæ–¹æ³•ï¼Œä¸å®¹æ˜“äº§ç”Ÿå‘½åä¸Šçš„é”™è¯¯
+	 * å³é”®-ã€‹ Source-ã€‹Generate Getter and Settersâ€¦*/
+	 /*è‡ªå¢çš„id,ç”¨è¿™3è¡Œæ³¨é‡Šå³å¯*/
 	@Id
 	@GeneratedValue(generator="my_gen")
     @GenericGenerator(name="my_gen", strategy="increment")

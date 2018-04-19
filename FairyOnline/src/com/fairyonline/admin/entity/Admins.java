@@ -1,4 +1,4 @@
-package com.fairyonline.admins.entity;
+package com.fairyonline.admin.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,14 +6,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 @Table(name="Admins")
 public class Admins {
 	private String UserName;
 	private String PassWord;
 	/*private int Power;*/
-	
+		
 	@Id
 	@GenericGenerator(name="loginId", strategy="assigned")
 	@GeneratedValue(generator="loginId")
@@ -29,12 +28,10 @@ public class Admins {
 	public void setPassWord(String passWord) {
 		this.PassWord = passWord;
 	}
-	/*public int getPower() {
-		return Power;
-	}
-	public void setPower(int power) {
-		this.Power = power;
-	}*/
-	
-	
-}
+		/*public int getPower() {
+			return Power;
+		}
+		public void setPower(int power) {
+			this.Power = power;
+		}*/
+}		

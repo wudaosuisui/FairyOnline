@@ -1,0 +1,135 @@
+/*所有链接下划线消除以及颜色*/
+a{
+	text-decoration: none;
+}
+a:hover{
+	color: #0080FF;
+	text-decoration: underline;
+}
+/*head*/
+#head1{
+	margin-right:auto;
+	margin-left:auto;
+	width: 1010px;
+	height: 50px;
+	background-image: url(images/2.png);
+}
+#head-line{
+	width: 1010px;
+	height: 75px;
+	background-image: url(images/1.png);
+}
+#logo{
+	float: left;
+	margin-left: 50px;
+	margin-top:0px; 
+}
+#found{
+	float: left;
+	margin-left: 160px;
+	margin-top:20px; 
+}
+#shop{
+	margin-top: 0px;
+    float:right;
+}
+/*主体上*/
+#content{
+
+}
+#content #context_up{
+	margin-top: 10px;
+	height: 215px;
+	background-color: #E0EEE0;
+}
+#content #context_up p{
+	float: left;
+	margin-top: 30px;
+	margin-left: -280px;
+	color: #AAAAAA;
+}
+#content #context_up h1{
+	float: left;
+    margin-top: 50px;
+    margin-left: -175px;
+}
+#content #context_up #context_up_study p{
+	color: #0D0D0D;
+	float: left;
+}
+#content #context_up #context_up_study .s1{
+	margin-left: -160px;
+	margin-top:120px;
+	background-color: #E5E5E5;
+	border: 1px solid #9C9C9C;
+
+}
+#content #context_up #context_up_study .s2{
+	margin-left: 0px;
+	margin-top: 90px;
+
+}
+#content #context_up #context_up_study .s3{
+	margin-left: -300px;
+	margin-top:130px;
+}
+/*主体下*/
+#content #context_lower{
+	margin-right:auto;
+	margin-left:auto;
+	background-color: #EBEBEB;
+}
+#content #context_lower #l0{
+	margin-left: 140px;
+}
+#content #context_lower #l1{
+	margin-left: 260px;
+    margin-top: 10px;
+
+}
+#content #context_lower #l1 h3{
+	height: 35px;
+}
+#content #context_lower #l1 p{
+	margin-top: 25px;
+	height: 28px;
+	width: 600px;
+	border: 1px solid #9C9C9C;
+	background-color: #F0FFFF;
+}
+#content #context_lower #l2{
+	margin-left: 260px;
+}
+#content #context_lower #l2 h3{
+	margin-top: 75px;
+	height: 35px;
+}
+#content #context_lower #l2 p{
+	margin-top: 25px;
+	height: 28px;
+	width: 600px;
+	border: 1px solid #9C9C9C;
+	background-color: #F0FFFF;
+}
+#content #context_lower #l3{
+	margin-left: 260px;
+	height: 260px;
+
+
+}
+#content #context_lower #l3 h3{
+	margin-top: 75px;
+	height: 35px;
+}
+#content #context_lower #l3 p{
+	margin-top: 25px;
+	height: 28px;
+	width: 600px;
+	border: 1px solid #9C9C9C;
+	background-color: #F0FFFF;
+}
+/*底部*/
+#foot{
+	border: 1px solid #9C9C9C;
+	height: 100px;
+}

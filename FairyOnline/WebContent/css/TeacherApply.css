@@ -1,0 +1,68 @@
+/*所有链接下划线消除以及颜色*/
+a{
+	text-decoration: none;
+	font-size: 16px;
+}
+a:hover{
+	color: #0080FF;
+	text-decoration: underline;
+}
+/*head*/
+#head{
+	margin-right:auto;
+	margin-left:auto;
+	width: 1010px;
+	height: 50px;
+	background-image: url(images/2.png);
+}
+#logo{
+	float: left;
+	margin-left: 50px;
+	margin-top:0px; 
+}
+#found{
+	float: left;
+	margin-left: 240px;
+	margin-top:20px; 
+}
+#shop{
+	margin-top: 0px;
+    float:right;
+}
+#button1{
+	 border:1px solid #cbc7c6;
+     -moz-border-radius: 15px;
+    /* -webkit-border-radius: 0px;*/
+     border-radius:15px; 
+     background-color:white;
+     margin-top: auto;
+     height:30px;
+     width:60px;
+}
+#shop img{
+	 margin-top:10px;
+}
+/*主体*/
+#contend{
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 40px;
+	border: 1px solid #0A0A0A;
+	width: 1000px;
+	height: 450px;
+	background-image: url(../images/teacherapply.jpg); 
+}
+#contend p{
+	border:  1px solid #0A0A0A;
+	margin-left: 100px;
+	font-size: 35px;
+	width: 240px;
+	height: 240px;
+
+}
+#contend input{
+	width: 100px;
+	height: 50px;
+	margin-left: 85px;
+	background-color: #C6E2FF;
+}

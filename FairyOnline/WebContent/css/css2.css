@@ -1,0 +1,42 @@
+
+#head1{
+	width: 1010px;
+	height: 75px;
+	/*background-image: url(../images/2.png);*/
+	margin-right:auto;
+	margin-left:auto;
+}
+#shop{
+	margin-top: 0px;
+    float:right;
+}
+#button1{
+	 border:1px solid #cbc7c6;
+     -moz-border-radius: 15px;
+    /* -webkit-border-radius: 0px;*/
+     border-radius:15px; 
+     background-color:white;
+     margin-top: auto;
+     height:30px;
+     width:60px;
+}
+#shop img{
+	 margin-top:10px;
+}
+#img1{
+	float:right;
+	margin-top:0px;
+	margin-right:80px;
+	box.shadow:2px 2px 2 px rgba(0,0,0,0.7);
+	border:5px solid rgba(0,0,0,0.4);
+	width:40px;
+	height:40px;
+	background-image:url('../images/logo.jpeg');
+	background-clip: padding-box;
+	background-size: cover;
+	background-repeat:no-repeat;
+	display:block;
+	border-radius:50%;
+	 -moz-border-radius: 100px;
+     -webkit-border-radius: 100px; 
+}

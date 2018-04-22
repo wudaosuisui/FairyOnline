@@ -1,0 +1,42 @@
+body{
+	color: #E0FFFF;
+}
+#content{
+
+	border: 1px solid #030303;
+	height: 580px;
+	background-image: url(../images/download.jpg);
+
+}
+/*注册页面上的*/
+#content #page{
+	background-color: #FFF0F5;
+	width: 300px;
+	height: 340px;
+	background-image: url(../images/regist1.jpg);
+	margin-left: 900px;
+}
+#content #page h1{
+	margin-left: 35px;
+	margin-top: 30px;
+}
+#content #page form{
+    margin-left: 35px;
+}
+#content #page p{
+	font-size: 13px;
+}
+#content #page #login{
+	background-color: #E0FFFF;
+	border: 2px solid #6E7B8B;
+	margin-top: 35px;
+	width: 70px;
+	height: 30px;
+}
+#content #page #regist{
+	background-color: #E0FFFF;
+	border: 2px solid #6E7B8B;
+	margin-left: 50px;
+	width: 70px;
+	height: 30px;
+}

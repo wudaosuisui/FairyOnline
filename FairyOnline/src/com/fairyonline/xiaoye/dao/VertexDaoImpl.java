@@ -15,13 +15,15 @@ import com.fairyonline.xiaoye.entity.Vertex;
 @Repository
 public class VertexDaoImpl {
 
-	@Resource
+//	@Resource
 	private SessionFactory sessionFactory;
 	
 	/*save*/
 	public void save(Vertex vertex) {
+		System.out.println("get dao");
 		Session session = sessionFactory.getCurrentSession();//获取sessio
 		Transaction tra = session.beginTransaction();//开启事务
+		System.out.println("get dao1");
 		session.save(vertex);
 		session.flush();
 		tra.commit();

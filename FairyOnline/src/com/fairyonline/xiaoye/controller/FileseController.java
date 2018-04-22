@@ -17,13 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
  
 import com.fairyonline.xiaoye.entity.Fileses;
+import com.fairyonline.xiaoye.entity.Vertex;
 
-@Controller
-@Repository	
-@RequestMapping("/File")
+
 public class FileseController {
-
 	
+
 	//读取并分片
 	@RequestMapping("/raSliceFile")
 	public String RedAndSliceFile() {//Slice 分片

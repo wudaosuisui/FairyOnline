@@ -56,6 +56,11 @@
 	</form>
 </td>
 <td>
+	<h2> TEST </h2>
+	<form action="../File/test" method = "post" enctype="multipart/form-data" > 
+	<input  type="submit" value="test"/>
+	</form>
+	
 	<h2>red & Slice File test</h2>
 	<form action="../File/raSliceFile" method = "post" enctype="multipart/form-data" > 
 	<input  type="submit" value="test"/>

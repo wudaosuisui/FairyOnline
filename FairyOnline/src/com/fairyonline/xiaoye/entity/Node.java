@@ -8,13 +8,13 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name="node")
+@Table(name="Node")
 public class Node {
 	/*主要属性*///3
 	private int id;	
 	private int FirstSideId;
 	private int LastSideId;
-	/*一般属性*///
+	/*一般属性*///8
 	private String verNumber;//版本号 	version number
 	private char catNumber;//类型编号 	category number
 	private String Name;//名称	
@@ -84,7 +84,24 @@ public class Node {
 		this.content = "一个十分详细的解释！！！当然 也不知道是不是真的详细。总之是详细就对了。some English words!To test";
 		this.heat = 5;
 	}
-	
+	/*特殊的方法*/
+	//打印node
+	public void show() {
+		System.out.println(
+				" Id: "+this.id+
+				" FirstSideId : "+this.FirstSideId+
+				" LastSideId : "+this.LastSideId+
+				
+				" verNumber : "+this.verNumber+
+				" catNumber : "+this.catNumber+
+				" Name : "+this.Name+
+				" preKnowledge : "+this.preKnowledge+
+				" sucKnowledge : "+this.sucKnowledge+
+				" relKnowledge : "+this.relKnowledge+
+				" content : "+this.content+
+				" heat : "+this.heat
+				);
+	}
 	/*set&get*/
 	@Id//自增id
 	@GeneratedValue(generator="my_gen")

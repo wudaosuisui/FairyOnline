@@ -23,19 +23,25 @@ public class NodeDaoImpl {
 	public void save(Node node) {
 		Session session = sessionFactory.getCurrentSession();//获取sessio
 		Transaction tra = session.beginTransaction();//开启事务
-		session.save(node);	
+//		session.save(node);	
+		node.show();
 		session.flush();
 		tra.commit();
 	}
 	//save list
 	public void saveList(Node[] nodeList) {
+		System.out.println("dao get");
 		Session session = sessionFactory.getCurrentSession();//获取sessio
 		Transaction tra = session.beginTransaction();//开启事务
-		for(Node node : nodeList) {
-			session.save(node);	
+		for(int i = 0; i<nodeList.length;i++) {//Node node : nodeList
+			session.save(nodeList[i]);
+			nodeList[i].show();
+//			session.flush();
+//			tra.commit();
 		}
 		session.flush();
 		tra.commit();
+		System.out.println("dao out");
 	}
 	/*get*/
 //	get list

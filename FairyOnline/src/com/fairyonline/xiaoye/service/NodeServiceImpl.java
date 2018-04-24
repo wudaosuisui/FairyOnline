@@ -27,6 +27,7 @@ public class NodeServiceImpl {
 	/*主体方法*/
 	//获取文件内容、创建对象、存入数据库
 	public void AddNodeByFile(String fileUrl) {
+		System.out.println("service get");
 		Session session = sessionFactory.openSession();
 		//获取并拆分文件内容	返回一个文件内容而的String2维数组
 		String[][] strArr = this.GetStrArr(fileUrl);
@@ -35,10 +36,12 @@ public class NodeServiceImpl {
 		//调用方法  存入数据库
 		nodeDaoImpl.saveList(nodeArr);
 		session.close();
+		System.out.println("service out");
 	}
 	/*子方法*/
 	//将获取到的数组中 转换为对象数组
 	public Node[] GetNodSrr(String[][] strArr) {
+		System.out.println("GetNodSrr get");
 		Node[] nodArr = new Node[strArr.length-1];
 		for(int i=0;i<(strArr.length-1);i++) {
 			nodArr[i] = new Node(
@@ -52,10 +55,12 @@ public class NodeServiceImpl {
 					2//热度
 					);
 		}
+		System.out.println("GetNodSrr out");
 		return nodArr;
 	}
 	//获取并拆分文件内容	返回一个文件内容而的2维数组
 	public String[][] GetStrArr(String fileUrl) {
+		System.out.println("GetStrArr get");
 		String encoding = "UTF-8"; 
 		String sign;//sign 分隔符   根据名称后缀  确定分隔符种类
 		if(fileUrl.substring(fileUrl.lastIndexOf(".")).equals(".csv"))
@@ -82,10 +87,12 @@ public class NodeServiceImpl {
 			for(int i=0 ;i<strs.length;i++) {
 	             strArr[i] = strs[i].split(sign);
             }
+			System.out.println("GetStrArr out");
 			return strArr;
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("GetStrArr out");
 			return null;
 		} 
 	}

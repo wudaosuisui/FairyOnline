@@ -57,7 +57,8 @@
 </td>
 <td>
 	<h2> TEST </h2>
-	<form action="../File/test" method = "post" enctype="multipart/form-data" > 
+	<form action="../file/test" method = "post" enctype="multipart/form-data" > 
+	<input type="file" name="furl"/>
 	<input  type="submit" value="test"/>
 	</form>
 	

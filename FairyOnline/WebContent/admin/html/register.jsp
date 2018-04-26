@@ -55,22 +55,22 @@
                 <div class="input">
                     密码：&nbsp<input type="password" name="password" value=""></input>
                 </div>
-                <div class="input"><input type="submit" value="注册"/></div>
+                <!-- <div class="input"><input type="submit" value="注册"/></div> -->
             </div>
-            </form>
+            <!-- </form> -->
             <div class="right-bottom">
                 <div class="number">
                     创建数量：
                 </div>
                 <div class="select-1">
                     <div class="select">
-                        <input type="checkbox" name="checkbox" value="管理用户" class="1"></input>&nbsp创建1个
+                        <input type="radio" name="radio" value="1" checked="checked"></input>&nbsp创建1个
                     </div>
                     <div class="select">
-                        <input type="checkbox" name="checkbox" value="审核课程"></input>&nbsp创建10个
+                        <input type="radio" name="radio" value="10"></input>&nbsp创建10个
                     </div>
                     <div class="select">
-                        <input type="checkbox" name="checkbox" value="管理课程分类"></input>&nbsp创建20个
+                        <input type="radio" name="radio" value="20"></input>&nbsp创建20个
                     </div>
                 </div>
                 <div class="quanxian">
@@ -78,29 +78,25 @@
                 </div>
                 <div class="select-1">
                     <div class="select">
-                        <input type="checkbox" name="checkbox" value="管理用户" class="1"></input>&nbsp管理用户
+                        <input type="checkbox" name="power" value="Manage_User" class="1"></input>&nbsp管理用户
                     </div>
                     <div class="select">
-                        <input type="checkbox" name="checkbox" value="审核课程"></input>&nbsp审核课程
+                        <input type="checkbox" name="power" value="Audit_Course"></input>&nbsp审核课程
                     </div>
                     <div class="select">
-                        <input type="checkbox" name="checkbox" value="管理课程分类"></input>&nbsp管理课程分类
+                        <input type="checkbox" name="power" value="Manage_Course_Classify"></input>&nbsp管理课程分类
                     </div>
                 </div>
                 <div class="select-2">
                     <div class="select">
-                         <input type="checkbox" name="checkbox" value="管理教师"></input>&nbsp管理教师
+                         <input type="checkbox" name="power" value="Manage_Teacher"></input>&nbsp管理教师
                     </div>
                     <div class="select">
-                         <input type="checkbox" name="checkbox" value="管理数据"></input>&nbsp管理数据
+                         <input type="checkbox" name="power" value="Manage_Data"></input>&nbsp管理数据
                     </div>
                 </div>
             </div>
-            <div class="last">
-                <div class="button">
-                    <button class="btn">确认创建</button>
-                </div>
-            </div>
+            <div class="input"><input type="submit" value="注册"/></div>
             <div class="zhu">
                 注：创建多个时，账号由输入的内容加顺序数字产生（如果与已有账号重复，将自动跳过），密码由系统自动产生的随机字符串产生
             </div>

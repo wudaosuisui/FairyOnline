@@ -11,7 +11,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class Admins {
 	private String UserName;
 	private String PassWord;
-	/*private int Power;*/
+	private String Power;
 		
 	@Id
 	@GenericGenerator(name="loginId", strategy="assigned")
@@ -28,10 +28,11 @@ public class Admins {
 	public void setPassWord(String passWord) {
 		this.PassWord = passWord;
 	}
-		/*public int getPower() {
-			return Power;
-		}
-		public void setPower(int power) {
-			this.Power = power;
-		}*/
+	public String getPower() {
+		return Power;
+	}
+	public void setPower(String power) {
+		this.Power = power;
+	}
+	
 }		

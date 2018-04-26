@@ -1,0 +1,103 @@
+#head-text{
+	float:left;
+    width: 1010px;
+	height: 240px;
+	margin-right:auto;
+	margin-left:auto;
+	border:solid 1px #cbc7c6; 
+}
+#img{
+	float:left;
+	margin-top:40px;
+	margin-left:420px;
+	box.shadow:2px 2px 2 px rgba(0,0,0,0.7);
+	border:5px solid rgba(0,0,0,0.4);
+	width:140px;
+	height:140px;
+	background-image:url('../images/logo.jpeg');
+	background-clip: padding-box;
+	background-size: cover;
+	background-repeat:no-repeat;
+	display:block;
+	border-radius:50%;
+	 -moz-border-radius: 100px;
+     -webkit-border-radius: 100px; 
+}
+#head-text p{
+	margin-top:190px;
+	margin-left:450px;
+	color: #4a4848;
+	/*text-decoration: none; */
+	font-family:"妤蜂綋";
+	font-size:20px;
+	
+}
+#body{
+	margin-right:auto;
+	margin-left:auto;
+	border:solid 1px #cbc7c6; 
+	height:1350px;
+	width: 1010px;
+}
+#body1 input{
+	 height:49px;
+	 width:734px;
+	 margin-left: 73px;
+	 margin-top:30px;
+	 border:solid 1px #cbc7c6;
+	 font-family:"妤蜂綋";
+	 font-size:20px;
+}
+#body1 button{
+	margin-top: 40px;
+	margin-left: 30px;
+	height: 50px;
+	width: 140px;
+	background-color:white;
+	 -moz-border-radius: 10px;
+     -webkit-border-radius: 15px;
+     border-radius:15px; 
+     
+}
+#body1 button a:link,a:visited {
+	text-decoration:none; /*瓒呴摼鎺ユ棤涓嬪垝绾�*/
+	color: #7d7b7b;
+	/*text-decoration: none; */
+	font-family:"妤蜂綋";
+	font-size:20px;
+}
+#body1 button a:hover{ 
+ text-decoration:underline;  /*榧犳爣鏀句笂鍘绘湁涓嬪垝绾�*/ 
+} 
+#body2{
+	margin-right:auto;
+	margin-left:auto;
+	margin-top:30px;
+	border:solid 1px #cbc7c6; 
+	height:210px;
+	width: 868px;
+}
+#body2-img{
+    margin-top:30px;
+	margin-left: 34px;
+	float:left;
+}
+#body2 img{
+	
+	width:240px;
+	height:148px;
+}
+#body2-text{
+	margin-right: 84px;
+	margin-top:10px;
+	float:right;
+	width:450px;
+	height:148px;
+}
+#body2-text p{
+	color: #4a4848;
+	/*text-decoration: none; */
+	font-family:"妤蜂綋";
+	font-size:20px;
+	
+}

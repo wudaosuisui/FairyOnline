@@ -58,7 +58,7 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>  
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
 				<prop key="hibernate.useUnicode">${hibernate.useUnicode}</prop>

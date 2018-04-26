@@ -1,0 +1,38 @@
+
+#body{
+	margin-right:auto;
+	margin-left:auto;
+	border:solid 1px #cbc7c6; 
+	height:500px;
+	width: 1010px;
+
+}
+#body h1{
+	color: #cbc7c6;
+	/*text-decoration: none; */
+	font-family:"楷体";
+	font-size:20px;
+	margin-left:50px;
+}
+#comment input{
+	height:155px;
+	width:640px;
+	text-align:center;
+}
+#comment{
+	margin-right:auto;
+	margin-left:auto;
+	border-color:#cbc7c6;
+	height:155px;
+	width:640px;
+}
+#body button{
+	margin-top: 20px;
+	margin-left: 700px;
+	height: 30px;
+	width: 80px;
+	background-color:white;
+	 -moz-border-radius: 10px;
+     -webkit-border-radius: 15px;
+     border-radius:15px; 
+}

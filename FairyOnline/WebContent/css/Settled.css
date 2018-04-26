@@ -1,0 +1,192 @@
+/*所有链接下划线消除以及颜色*/
+a{
+	text-decoration: none;
+	font-size: 16px;
+	color: #0A0A0A;
+}
+a:hover{
+	color: #0080FF;
+	text-decoration: underline;
+}
+/*head*/
+#head{
+	margin-right:auto;
+	margin-left:auto;
+	width: 1010px;
+	height: 50px;
+	background-image: url(images/2.png);
+}
+#logo{
+	float: left;
+	margin-left: 50px;
+	margin-top:0px; 
+}
+#found{
+	float: left;
+	margin-left: 240px;
+	margin-top:20px; 
+}
+#shop{
+	margin-top: 0px;
+    float:right;
+}
+#button1{
+	 border:1px solid #cbc7c6;
+     -moz-border-radius: 15px;
+    /* -webkit-border-radius: 0px;*/
+     border-radius:15px; 
+     background-color:white;
+     margin-top: auto;
+     height:30px;
+     width:60px;
+}
+#shop img{
+	 margin-top:10px;
+}
+/**主体**/
+#contend{
+
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	width: 1004px;
+	height: 1204px;
+}
+/**主体左**/
+#contend #left{
+
+	float: left;
+	width: 700px;
+	height: 1200px;
+
+}
+#contend #left #img{
+
+	width: 460px;
+	height: 50px;
+	background: url(../images/settled1.jpg);
+}
+#contend #left h4{
+	margin-left: 40px;
+	margin-top: 50px;
+}
+#contend #left p{
+
+	margin-left: auto;
+	margin-right: auto;
+	width: 600px;
+	height: 800px;
+}
+#contend #left button{
+	margin-left: 60px;
+	margin-top: 40px;
+	width: 80px;
+	height: 30px;
+}
+#contend #left input{
+	margin-left:40px;
+	margin-top: -5px;
+	width: 80px;
+	height: 30px;
+}
+
+/**主体右**/
+#contend #right{
+
+	float: left;
+	width: 300px;
+	height: 1200px;
+
+}
+/**主体右上**/
+#contend #right #righth{
+	height: 400px;
+
+}
+#contend #right #righth h1{
+	margin-left: 20px;
+}
+#contend #right #righth p{
+	margin-left: 20px;
+	width: 230px;
+	font-size: 18px;
+}
+/**主体右中**/
+#contend #right #rightc{
+	height: 350px;
+
+}
+#contend #right #rightc #rimg1{
+	float: left;
+	margin-left: 5px;
+	margin-top: 60px;
+
+	width: 140px;
+	height: 200px;
+}
+#contend #right #rightc #rimg1 #r1{
+
+	width: 135px;
+	height: 135px;
+	background: url(../images/weixin.jpg);
+}
+#contend #right #rightc #rimg2{
+	float: left;
+	margin-left: 10px;
+	margin-top: 60px;
+
+	width: 140px;
+	height: 200px;
+}
+#contend #right #rightc #rimg2 #r2{
+
+	width: 135px;
+	height: 135px;
+	background: url(../images/Cs.jpg);
+}
+/**主体右下**/
+#contend #right #rightf{
+	height: 400px;
+
+}
+#contend #right #rightf #rimg3{
+	height: 150px;
+
+}
+#contend #right #rightf #rimg3 #r3{
+	float: left;
+	width: 140px;
+	height: 150px;
+	background: url(../images/teacher.jpg);
+
+}
+#contend #right #rightf #rimg3 #r4{
+	float: left;
+	margin-left: 10px;
+	width: 140px;
+	height: 150px;
+	background: url(../images/teacher.jpg);
+
+
+}
+#contend #right #rightf #rimg4{
+	margin-top: 10px;
+	height: 150px;
+}
+#contend #right #rightf #rimg4 #r5{
+	float: left;
+	width: 140px;
+	height: 150px;
+	background: url(../images/teacher.jpg);
+
+
+}
+#contend #right #rightf #rimg4 #r6{
+	float: left;
+	margin-left: 10px;
+	width: 140px;
+	height: 150px;
+	background: url(../images/teacher.jpg);
+
+
+}

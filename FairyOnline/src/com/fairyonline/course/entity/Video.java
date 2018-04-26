@@ -6,7 +6,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Video")
+@Table(name="video")
 public class Video {
 	private int ID;
 	private String Name;

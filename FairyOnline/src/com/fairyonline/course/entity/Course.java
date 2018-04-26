@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name="Course")
+@Table(name="course")
 public class Course {
 	private int ID;
 	private String CName;
@@ -73,11 +73,6 @@ public class Course {
 	}
 	public void setVideoSet(Set videoSet) {
 		this.videoSet = videoSet;
-	}
-	@Override
-	public String toString() {
-		return "Course [ID=" + ID + ", CName=" + CName + ", Price=" + Price + ", CategoryID=" + CategoryID + ", time="
-				+ time + ", TID=" + TID + ", videoSet=" + videoSet + "]";
 	}
 	
 	

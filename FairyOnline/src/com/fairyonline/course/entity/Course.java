@@ -4,14 +4,12 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -22,13 +20,28 @@ public class Course {
 	private int ID;
 	private String CName;
 	private int Price;
-	private Category CategoryID;
-	private Date time;
+	private Course CategoryID;
+	private Date UPTime;
 	private int TID;
-	private Set videoSet = new HashSet<Video>();
+	private Set<Video> videoSet = new HashSet<Video>();
+	
+	public Course() {
+		
+	}
+	public Course(String cName,int Price,Date UPTime,int TID) {
+		this.CName=cName;
+		this.Price=Price;
+		this.CategoryID =CategoryID;
+		this.UPTime = UPTime;
+		this.TID = TID;
+		
+	}
+	public Course(String cName2, int price2, java.sql.Date now1, int tID2) {
+		// TODO Auto-generated constructor stub
+	}
 	@Id
-	@GeneratedValue(generator="id")
-    @GenericGenerator(name="id", strategy="increment")
+	@GeneratedValue(generator="my_gen")
+    @GenericGenerator(name="my_gen", strategy="increment")
 	public int getID() {
 		return ID;
 	}
@@ -49,17 +62,17 @@ public class Course {
 	}
 	@ManyToOne
 	@JoinColumn(name="CategoryID")
-	public Category getCategoryID() {
+	public Course getCategoryID() {
 		return CategoryID;
 	}
-	public void setCategoryID(Category categoryID) {
-		this.CategoryID = categoryID;
+	public void setCategoryID(Course categoryID) {
+		CategoryID = categoryID;
 	}
-	public Date getTime() {
-		return time;
+	public Date getUPTime() {
+		return UPTime;
 	}
-	public void setTime(Date time) {
-		this.time = time;
+	public void setUPTime(Date uPTime) {
+		UPTime = uPTime;
 	}
 	public int getTID() {
 		return TID;
@@ -67,14 +80,14 @@ public class Course {
 	public void setTID(int tID) {
 		this.TID = tID;
 	}
-	@OneToMany(mappedBy="CID", targetEntity=Video.class,cascade=CascadeType.ALL)
-	public Set getVideoSet() {
+	@OneToMany
+	@JoinColumn(name="CID")
+	public Set<Video> getVideoSet() {
 		return videoSet;
 	}
-	public void setVideoSet(Set videoSet) {
+	public void setVideoSet(Set<Video> videoSet) {
 		this.videoSet = videoSet;
 	}
-	
 	
 
 }

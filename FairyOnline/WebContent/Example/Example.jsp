@@ -9,7 +9,7 @@
 <body>
 <h2>示例页面 </h2>
 <h3>../a/b</h3>
-<form action="../example/Add" method = "post">
+<form action="../course/Add" method = "post">
 <input  type="submit" value="test"/>
 </form>
 

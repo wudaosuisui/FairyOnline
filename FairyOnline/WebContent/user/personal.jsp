@@ -21,7 +21,7 @@
     <form id="reg-form" action="${ctx}/user/updateitem" enctype="multipart/form-data" method="post">
 		<input type="hidden" name="id" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 修改用户个人信息：
         <table>
-        	  <tr>
+        	     <tr>
                 <td>昵称</td>
                 <td><input name="userName"  type="text" id="userName" easyform="length:2-16" message="昵称必须为2—16位" easytip="disappear:lost-focus;theme:blue;"></td>
             </tr>

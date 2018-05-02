@@ -82,6 +82,12 @@ public class UserLogin {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+	public UserLogin() {
+	}
+	public UserLogin(String UserName,String PassWord) {
+		// TODO Auto-generated constructor stub
+				this.UserName = UserName;
+				this.PassWord = PassWord;
+	}
 	
 }

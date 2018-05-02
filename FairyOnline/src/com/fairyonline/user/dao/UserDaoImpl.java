@@ -8,12 +8,14 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
+import com.fairyonline.user.entity.UserLogin1;
 
 
 @Repository
@@ -31,16 +33,26 @@ public class UserDaoImpl {
 		List<UserLogin> list = query.list();
 		return list;
 	}
-	public boolean addUserLogin(UserLogin UserLogin) {
+	
+	public void addUserLogin(UserLogin UserLogin) {
 		Session session = this.sessionFactory.getCurrentSession();
+		Transaction tra = session.beginTransaction();//开启事务
 		session.save(UserLogin);
-		return true;
+		System.out.println("save success");
+		session.flush();
+		tra.commit();
+		System.out.println("out Dao");
 	}
-	public boolean addUser(User user) {
+	public void addUser(User User) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.save(user);
-		return true;
+		Transaction tra = session.beginTransaction();//开启事务
+		session.save(User);
+		System.out.println("save success");
+		session.flush();
+		tra.commit();
+		System.out.println("out Dao");
 	}
+	
 	public UserLogin login(String UserName,String PassWord) {
 		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where UserName=? and PassWord=?");
 		query.setParameter(0,UserName);

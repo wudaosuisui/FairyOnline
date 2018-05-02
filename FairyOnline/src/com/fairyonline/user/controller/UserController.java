@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
+import com.fairyonline.user.entity.UserLogin1;
 import com.fairyonline.user.service.UserServiceImpl;
 
 
@@ -69,19 +70,13 @@ public class UserController {
 		}
 		
 		@RequestMapping("/regist")
-		public String userRegist(UserLogin UserLogin,Model model){
-			boolean result = this.userServiceImpl.addUserLogin(UserLogin);
-			//boolean result1 = this.userServiceImpl.addUser(User);
-			if(result) {
-				model.addAttribute("userRegist",UserLogin);
-				//model.addAttribute("userRegist1",User);
-				return "user/login";
-			}else {
-				model.addAttribute("errormsg","注册失败");
-				return "user/regist";
-			}
+		public String userRegist(){
+			UserLogin userLogin = new UserLogin("UserName","PassWord");
+			this.userServiceImpl.addUserLogin(userLogin);
+			return "user/index1";
 			
-		}   
+			
+		} 
 		
 		@RequestMapping("/login")
 		public String userLogin(Model model,HttpServletRequest request,HttpServletResponse response)throws IOException{
@@ -117,7 +112,7 @@ public class UserController {
 		
 		@RequestMapping(value="/updateitem",method= {RequestMethod.POST,RequestMethod.GET})
 		public String updateItems(User items, MultipartFile picture) throws Exception {
-			 // 处理上传的单个图片    
+			/* // 处理上传的单个图片    
 		    String originalFileName = picture.getOriginalFilename();// 原始名称
 		    // 上传图片
 		    if (picture != null && originalFileName != null && originalFileName.length() > 0) {
@@ -133,7 +128,7 @@ public class UserController {
 		        User temp = this.userServiceImpl.findUserById(items.getID());
 		        items.setImg(temp.getImg());
 		    }
-		    this.userServiceImpl.updateUser(items);     
+		    this.userServiceImpl.updateUser(items);  */   
 		    return "user/index";
 		    
 		}

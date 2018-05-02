@@ -45,6 +45,7 @@
     /*
      构造函数
      **/
+	/*
     var _easyform = function (ele, opt)
     {
         this.form = ele;
@@ -68,7 +69,7 @@
     //方法
     _easyform.prototype = {
 
-       /* init: function ()
+        init: function ()
         {
             var ei = this;
             ei._load();
@@ -132,7 +133,7 @@
                 }
             });
         },
-
+      */
         /*
          * 表单提交函数
          * @submit：bool值，用于定义是否真的提交表单
@@ -151,9 +152,9 @@
                 this.inputs[index].validation();
             }
         }
-       */
-    };
 
+    };
+     */
     //添加到jquery
     $.fn.easyform = function (options)
     {

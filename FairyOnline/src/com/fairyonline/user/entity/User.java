@@ -91,6 +91,11 @@ public class User {
 	private String Sex;
 	private UserLogin UserName;
 	
+	public User(UserLogin UserName, String PassWord) {
+		// TODO Auto-generated constructor stub
+		this.UserName = UserName;
+		this.PassWord = PassWord;
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getID() {

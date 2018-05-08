@@ -17,84 +17,23 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="user")
 public class User {
-	/*private int ID;
-	private String UserName;
-	private String PassWord;
-	private String PetName;
-	private String Img;
-	private String TName;
-	private String Sex;
-	private UserLogin userLogin;
-	
-	@Id
-	//@GeneratedValue(generator="foreign")
-	//@GenericGenerator(name="foreign",strategy="foreign")
-	public int getID() {
-		return ID;
-	}
-	public void setID(int iD) {
-		ID = iD;
-	}
-	public String getUserName() {
-		return UserName;
-	}
-	public void setUserName(String userName) {
-		UserName = userName;
-	}
-	public String getPassWord() {
-		return PassWord;
-	}
-	public void setPassWord(String passWord) {
-		PassWord = passWord;
-	}
-	public String getPetName() {
-		return PetName;
-	}
-	
-	public void setPetName(String petName) {
-		PetName = petName;
-	}
-	public String getImg() {
-		return Img;
-	}
-	public void setImg(String img) {
-		Img = img;
-	}
-	public String getTName() {
-		return TName;
-	}
-	public void setTName(String tName) {
-		TName = tName;
-	}
-	public String getSex() {
-		return Sex;
-	}
-	public void setSex(String sex) {
-		Sex = sex;
-	}
-	
-	
-	@OneToOne(mappedBy="user")
-	public UserLogin getUserLogin() {
-		return userLogin;
-	}
-	public void setUserLogin(UserLogin userLogin) {
-		this.userLogin = userLogin;
-	}
-	*/
 	private int ID;
-	
-	private String PassWord;
 	private String PetName;
 	private String Img;
 	private String TName;
 	private String Sex;
-	private UserLogin UserName;
+	private UserLogin UserLogin;
 	
-	public User(UserLogin UserName, String PassWord) {
+	public User(String PetName,String Img,String TName,String Sex,UserLogin UserLogin) {
 		// TODO Auto-generated constructor stub
-		this.UserName = UserName;
-		this.PassWord = PassWord;
+		this.PetName = PetName;
+		this.Img = Img;
+		this.TName = TName;
+		this.Sex = Sex;
+		this.UserLogin = UserLogin;
+	}
+	public User() {
+		// TODO Auto-generated constructor stub
 	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -107,18 +46,13 @@ public class User {
 	
 	@OneToOne(cascade= {CascadeType.ALL})
 	@JoinColumn(name="UserName")
-	public UserLogin getUserName() {
-		return UserName;
+	public UserLogin getUserLogin() {
+		return UserLogin;
 	}
-	public void setUserName(UserLogin userName) {
-		UserName = userName;
+	public void setUserLogin(UserLogin userLogin) {
+		UserLogin = userLogin;
 	}
-	public String getPassWord() {
-		return PassWord;
-	}
-	public void setPassWord(String passWord) {
-		PassWord = passWord;
-	}
+
 	public String getPetName() {
 		return PetName;
 	}

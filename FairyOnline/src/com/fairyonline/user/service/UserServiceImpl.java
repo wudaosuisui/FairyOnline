@@ -39,7 +39,7 @@ public class UserServiceImpl {
 	}
 	public void addUser(User user) {
 		Session session = sessionFactory.openSession();
-		this.userDaoImpl.addUser(user);
+		this.userDaoImpl.addupUser(user);
 		session.close();
 	}
 	public UserLogin login(String UserName,String PassWord) {
@@ -60,7 +60,13 @@ public class UserServiceImpl {
 		return this.userDaoImpl.updateUser(user);
 	}
 	
-	/*public boolean addupUser(User user) {
-		return this.userDaoImpl.addUser(user);
+	public User findUser(String UserName) {
+		User user = this.userDaoImpl.findUser(UserName);
+		return user;
+	}
+	/*public void addupUser(User user) {
+		Session session = sessionFactory.openSession();
+		this.userDaoImpl.addupUser(user);
+		session.close();
 	} */
 }

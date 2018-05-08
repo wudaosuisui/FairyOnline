@@ -21,19 +21,24 @@
     <form id="reg-form" action="${ctx}/user/updateitem" enctype="multipart/form-data" method="post">
 		<input type="hidden" name="id" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 修改用户个人信息：
         <table>
-        	     <tr>
-                <td>昵称</td>
-                <td><input name="userName"  type="text" id="userName" easyform="length:2-16" message="昵称必须为2—16位" easytip="disappear:lost-focus;theme:blue;"></td>
-            </tr>
-           <tr>
-                <td>昵称</td>
-                <td><input name="passWord"  type="password" id="passWord" easyform="length:2-16" message="昵称必须为2—16位" easytip="disappear:lost-focus;theme:blue;"></td>
-            </tr>
+        	    <tr>
+                <td>姓名</td>
+                <td><input name="UserName"  type="text" id="UserName" easyform="length:2-16" message="昵称必须为2—16位" easytip="disappear:lost-focus;theme:blue;"></td>
+            </tr>   
             <tr>
                 <td>昵称</td>
-                <td><input name="petName"  type="text" id="petName" easyform="length:2-16" message="昵称必须为2—16位" easytip="disappear:lost-focus;theme:blue;"></td>
+                <td><input name="PetName"  type="text" id="petName" easyform="length:2-16" message="昵称必须为2—16位" easytip="disappear:lost-focus;theme:blue;"></td>
             </tr> 
+            
             <tr>
+                <td>真实姓名</td>
+                <td><input name="TName" value="" type="text" id="TName" easyform="length:2-16" message="真实姓名必须为2—16位" easytip="disappear:lost-focus;theme:blue;"></td>
+            </tr> 
+               <tr>
+                <td>性别</td>
+                <td><input name="Sex" value="" type="text" id="Sex"></td>
+            </tr> 
+           <tr>
                 <td>用户头像</td>
                 <td>
                 	<c:if test="$item.img != null">
@@ -43,18 +48,9 @@
                     <input type="file" name="picture"/>
                 </td>
             </tr> 
-            <tr>
-                <td>真实姓名</td>
-                <td><input name="Tname" value="" type="text" id="Tname" easyform="length:2-16" message="真实姓名必须为2—16位" easytip="disappear:lost-focus;theme:blue;"></td>
-            </tr> 
-               <tr>
-                <td>性别</td>
-                <td><input name="Sex" value="" type="text" id="Sex"></td>
-            </tr> 
-            
                       
         </table>
-			<div class="buttons">
+			 <div class="buttons">
              <input value="提交" type="submit" id="submit" style="margin-right:20px; margin-top:20px;">
              </div>
 		

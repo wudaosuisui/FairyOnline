@@ -24,7 +24,7 @@ public class UserDaoImpl {
 	private SessionFactory sessionFactory;
 	
 	public List<User> findAll(){
-		Query q = this.sessionFactory.getCurrentSession().createQuery("from UserLogin");
+		Query q = this.sessionFactory.getCurrentSession().createQuery("from User");
 		return q.list();
 	}
 	
@@ -43,14 +43,11 @@ public class UserDaoImpl {
 		tra.commit();
 		System.out.println("out Dao");
 	}
-	public void addUser(User User) {
+	
+	public boolean addUser(User user) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Transaction tra = session.beginTransaction();//开启事务
-		session.save(User);
-		System.out.println("save success");
-		session.flush();
-		tra.commit();
-		System.out.println("out Dao");
+		session.save(user);
+        return true;
 	}
 	
 	public UserLogin login(String UserName,String PassWord) {
@@ -81,13 +78,12 @@ public class UserDaoImpl {
 	}
 	
 	public boolean updateUser(User user) {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("update User where UserName=?,PassWord=?,PetName=?,Img=?,TName=?,Sex=?");
-		query.setParameter(0,user.getUserName());
-		query.setParameter(1,user.getPassWord());
-		query.setParameter(2,user.getPetName());
-		query.setParameter(3,user.getImg());
-		query.setParameter(4,user.getTName());
-		query.setParameter(5,user.getSex());
+		Query query = this.sessionFactory.getCurrentSession().createQuery("update User set PetName=?,Img=?,Sex=?,TName=? where ID=?");
+		query.setParameter(0,user.getPetName());
+		query.setParameter(1,user.getImg());
+		query.setParameter(2,user.getSex());
+		query.setParameter(3,user.getTName());
+		query.setParameter(4,user.getID());
 		int i = query.executeUpdate();
 		if(i>0) {
 			System.out.println("updateUserDao执行成功");
@@ -97,6 +93,14 @@ public class UserDaoImpl {
 			return false;
 		}
 	}
+	
+	public User findUser(String UserName) {
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from User where UserName=?");
+		query.setParameter(0,UserName);
+		User user = (User)query.uniqueResult();
+		return user;
+	}
+
 	public boolean addupUser(User User) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.save(User);

@@ -28,7 +28,7 @@ public class VideoController {
 	            @RequestParam("file") MultipartFile file,  
 	            HttpServletRequest request, ModelMap model) throws org.bytedeco.javacv.FrameGrabber.Exception, IOException {  
 	  
-	        // 获得原始文件名  
+	        // 原始文件名  
 	        String fileName = file.getOriginalFilename();  
 	        System.out.println("原始文件名:" + fileName);  
 	        // 新文件名  

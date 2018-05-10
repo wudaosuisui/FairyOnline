@@ -25,6 +25,18 @@ public class NodeServiceImpl {
 	@Resource
 	private NodeDaoImpl nodeDaoImpl;
 	/*主体方法*/
+	
+	public Node GetOneNode(int id) {
+		Session session = sessionFactory.openSession();
+		return nodeDaoImpl.getById(id);
+	}
+	
+	public void AddOneNode(Node node) {
+		System.out.println("service get");
+		nodeDaoImpl.save(node);
+		System.out.println("service out");
+	}
+	
 	//获取文件内容、创建对象、存入数据库
 	public void AddNodeByFile(String fileUrl) {
 		System.out.println("service get");
@@ -46,7 +58,7 @@ public class NodeServiceImpl {
 		for(int i=0;i<(strArr.length-1);i++) {
 			nodArr[i] = new Node(
 					strArr[i+1][0],//版本号
-					strArr[i+1][1].toCharArray()[0],//类型编号
+					Integer.parseInt(strArr[i+1][1]),//类型编号  .toCharArray()[0]
 					strArr[i+1][2],//名称
 					strArr[i+1][3],//前置知识
 					strArr[i+1][4],//后继知识
@@ -54,6 +66,7 @@ public class NodeServiceImpl {
 					strArr[i+1][6],///详细解释
 					2//热度
 					);
+			System.out.println(nodArr[i].getCatNumber());
 		}
 		System.out.println("GetNodSrr out");
 		return nodArr;

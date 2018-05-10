@@ -21,7 +21,7 @@ public class ExampleControllerImpl {/*驼峰式命名*/
 	@RequestMapping(value="/Add")/*方法对应地址*/
 	public String Add() {/*驼峰式命名*/
 		System.out.println("get add");
-		Example example = new Example("exampleName");
+		Example example = new Example("中文exampleName");
 		exampleServiceImple.Add(example);
 		return "Example/Example";
 	}

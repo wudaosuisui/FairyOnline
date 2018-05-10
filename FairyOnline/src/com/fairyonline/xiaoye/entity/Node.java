@@ -15,8 +15,8 @@ public class Node {
 	private int FirstSideId;
 	private int LastSideId;
 	/*一般属性*///8
-	private String verNumber;//版本号 	version number
-	private char catNumber;//类型编号 	category number
+	private String verNumber;//版本号 	version number // Timestamps  time stamp
+	private int catNumber;//类型编号 	category number
 	private String Name;//名称	
 	private String preKnowledge;//前置知识 		Pre Knowledge
 	private String sucKnowledge;//后继知识 		Successor Knowledge
@@ -26,7 +26,7 @@ public class Node {
 
 	/*构造*/
 	//全构造
-	public Node(int id, int firstSideId, int lastSideId, String verNumber, char catNumber, String name,String names,
+	public Node(int id, int firstSideId, int lastSideId, String verNumber, int catNumber, String name,String names,
 			String preKnowledge, String sucKnowledge, String relKnowledge, String content, int heat) {
 		this.id = id;
 		FirstSideId = firstSideId;
@@ -41,7 +41,7 @@ public class Node {
 		this.heat = heat;
 	}
 	//无id 全构造
-	public Node( int firstSideId, int lastSideId, String verNumber, char catNumber, String name,
+	public Node( int firstSideId, int lastSideId, String verNumber, int catNumber, String name,
 			String preKnowledge, String sucKnowledge, String relKnowledge, String content, int heat) {
 		FirstSideId = firstSideId;
 		LastSideId = lastSideId;
@@ -58,7 +58,7 @@ public class Node {
 	public Node() {
 	}
 	//默认构造2
-	public Node( String verNumber, char catNumber, String name,
+	public Node( String verNumber, int catNumber, String name,
 			String preKnowledge, String sucKnowledge, String relKnowledge, String content, int heat) {
 		FirstSideId = 0;
 		LastSideId = 0;
@@ -102,6 +102,7 @@ public class Node {
 				" heat : "+this.heat
 				);
 	}
+	
 	/*set&get*/
 	@Id//自增id
 	@GeneratedValue(generator="my_gen")
@@ -124,12 +125,6 @@ public class Node {
 	public void setLastSideId(int lastSideId) {
 		LastSideId = lastSideId;
 	}
-	public String getName() {
-		return Name;
-	}
-	public void setName(String name) {
-		this.Name = name;
-	}
 	public String getVerNumber() {
 		return verNumber;
 	}
@@ -139,8 +134,14 @@ public class Node {
 	public int getCatNumber() {
 		return catNumber;
 	}
-	public void setCatNumber(char catNumber) {
+	public void setCatNumber(int catNumber) {
 		this.catNumber = catNumber;
+	}
+	public String getName() {
+		return Name;
+	}
+	public void setName(String name) {
+		Name = name;
 	}
 	public String getPreKnowledge() {
 		return preKnowledge;
@@ -172,6 +173,5 @@ public class Node {
 	public void setHeat(int heat) {
 		this.heat = heat;
 	}
-	
 	
 }

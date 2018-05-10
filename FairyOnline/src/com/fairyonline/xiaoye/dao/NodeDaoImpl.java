@@ -23,7 +23,7 @@ public class NodeDaoImpl {
 	public void save(Node node) {
 		Session session = sessionFactory.getCurrentSession();//获取sessio
 		Transaction tra = session.beginTransaction();//开启事务
-//		session.save(node);	
+		session.save(node);	
 		node.show();
 		session.flush();
 		tra.commit();
@@ -55,6 +55,7 @@ public class NodeDaoImpl {
 		Transaction tra = session.beginTransaction();
 		Node nod = session.get(Node.class, id);
 		tra.commit();
+		session.close();
 		return nod;
 	}
 //  get by name

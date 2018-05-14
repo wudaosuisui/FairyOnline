@@ -19,40 +19,39 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="userLogin")
 public class UserLogin {
-	private String UserName;
-	private String PassWord;
-	//private User user;
+	private String userName;
+	private String passWord;
+	private User user;
+	public UserLogin() {
+	}
 	
 	@Id
 	@GeneratedValue(generator="system-uuid")
 	@GenericGenerator(name="system-uuid", strategy = "uuid")
 	public String getUserName() {
-		return UserName;
+		return userName;
 	}
 	public void setUserName(String userName) {
-		UserName = userName;
+		this.userName = userName;
 	}
 	public String getPassWord() {
-		return PassWord;
+		return passWord;
 	}
 	public void setPassWord(String passWord) {
-		PassWord = passWord;
+		this.passWord = passWord;
 	}
-	
-	/*@OneToOne(mappedBy="userLogin")
+	@OneToOne(mappedBy="userLogin")
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
-	*/
-	public UserLogin() {
-	}
-	public UserLogin(String UserName,String PassWord) {
+	
+	public UserLogin(String userName,String passWord) {
 		// TODO Auto-generated constructor stub
-				this.UserName = UserName;
-				this.PassWord = PassWord;
+				this.userName = userName;
+				this.passWord = passWord;
 	}
 	
 }

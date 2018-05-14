@@ -39,29 +39,29 @@ public class UserServiceImpl {
 	}
 	public void addUser(User user) {
 		Session session = sessionFactory.openSession();
-		this.userDaoImpl.addupUser(user);
+		this.userDaoImpl.addUser(user);
 		session.close();
 	}
-	public UserLogin login(String UserName,String PassWord) {
-		UserLogin userLogin = this.userDaoImpl.login(UserName, PassWord);
+	public UserLogin login(String userName,String passWord) {
+		UserLogin userLogin = this.userDaoImpl.login(userName, passWord);
 		return userLogin;
 	}
-	public UserLogin findUserLogin(String UserName) {
-		UserLogin userLogin = this.userDaoImpl.findUserLogin(UserName);
+	public UserLogin findUserLogin(String userName) {
+		UserLogin userLogin = this.userDaoImpl.findUserLogin(userName);
 		return userLogin;
 	}
 	
-	public User  findUserById(int ID) {
-		User user = this.userDaoImpl. findUserById(ID);
+	public User  findUserById(int id) {
+		User user = this.userDaoImpl. findUserById(id);
 		return user;
 	}
 	
-	public boolean updateUser(User user) {
+	/*public boolean updateUser(User user) {
 		return this.userDaoImpl.updateUser(user);
 	}
-	
-	public User findUser(String UserName) {
-		User user = this.userDaoImpl.findUser(UserName);
+	*/
+	public User findUser(String userName) {
+		User user = this.userDaoImpl.findUser(userName);
 		return user;
 	}
 	/*public void addupUser(User user) {
@@ -69,4 +69,7 @@ public class UserServiceImpl {
 		this.userDaoImpl.addupUser(user);
 		session.close();
 	} */
+	public List<UserLogin> getUserByPartName(String userName){
+        return this.userDaoImpl.getUserByPartName(userName);
+	}
 }

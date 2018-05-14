@@ -129,18 +129,18 @@ public class UserController {
 			if(userName != null) {
 			for(int i=0;i<list.size();i++) {
 				if(list.get(i).getUserName().equals(userName)) {
-					String PetName = request.getParameter("PetName");
-					String Sex = request.getParameter("Sex");
-					String Img = request.getParameter("Img");
-					String TName = request.getParameter("TName");
+					String petName = request.getParameter("PetName");
+					String sex = request.getParameter("Sex");
+					String img = request.getParameter("Img");
+					String tName = request.getParameter("TName");
 					UserLogin userLogin = this.userServiceImpl.findUserLogin(userName);
 					List<User> list1 = this.userServiceImpl.listAll();
 					
 					User user = new User();
-					user.setPetName(PetName);
-					//user.setImg(Img);
-					user.setSex(Sex);
-					user.setTName(TName);
+					user.setPetName(petName);
+					//user.setImg(img);
+					user.setSex(sex);
+					user.settName(tName);
 					user.setUserLogin(userLogin);
 					
 					
@@ -160,17 +160,18 @@ public class UserController {
 				    }else {
 				    	System.out.println("else  success");
 				    	//如果用户没有选择图片就上传了，还用原来的图片
-				       // User temp = this.userServiceImpl.findUserById(user.getID());
-				       // user.setImg(temp.getImg());
+				       // User user = this.userServiceImpl.findUserById(user.getID());
+				       // user.setImg(user.getImg());
 				    }
 				    list1.add(user);
 				    
-				    String userName1 = userLogin.getUserName();
+				   /* String userName1 = userLogin.getUserName();
+				    
 				    User user1 = this.userServiceImpl.findUser(userName1);
 				    if(user1 != null) {
 				    	this.userServiceImpl.updateUser(user);
 				    }
-				  
+				  */
 					this.userServiceImpl.addUser(user); 
 				}
 			  }
@@ -180,12 +181,17 @@ public class UserController {
 			 return "user/index";
 			/*User items = new User("PetName","TName","Sex");
 			this.userServiceImpl.addupUser(items);
-			 
-		   
-		   }*/
-       
-		
-
-
+			 */
 		}
+       
+		@RequestMapping("/searchUser")
+		public String userlist(Model model,String userName,HttpServletRequest request,HttpServletResponse response){
+			userName = request.getParameter("found");
+			List<UserLogin> list = this.userServiceImpl.getUserByPartName(userName);
+			
+			model.addAttribute("list",list);
+			return "user/searchUserResult";
+		}
+
+		
 }

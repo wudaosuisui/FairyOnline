@@ -17,65 +17,65 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="user")
 public class User {
-	private int ID;
-	private String PetName;
-	private String Img;
-	private String TName;
-	private String Sex;
-	private UserLogin UserLogin;
+	private int id;
+	private String petName;
+	private String img;
+	private String tName;
+	private String sex;
+	private UserLogin userLogin;
 	
-	public User(String PetName,String Img,String TName,String Sex,UserLogin UserLogin) {
+	public User(String petName,String img,String tName,String sex,UserLogin userLogin) {
 		// TODO Auto-generated constructor stub
-		this.PetName = PetName;
-		this.Img = Img;
-		this.TName = TName;
-		this.Sex = Sex;
-		this.UserLogin = UserLogin;
+		this.petName = petName;
+		this.img = img;
+		this.tName = tName;
+		this.sex = sex;
+		this.userLogin = userLogin;
 	}
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getID() {
-		return ID;
+	public int getId() {
+		return id;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
+	public String getPetName() {
+		return petName;
+	}
+	
+	public void setPetName(String petName) {
+		this.petName = petName;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public String gettName() {
+		return tName;
+	}
+	public void settName(String tName) {
+		this.tName = tName;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 	@OneToOne(cascade= {CascadeType.ALL})
 	@JoinColumn(name="UserName")
 	public UserLogin getUserLogin() {
-		return UserLogin;
+		return userLogin;
 	}
 	public void setUserLogin(UserLogin userLogin) {
-		UserLogin = userLogin;
-	}
-
-	public String getPetName() {
-		return PetName;
-	}
-	public void setPetName(String petName) {
-		PetName = petName;
-	}
-	public String getImg() {
-		return Img;
-	}
-	public void setImg(String img) {
-		Img = img;
-	}
-	public String getTName() {
-		return TName;
-	}
-	public void setTName(String tName) {
-		TName = tName;
-	}
-	public String getSex() {
-		return Sex;
-	}
-	public void setSex(String sex) {
-		Sex = sex;
+		this.userLogin = userLogin;
 	}
 	
 	

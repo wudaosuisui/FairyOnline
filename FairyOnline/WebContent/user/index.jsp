@@ -17,7 +17,7 @@
 			<img src="../images/logo.jpeg" height="60px">
 		</div>
 		<div id="found">
-			<form action="post" method="1.html">
+			<form action="${ctx}/user/searchUser" >
 				<input type="text" name="found" height="30px" width="100px">
 				<button >搜索</button>
 			</form>

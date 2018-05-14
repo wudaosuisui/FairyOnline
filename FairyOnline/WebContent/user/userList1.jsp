@@ -9,8 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+    <table border="1">
 	<c:forEach items="${list}" var="user">
-	${user.user.passWord},${user.userName}<br>
+	<tr>
+	<td>${user.userName}</td>
+	<td>关注</td>
 	</c:forEach>
+	</table>
 </body>
 </html>

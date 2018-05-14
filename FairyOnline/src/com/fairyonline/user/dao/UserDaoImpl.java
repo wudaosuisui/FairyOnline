@@ -34,10 +34,10 @@ public class UserDaoImpl {
 		return list;
 	}
 	
-	public void addUserLogin(UserLogin UserLogin) {
+	public void addUserLogin(UserLogin userLogin) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction tra = session.beginTransaction();//开启事务
-		session.save(UserLogin);
+		session.save(userLogin);
 		System.out.println("save success");
 		session.flush();
 		tra.commit();
@@ -50,10 +50,11 @@ public class UserDaoImpl {
         return true;
 	}
 	
-	public UserLogin login(String UserName,String PassWord) {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where UserName=? and PassWord=?");
-		query.setParameter(0,UserName);
-		query.setParameter(1,PassWord);
+	
+	public UserLogin login(String userName,String passWord) {
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where userName=? and passWord=?");
+		query.setParameter(0,userName);
+		query.setParameter(1,passWord);
 		UserLogin userLogin = (UserLogin)query.uniqueResult();
 		if(userLogin!=null) {
 			return userLogin;
@@ -63,27 +64,27 @@ public class UserDaoImpl {
 		}
 	}
 	
-	public UserLogin findUserLogin(String UserName) {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where UserName=?");
-		query.setParameter(0,UserName);
+	public UserLogin findUserLogin(String userName) {
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where userName=?");
+		query.setParameter(0,userName);
 		UserLogin userLogin = (UserLogin)query.uniqueResult();
 		return userLogin;
 	}
 	
-	public User findUserById(int ID) {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("from User where ID=?");
-		query.setParameter(0,ID);
+	public User findUserById(int id) {
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from User where id=?");
+		query.setParameter(0,id);
 		User user = (User)query.uniqueResult();
 		return user;
 	}
 	
-	public boolean updateUser(User user) {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("update User set PetName=?,Img=?,Sex=?,TName=? where ID=?");
+	/*public boolean updateUser(User user) {
+		Query query = this.sessionFactory.getCurrentSession().createQuery("update User set petName=?,img=?,sex=?,tName=? where id=?");
 		query.setParameter(0,user.getPetName());
 		query.setParameter(1,user.getImg());
 		query.setParameter(2,user.getSex());
-		query.setParameter(3,user.getTName());
-		query.setParameter(4,user.getID());
+		query.setParameter(3,user.gettName());
+		query.setParameter(4,user.getid());
 		int i = query.executeUpdate();
 		if(i>0) {
 			System.out.println("updateUserDao执行成功");
@@ -93,17 +94,19 @@ public class UserDaoImpl {
 			return false;
 		}
 	}
-	
-	public User findUser(String UserName) {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("from User where UserName=?");
-		query.setParameter(0,UserName);
+	*/
+	public User findUser(String userName) {
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from User where userName=?");
+		query.setParameter(0,userName);
 		User user = (User)query.uniqueResult();
 		return user;
 	}
 
-	public boolean addupUser(User User) {
-		Session session = this.sessionFactory.getCurrentSession();
-		session.save(User);
-		return true;
+	public List<UserLogin> getUserByPartName(String userName){
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where userName like ?");
+		query.setString(0,"%"+userName+"%");
+		return query.list();
 	}
+	
+	
 }

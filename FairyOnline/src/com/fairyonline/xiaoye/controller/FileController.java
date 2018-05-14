@@ -95,9 +95,13 @@ public class FileController {
 	/*通过读取文件，批量的导入node。对文件的要求很苛刻。不可有中文、必须是csv文件、必须是uft-8格式*/
 	@RequestMapping("/addNodesByFile")
 	public String addNodesByFile(@RequestParam(value="file") String  furl) {
-		System.out.println("furl : "+furl+"  controller get");
 		nodeServiceImpl.AddNodeByFile(furl);
-		System.out.println("controller out");
+		return "Xiaoye/addData";
+	}
+	/*通过读取文件，批量的导入side（包括对node的修改）。对文件的要求很苛刻。不可有中文、必须是csv文件、必须是uft-8格式*/
+	@RequestMapping("/addSidesByFile")
+	public String addSidesByFile(@RequestParam(value="file") String  furl) {
+		sideServiceImpl.AddSideByFile(furl);
 		return "Xiaoye/addData";
 	}
 }

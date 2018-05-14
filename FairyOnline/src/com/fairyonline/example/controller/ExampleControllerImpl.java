@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fairyonline.example.entity.Example;
 import com.fairyonline.example.service.ExampleServiceImpl;
-import com.fairyonline.xiaoye.entity.Vertex;
-import com.fairyonline.xiaoye.service.VertexServiceImpl;
 
 @Controller
 @Repository

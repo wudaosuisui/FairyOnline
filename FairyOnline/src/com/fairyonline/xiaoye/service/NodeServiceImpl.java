@@ -24,11 +24,17 @@ public class NodeServiceImpl {
 	private SessionFactory sessionFactory;
 	@Resource
 	private NodeDaoImpl nodeDaoImpl;
-	/*主体方法*/
+	
+	/*尝试方法---------------------------*/
+	
+	
+	/*主体方法---------------------------*/
 	
 	public Node GetOneNode(int id) {
 		Session session = sessionFactory.openSession();
-		return nodeDaoImpl.getById(id);
+		Node node =  nodeDaoImpl.getById(id);
+		session.close();
+		return node;
 	}
 	
 	public void AddOneNode(Node node) {
@@ -112,6 +118,15 @@ public class NodeServiceImpl {
 	
 	
 	/*尝试方法---------------------------*/
+	//名字的模糊查询没有问题
+		public Node getNodeByName(String name) {
+			System.out.println("server get");
+			Session session = sessionFactory.openSession();
+			Node node = nodeDaoImpl.getByName(name);
+			session.close();
+			System.out.println("server out");
+			return node;
+		}
 	//转存
 	public void RedAndSaveFile(String url1,String url2) {//获取文件  MultipartFile  file
         String encoding = "UTF-8";  

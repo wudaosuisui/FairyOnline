@@ -55,16 +55,19 @@ public class NodeDaoImpl {
 		Transaction tra = session.beginTransaction();
 		Node nod = session.get(Node.class, id);
 		tra.commit();
-		session.close();
 		return nod;
 	}
 //  get by name
 	public Node getByName(String name) {
+		System.out.println("dao get");
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tra = session.beginTransaction();
-		Node nod = session.get(Node.class, name);
+		Query query = session.createQuery("from Node as s where s.name like'%"+name+"%'");
+		List list = query.list();
+		Node node = (Node) list.get(0);
 		tra.commit();
-		return nod;
+		System.out.println("dao out");
+		return node;
 	}
 	/*update*/
 //	update 

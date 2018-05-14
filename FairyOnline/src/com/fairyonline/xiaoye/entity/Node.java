@@ -12,8 +12,8 @@ import org.hibernate.annotations.GenericGenerator;
 public class Node {
 	/*主要属性*///3
 	private int id;	
-	private int FirstSideId;
-	private int LastSideId;
+	private int firstSideId;
+	private int lastSideId;
 	/*一般属性*///8
 	private String verNumber;//版本号 	version number // Timestamps  time stamp
 	private int catNumber;//类型编号 	category number
@@ -29,8 +29,8 @@ public class Node {
 	public Node(int id, int firstSideId, int lastSideId, String verNumber, int catNumber, String name,String names,
 			String preKnowledge, String sucKnowledge, String relKnowledge, String content, int heat) {
 		this.id = id;
-		FirstSideId = firstSideId;
-		LastSideId = lastSideId;
+		firstSideId = firstSideId;
+		lastSideId = lastSideId;
 		this.verNumber = verNumber;
 		this.catNumber = catNumber;
 		Name = name;
@@ -43,8 +43,8 @@ public class Node {
 	//无id 全构造
 	public Node( int firstSideId, int lastSideId, String verNumber, int catNumber, String name,
 			String preKnowledge, String sucKnowledge, String relKnowledge, String content, int heat) {
-		FirstSideId = firstSideId;
-		LastSideId = lastSideId;
+		firstSideId = firstSideId;
+		lastSideId = lastSideId;
 		this.verNumber = verNumber;
 		this.catNumber = catNumber;
 		Name = name;
@@ -60,8 +60,8 @@ public class Node {
 	//默认构造2
 	public Node( String verNumber, int catNumber, String name,
 			String preKnowledge, String sucKnowledge, String relKnowledge, String content, int heat) {
-		FirstSideId = 0;
-		LastSideId = 0;
+		firstSideId = 0;
+		lastSideId = 0;
 		this.verNumber = verNumber;
 		this.catNumber = catNumber;
 		Name = name;
@@ -73,8 +73,8 @@ public class Node {
 	}
 	//测试构造
 	public Node(String test) {
-		FirstSideId = 0;
-		LastSideId = 0;
+		firstSideId = 0;
+		lastSideId = 0;
 		this.verNumber = "1.0.0";
 		this.catNumber = 1;
 		Name = "name1 name2 name3 name4";
@@ -89,8 +89,8 @@ public class Node {
 	public void show() {
 		System.out.println(
 				" Id: "+this.id+
-				" FirstSideId : "+this.FirstSideId+
-				" LastSideId : "+this.LastSideId+
+				" FirstSideId : "+this.firstSideId+
+				" LastSideId : "+this.lastSideId+
 				
 				" verNumber : "+this.verNumber+
 				" catNumber : "+this.catNumber+
@@ -114,20 +114,21 @@ public class Node {
 		this.id = id;
 	}
 	public int getFirstSideId() {
-		return FirstSideId;
+		return firstSideId;
 	}
 	public void setFirstSideId(int firstSideId) {
-		FirstSideId = firstSideId;
+		this.firstSideId = firstSideId;
 	}
 	public int getLastSideId() {
-		return LastSideId;
+		return lastSideId;
 	}
 	public void setLastSideId(int lastSideId) {
-		LastSideId = lastSideId;
+		this.lastSideId = lastSideId;
 	}
 	public String getVerNumber() {
 		return verNumber;
 	}
+	
 	public void setVerNumber(String verNumber) {
 		this.verNumber = verNumber;
 	}

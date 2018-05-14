@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fairyonline.xiaoye.service.NodeServiceImpl;
 import com.fairyonline.xiaoye.service.SideServiceImpl;
 import com.fairyonline.xiaoye.entity.Node;
+import com.fairyonline.xiaoye.entity.Side;
 
 
 @Controller
@@ -25,6 +26,44 @@ public class FileController {
 	@Resource
 	private NodeServiceImpl nodeServiceImpl;
 	
+	@RequestMapping("/test")
+	public String Test(@RequestParam(value="file") String  furl) {
+		System.out.println("furl : "+furl+"  controller get");
+		sideServiceImpl.AddSideByFile(furl);
+		
+		
+//		Side sid = new Side("test");
+//		sideServiceImpl.addSide(sid);
+//		String[][] strs = sideServiceImpl.GetStrArr(furl); 
+//		System.out.println("strs.length : "+strs.length+"\t");
+		
+//		for(String[] str : strs) {
+////			System.out.println("i : "+i);
+//			System.out.println(" ");
+//			for(String st : str) {
+//				System.out.print(st+"\t");
+//			}
+//		}
+//		
+//		Side[] sids = sideServiceImpl.getSidStr(strs);
+//		System.out.println("sids.length : "+sids.length+"\t");
+//		for(int i = 0 ; i <sids.length;i++) {
+//			System.out.println(i+"\t");
+//			sids[i].show();
+//			
+//		}
+		System.out.println("controller out");
+		return "Xiaoye/filetest";
+	}
+	
+	@RequestMapping("/getNodeByName")
+	public String getNodeByName(@RequestParam String name) {
+		System.out.println("controller get");
+		Node nod = nodeServiceImpl.getNodeByName(name);
+		nod.show();
+		System.out.println("controller out");
+		return "Xiaoye/filetest";
+	}
 	
 	@RequestMapping("/addone")
 	public String AddOne() {
@@ -41,7 +80,7 @@ public class FileController {
 	}
 	
 	@RequestMapping("/getbyid")
-	public String Test(@RequestParam int id) {
+	public String getById(@RequestParam int id) {
 		System.out.println("controller get");
 		Node nod = nodeServiceImpl.GetOneNode(id);
 		nod.show();
@@ -50,12 +89,15 @@ public class FileController {
 	}
 
 	
-	/*可以添加，且流程没有太大问题。但是对文件的要求很苛刻。不可有中文、必须是csv文件、必须是uft-8格式*/
-	@RequestMapping("/test")
-	public String Test(@RequestParam(value="file") String  furl) {
+	
+	
+/*正版controller方法*/
+	/*通过读取文件，批量的导入node。对文件的要求很苛刻。不可有中文、必须是csv文件、必须是uft-8格式*/
+	@RequestMapping("/addNodesByFile")
+	public String addNodesByFile(@RequestParam(value="file") String  furl) {
 		System.out.println("furl : "+furl+"  controller get");
 		nodeServiceImpl.AddNodeByFile(furl);
 		System.out.println("controller out");
-		return "Xiaoye/filetest";
+		return "Xiaoye/addData";
 	}
 }

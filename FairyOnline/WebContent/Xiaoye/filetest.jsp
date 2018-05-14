@@ -7,20 +7,35 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>add nodes by file</h2>
+<h2>add sides by file</h2>
 <form action="../file/test" method = "post"><!--  enctype="multipart/form-data" -->
-<input type="file" name="file" >
+<input type="file" name="file" > 
 <input type="submit" value="submit">
 </form>
-<h2>add one node</h2>
-<form action="../file/addone" method = "post"><!--  enctype="multipart/form-data" -->
 
+<h2>get one node by name</h2>
+<form action="../file/getNodeByName" method = "post">
+<input typr="text" name="name" value="name1 name2 name3 ">
 <input type="submit" value="submit">
 </form>
+
 <h2>get one node by id</h2>
 <form action="../file/getbyid" method = "post">
 <input typr="text" name="id" value="6">
 <input type="submit" value="submit">
 </form>
+
+<h2>add nodes by file</h2>
+<form action="../file/test" method = "post"><!--  enctype="multipart/form-data" -->
+<input type="file" name="file" >
+<input type="submit" value="submit">
+</form>
+
+<h2>add one node</h2>
+<form action="../file/addone" method = "post"><!--  enctype="multipart/form-data" -->
+<input type="submit" value="submit">
+</form>
+
+
 </body>
 </html>

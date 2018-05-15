@@ -14,7 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class Video {
 	private int ID;
 	private String Name;
-	private Course CID;
+	private Chapters ChapterID;
 	private int TID;//后期再加一对多
 	private String URL;
 	
@@ -33,13 +33,14 @@ public class Video {
 	public void setName(String name) {
 		this.Name = name;
 	}
+	
 	@ManyToOne
-	@JoinColumn(name="CID")
-	public Course getCID() {
-		return CID;
+	@JoinColumn(name="ChapterID")
+	public Chapters getChapterID() {
+		return ChapterID;
 	}
-	public void setCID(Course cID) {
-		this.CID = cID;
+	public void setChapterID(Chapters chapterID) {
+		ChapterID = chapterID;
 	}
 	public int getTID() {
 		return TID;

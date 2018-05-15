@@ -74,11 +74,12 @@
 				<a href="#">工具</a>
         	</div>
         </div>
-        <form action="list.do">
+        <form action="../course/list">
             <input type="submit">
         </form>
         <div id="specific">
             <div id="bord">
+         
                 <c:forEach var="l" items="${list}">
                 <div class="lessen">
 	        			<div class="lepic">
@@ -86,7 +87,7 @@
 								<img src="../images/lepic.jpg">
 							</a>
 						</div>
-						<div class="line6"><a href="#">${l.CName } </a></div>
+						<div class="line6"><a href="crousedetail.do?id=${l.ID }">${l.CName } </a></div>
 						<div class="line6">
 							<a href="#">类型</a>
 							<a href="#">观看人数</a>
@@ -95,7 +96,7 @@
 						<div class="line6"><a href="#">价格</a></div>
 	        	</div>
 	        	</c:forEach>
-                
+          
             </div>
         
         	

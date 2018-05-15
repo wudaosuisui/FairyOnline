@@ -79,7 +79,13 @@
 }
 #body2-img{
     margin-top:30px;
-	margin-left: 34px;
+	margin-left:-45px;
+	float:left;
+}
+#body2-checkbox{
+	 margin-top:30px;
+	margin-left: -4px;
+	width:-10px;
 	float:left;
 }
 #body2 img{
@@ -88,7 +94,7 @@
 	height:148px;
 }
 #body2-text{
-	margin-right: 84px;
+	margin-right: 50px;
 	margin-top:10px;
 	float:right;
 	width:450px;

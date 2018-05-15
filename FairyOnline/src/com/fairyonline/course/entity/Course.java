@@ -1,10 +1,15 @@
 package com.fairyonline.course.entity;
 
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -12,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+//import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -20,10 +26,10 @@ public class Course {
 	private int ID;
 	private String CName;
 	private int Price;
-	private Course CategoryID;
+	private Category CategoryID;
 	private Date UPTime;
 	private int TID;
-	private Set<Video> videoSet = new HashSet<Video>();
+	private List<Chapters> chaptersList = new ArrayList<Chapters>();
 	
 	public Course() {
 		
@@ -62,11 +68,11 @@ public class Course {
 	}
 	@ManyToOne
 	@JoinColumn(name="CategoryID")
-	public Course getCategoryID() {
+	public  Category getCategoryID() {
 		return CategoryID;
 	}
-	public void setCategoryID(Course categoryID) {
-		CategoryID = categoryID;
+	public void setCategoryID(Category categoryID) {
+		this.CategoryID = categoryID;
 	}
 	public Date getUPTime() {
 		return UPTime;
@@ -80,13 +86,20 @@ public class Course {
 	public void setTID(int tID) {
 		this.TID = tID;
 	}
-	@OneToMany
+	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)//»ý¼«¼ÓÔØEAGER
 	@JoinColumn(name="CID")
-	public Set<Video> getVideoSet() {
-		return videoSet;
+//	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+//    @JoinColumn(name="CID")
+	public List<Chapters> getChaptersList() {
+		return chaptersList;
 	}
-	public void setVideoSet(Set<Video> videoSet) {
-		this.videoSet = videoSet;
+	public void setChaptersList(List<Chapters> chaptersList) {
+		this.chaptersList = chaptersList;
+	}
+	@Override
+	public String toString() {
+		return "Course [ID=" + ID + ", CName=" + CName + ", Price=" + Price + ", CategoryID=" + CategoryID + ", UPTime="
+				+ UPTime + ", TID=" + TID + ", chaptersList=" + chaptersList + "]";
 	}
 	
 

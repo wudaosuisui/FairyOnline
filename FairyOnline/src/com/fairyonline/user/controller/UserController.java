@@ -49,6 +49,9 @@ public class UserController {
 		@RequestMapping("/userList1")
 		public String list(Model model) {
 			List<User> list = this.userServiceImpl.listAll();
+			User user1 = list.get(0);
+			user1.setFollowUserList(list);
+			userServiceImpl.updateUser(user1);
 			model.addAttribute("list",list);
 			return "user/userList1"; 
 		}
@@ -114,6 +117,7 @@ public class UserController {
 			}
 			if(userLogin2!=null) {
 				session.setAttribute("userLogin",userName2);
+				session.setAttribute("userLogin2",userLogin2);
 				model.addAttribute("admin",userName2);
 				System.out.println("login÷¥––≥…π¶");
 				return "user/index";
@@ -219,5 +223,14 @@ public class UserController {
 			}
 		}
 		
+		@RequestMapping("/followUser")
+		public String followUser(Model model,int id) {
+			User user = this.userServiceImpl.findUserById(id);
+			for(int i=0;i<user.getFollowUserList().size();i++) {
+				System.out.println("user.getFollowUserList()[i].Uid");
+				user.getFollowUserList().UID
+			}
+			return "";
+		}
 		 
 }

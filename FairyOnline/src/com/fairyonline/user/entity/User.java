@@ -2,12 +2,18 @@ package com.fairyonline.user.entity;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -23,6 +29,7 @@ public class User {
 	private String tName;
 	private String sex;
 	private UserLogin userLogin;
+	private List<User> followUserList = new ArrayList<User>();
 	
 	public User(String petName,String img,String tName,String sex,UserLogin userLogin) {
 		// TODO Auto-generated constructor stub
@@ -77,6 +84,17 @@ public class User {
 	public void setUserLogin(UserLogin userLogin) {
 		this.userLogin = userLogin;
 	}
+	@ManyToMany
+	@JoinTable(name="FOLLOWUSER", 
+    joinColumns=@JoinColumn(name="UID"),
+    inverseJoinColumns=@JoinColumn(name="FID"))
+    public List<User> getFollowUserList() {
+		return followUserList;
+	}
+	public void setFollowUserList(List<User> followUserList) {
+		this.followUserList = followUserList;
+	}
+	
 	
 	
 }

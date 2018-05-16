@@ -54,5 +54,8 @@
 								</div>
 	</form>
 	</div>
+	
+	
+	<a href="${ctx}/user/userList1">商品</a> 
 </body>
 </html>

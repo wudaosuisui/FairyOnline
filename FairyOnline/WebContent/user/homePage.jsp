@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE>
 <html>
     <head>
@@ -27,15 +29,15 @@
 		         <div id="shop">
 		          <button id="button1"><a href="shoppingCart.html">购物车</a></button>
 		          <img src="../images/a1.png" height="30px">
-		          <div id="img1">
-                     
-                   </div>
+		         
+                    <a href="${ctx}/user/followUser?id=${userLogin2.user.id}" ><img  id="img1" name="img1" src="${ctx}/images/userImages/${userLogin2.user.img}">
+                    </a>
 		         </div>
     		 </div>
 
     		 <div id="head-text">
-    		     <div >
-    		      	<img  id="img" src="../images/weixin.jpg">
+    		     <div>
+    		      	<img  id="img" src="${ctx}/images/userImages/${user.user.img}">
     		     </div>
     		     <p>关注|粉丝</p>
     		  </div> 

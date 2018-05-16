@@ -93,8 +93,14 @@ public class UserDaoImpl {
 			System.out.println("updateUserDao执行失败");
 			return false;
 		}
+	}*/
+	public void updateUser(User user) {//更新user
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tra = session.beginTransaction();//开启事务
+		session.update(user);
+		session.flush();
+		tra.commit();
 	}
-	*/
 	public UserLogin findUser(String userName) {
 		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where userName=?");
 		query.setParameter(0,userName);
@@ -107,6 +113,5 @@ public class UserDaoImpl {
 		query.setString(0,"%"+userName+"%");
 		return query.list();
 	}
-	
 	
 }

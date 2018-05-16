@@ -11,9 +11,8 @@
 <body>
     <table border="1">
 	<c:forEach items="${list}" var="user">
-	<tr>
-	<td>${user.userName}</td>
-	<td>关注</td>
+	${user.id}
+	${user.getFollowUserList()[2].fid}
 	</c:forEach>
 	</table>
 </body>

@@ -56,10 +56,12 @@ public class UserServiceImpl {
 		return user;
 	}
 	
-	/*public boolean updateUser(User user) {
-		return this.userDaoImpl.updateUser(user);
+	public void updateUser(User user) {
+		Session session = sessionFactory.openSession();
+		this.userDaoImpl.updateUser(user);
+		session.close();
 	}
-	*/
+	
 	public UserLogin findUser1(String userName) {
 		UserLogin user = this.userDaoImpl.findUser(userName);
 		return user;
@@ -72,4 +74,5 @@ public class UserServiceImpl {
 	public List<UserLogin> getUserByPartName(String userName){
         return this.userDaoImpl.getUserByPartName(userName);
 	}
+	
 }

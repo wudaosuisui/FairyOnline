@@ -17,7 +17,7 @@
          <div id="head1">
     		<div id="head-line">
     			<div id="logo">
-			    <img src="images/logo.jpeg" height="60px">
+			    <img src="../images/logo.jpeg" height="60px">
 		        </div>
 		        <div id="found">
 			      <form action="post" method="1.html">
@@ -28,10 +28,8 @@
 		        
 		         <div id="shop">
 		          <button id="button1"><a href="shoppingCart.html">购物车</a></button>
-		          <img src="images/a1.png" height="30px">
-		         <div id="img1">
-                     
-                   </div>
+		          <img src="../images/a1.png" height="30px">
+		          <img  id="img1" src="${ctx}/images/userImages/${userLogin2.user.img}">
 		        </div>
     		 </div>
     	</div>

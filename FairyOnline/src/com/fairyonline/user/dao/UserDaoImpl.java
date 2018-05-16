@@ -95,10 +95,10 @@ public class UserDaoImpl {
 		}
 	}
 	*/
-	public User findUser(String userName) {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("from User where userName=?");
+	public UserLogin findUser(String userName) {
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where userName=?");
 		query.setParameter(0,userName);
-		User user = (User)query.uniqueResult();
+		UserLogin user = (UserLogin)query.uniqueResult();
 		return user;
 	}
 

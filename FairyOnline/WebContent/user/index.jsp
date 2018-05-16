@@ -8,7 +8,8 @@
 	<title>FairyOnLine首页</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="../css/css1.css">
-
+    
+    
 </head>
 <body> 
 <div id ="head">

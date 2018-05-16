@@ -51,10 +51,10 @@
 	                  </tr>
             		<c:forEach items="${list}" var="user">
 	                  <tr>
-	                  <td><a href="">${user.userName}</a></td>
+	                  <td><a href="${ctx}/user/homePage?userName=${user.userName}">${user.userName}</a></td>
 	                  <td><a href="">${user.user.petName}</a></td>
 	                  <td>${user.user.sex}</td>
-	                  <td><a href=""><img src="E:\temp\images\${user.user.img}" width="50px" height="50px" /></a></td>
+	                  <td><a href=""><img src="${ctx}/images/userImages/${user.user.img}" width="50px" height="50px" /></a></td>
 	                  <td><a href="">是</a></td>
 	                  </tr>
 	                </c:forEach>

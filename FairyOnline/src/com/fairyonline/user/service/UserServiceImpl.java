@@ -60,8 +60,8 @@ public class UserServiceImpl {
 		return this.userDaoImpl.updateUser(user);
 	}
 	*/
-	public User findUser(String userName) {
-		User user = this.userDaoImpl.findUser(userName);
+	public UserLogin findUser1(String userName) {
+		UserLogin user = this.userDaoImpl.findUser(userName);
 		return user;
 	}
 	/*public void addupUser(User user) {

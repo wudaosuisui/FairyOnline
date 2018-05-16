@@ -1,7 +1,7 @@
 package com.fairyonline.user.controller;
 
 import java.io.File;
-
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 
@@ -24,6 +24,9 @@ import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
 
 import com.fairyonline.user.service.UserServiceImpl;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
 
 
 
@@ -144,13 +147,14 @@ public class UserController {
 					user.setUserLogin(userLogin);
 					
 					
-					
+					/*
 					// 处理上传的单个图片    
 				    String originalFileName = picture.getOriginalFilename();// 原始名称
 				    // 上传图片
 				    if (picture != null && originalFileName != null && originalFileName.length() > 0) {
 				    	 System.out.println("get add imgs  success");
-				    	 String pic_path = "E:\\temp\\images\\";
+				    	// String pic_path = "E:\\temp\\images\\";
+				    	 String pic_path = "fairyonline\\user\\images\\";
 				    	 String newFileName = UUID.randomUUID()
 				                 + originalFileName.substring(originalFileName
 				                         .lastIndexOf("."));     
@@ -163,15 +167,26 @@ public class UserController {
 				       // User user = this.userServiceImpl.findUserById(user.getID());
 				       // user.setImg(user.getImg());
 				    }
-				    list1.add(user);
-				    
-				   /* String userName1 = userLogin.getUserName();
-				    
-				    User user1 = this.userServiceImpl.findUser(userName1);
-				    if(user1 != null) {
-				    	this.userServiceImpl.updateUser(user);
-				    }
-				  */
+				    */
+					
+					if(picture != null) {
+						String name = picture.getName();
+						System.out.println(name);
+						String originalFileName = picture.getOriginalFilename();
+						System.out.println(originalFileName);
+						String pictureName = originalFileName.substring(originalFileName.lastIndexOf("\\")+1);
+						byte[] bytes = picture.getBytes();
+						String realPath = request.getServletContext().getRealPath("/upload");
+						File f = new File(realPath);
+						FileOutputStream fo = new FileOutputStream(f);
+						fo.write(bytes);
+						fo.flush();
+						fo.close();
+						String imgurl = originalFileName;
+						user.setImg(originalFileName);
+					} 
+					
+					list1.add(user);
 					this.userServiceImpl.addUser(user); 
 				}
 			  }
@@ -188,10 +203,21 @@ public class UserController {
 		public String userlist(Model model,String userName,HttpServletRequest request,HttpServletResponse response){
 			userName = request.getParameter("found");
 			List<UserLogin> list = this.userServiceImpl.getUserByPartName(userName);
-			
-			model.addAttribute("list",list);
+		    model.addAttribute("list",list);
 			return "user/searchUserResult";
-		}
+		}  
 
+		@RequestMapping("/homePage")
+		public String userlist1(Model model,String userName) {
+			UserLogin user = this.userServiceImpl.findUser1(userName);
+			if(user != null) {
+				model.addAttribute("user",user);
+				return "user/homePage";
+			}else {
+				System.out.println("失败");
+				return "user/index";
+			}
+		}
 		
+		 
 }

@@ -96,7 +96,7 @@
     		<button><a href="">教师（申请）</a></button>
     		<button><a href="">教师（主页）</a></button>
     		</div>
-             <c:forEach  var="me" items="${cart.map}">
+             <c:forEach  var="c" items="${cartlist}">
     		<div id="body2">
     		    <div id="body2-checkbox">
     		         <input name="save" id="save" type="checkbox" onClick="save_ck(this);"/>
@@ -105,8 +105,8 @@
                 <img src="../images/5.png">
                 </div>   
                 <div id="body2-text">
-                <p>${me.value.course.CName }</p>
-                <p>种类&nbsp;&nbsp;&nbsp;讲师：讲师姓名&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
+                <p></p>
+                <p>${c.courseId.categoryID.categoryName}&nbsp;&nbsp;&nbsp;讲师：讲师姓名&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
                 <p>课程简介：简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容</p>
                 </div>
     		</div>

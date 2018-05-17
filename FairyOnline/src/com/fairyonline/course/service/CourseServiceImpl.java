@@ -13,6 +13,7 @@ import com.fairyonline.course.entity.Cart;
 import com.fairyonline.course.entity.CartItem;
 import com.fairyonline.course.entity.Chapters;
 import com.fairyonline.course.entity.Course;
+import com.fairyonline.user.entity.User;
 
 @Service
 public class CourseServiceImpl {
@@ -48,24 +49,64 @@ public class CourseServiceImpl {
 	}
 	
 	//购物车
-	 public List<Course> getAllCourse() {
-		  
-		  return cdi.getALL();
-		 }
-	 public void buyCourse(int id, Cart cart) {
-		 Course course = cdi.find(id);
-		 cart.add(course);  
-	 }
-	 public void updateCart(Cart cart, String CName, String quantity) {
-	     CartItem item = cart.getMap().get(CName);
-	     item.setQuantity(Integer.parseInt(quantity));
-	 } 
-	 public void deleteCartItem(Cart cart, String CName) {
-		 cart.getMap().remove(CName);
-	 }
-	 public void clearCart(Cart cart) {
-	     cart.getMap().clear();
-	 }
+	public List<Cart> selectAll(){
+		List<Cart> list = cdi.selectAll();
+		return list;
+	}
+	
+    public List<Cart> selectByUserId(int userId){
+		List<Cart> list = cdi.selectByUserId(userId);
+		return list;
+	}
+
+    public List<Cart> selectById(String[] c){
+			List<Cart> list = cdi.selectById(c);
+			return list;
+	}
+    
+    public void addCart(int userId,int fruits_id ) {
+			cdi.addCart(userId, fruits_id);
+	}
+    
+    public void deleteCart(int cartId) {
+			cdi.deleteCart(cartId);
+	}
+		
+	public User addCount(int id) {
+			User user = cdi.addCount(id);
+			return user;
+	}
+		
+	public void misCount(int id) {
+			cdi.misCount(id);
+	}
+	
+	public CourseDaoImpl getCartDao() {
+			return cdi;
+	}
+	
+	public void setCartDao(CourseDaoImpl cdi) {
+			this.cdi = cdi;
+	}
+
+//	 public List<Course> getAllCourse() {
+//		  
+//		  return cdi.getALL();
+//		 }
+//	 public void buyCourse(int id, Cart cart) {
+//		 Course course = cdi.find(id);
+//		 cart.add(course);  
+//	 }
+//	 public void updateCart(Cart cart, String CName, String quantity) {
+//	     CartItem item = cart.getMap().get(CName);
+//	     item.setQuantity(Integer.parseInt(quantity));
+//	 } 
+//	 public void deleteCartItem(Cart cart, String CName) {
+//		 cart.getMap().remove(CName);
+//	 }
+//	 public void clearCart(Cart cart) {
+//	     cart.getMap().clear();
+//	 }
 	//模糊课程查询
 //	public List<Course> getCourseByPartName(String courseName){
 //		Course list = cdi.getCourseByPartName(courseName);

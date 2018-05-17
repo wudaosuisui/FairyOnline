@@ -26,10 +26,11 @@ public class Course {
 	private int ID;
 	private String CName;
 	private int Price;
-	private Category CategoryID;
+	private Category categoryID;
 	private Date UPTime;
 	private int TID;
 	private List<Chapters> chaptersList = new ArrayList<Chapters>();
+	private Set<Cart> cartSet = new HashSet<Cart>();
 	
 	public Course() {
 		
@@ -37,7 +38,6 @@ public class Course {
 	public Course(String cName,int Price,Date UPTime,int TID) {
 		this.CName=cName;
 		this.Price=Price;
-		this.CategoryID =CategoryID;
 		this.UPTime = UPTime;
 		this.TID = TID;
 		
@@ -67,12 +67,12 @@ public class Course {
 		this.Price = price;
 	}
 	@ManyToOne
-	@JoinColumn(name="CategoryID")
+	@JoinColumn(name="categoryID")
 	public  Category getCategoryID() {
-		return CategoryID;
+		return categoryID;
 	}
 	public void setCategoryID(Category categoryID) {
-		this.CategoryID = categoryID;
+		this.categoryID = categoryID;
 	}
 	public Date getUPTime() {
 		return UPTime;
@@ -96,9 +96,17 @@ public class Course {
 	public void setChaptersList(List<Chapters> chaptersList) {
 		this.chaptersList = chaptersList;
 	}
+	@OneToMany
+	@JoinColumn(name="courseId")
+	public Set<Cart> getCartSet() {
+		return cartSet;
+	}
+	public void setCartSet(Set<Cart> cartSet) {
+		this.cartSet = cartSet;
+	}
 	@Override
 	public String toString() {
-		return "Course [ID=" + ID + ", CName=" + CName + ", Price=" + Price + ", CategoryID=" + CategoryID + ", UPTime="
+		return "Course [ID=" + ID + ", CName=" + CName + ", Price=" + Price + ", categoryID=" + categoryID + ", UPTime="
 				+ UPTime + ", TID=" + TID + ", chaptersList=" + chaptersList + "]";
 	}
 	

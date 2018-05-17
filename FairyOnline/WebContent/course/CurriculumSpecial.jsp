@@ -35,9 +35,10 @@
 			        </div>
 			        
 			        <div id="shop">
-				          <button id="button1"><a href="shoppingCart.html">购物车</a></button>
+				          <!-- <button id="button1"></button> -->
+				          <a href="../course/cartlist">购物车</a>
 				          <img src="../images/a1.png" height="30px">
-		                  <div id="img1"></div>
+		                  <div id="img1">${userLogin2.user.petName}</div>
 			        </div>
     		</div>
     	</div>	
@@ -106,160 +107,6 @@
 </html>
 <!-- 
 <div id="bord">
-	        	<div class="lessen">
-	        			<div class="lepic">
-							<a href="#">
-								<img src="../images/lepic.jpg">
-							</a>
-						</div>
-						<div class="line6"><a href="#">课程名称</a></div>
-						<div class="line6">
-							<a href="#">类型</a>
-							<a href="#">观看人数</a>
-							<a href="#">等级</a>
-						</div>
-						<div class="line6"><a href="#">价格</a></div>
-	        	</div>
-	        	<div class="lessen">
-	        			<div class="lepic">
-							<a href="#">
-								<img src="images/lepic.jpg">
-							</a>
-						</div>
-						<div class="line6"><a href="#">课程名称</a></div>
-						<div class="line6">
-							<a href="#">类型</a>
-							<a href="#">观看人数</a>
-							<a href="#">等级</a>
-						</div>
-						<div class="line6"><a href="#">价格</a></div>
-	        	</div>
-	        	<div class="lessen">
-	        			<div class="lepic">
-							<a href="#">
-								<img src="images/lepic.jpg">
-							</a>
-						</div>
-						<div class="line6"><a href="#">课程名称</a></div>
-						<div class="line6">
-							<a href="#">类型</a>
-							<a href="#">观看人数</a>
-							<a href="#">等级</a>
-						</div>
-						<div class="line6"><a href="#">价格</a></div>
-	        	</div>
-	        	<div class="lessen">
-	        			<div class="lepic">
-							<a href="#">
-								<img src="images/lepic.jpg">
-							</a>
-						</div>
-						<div class="line6"><a href="#">课程名称</a></div>
-						<div class="line6">
-							<a href="#">类型</a>
-							<a href="#">观看人数</a>
-							<a href="#">等级</a>
-						</div>
-						<div class="line6"><a href="#">价格</a></div>
-	        	</div>
-	        	<div class="lessen">
-	        			<div class="lepic">
-							<a href="#">
-								<img src="images/lepic.jpg">
-							</a>
-						</div>
-						<div class="line6"><a href="#">课程名称</a></div>
-						<div class="line6">
-							<a href="#">类型</a>
-							<a href="#">观看人数</a>
-							<a href="#">等级</a>
-						</div>
-						<div class="line6"><a href="#">价格</a></div>
-	        	</div>
-	        	<div class="lessen">
-	        			<div class="lepic">
-							<a href="#">
-								<img src="images/lepic.jpg">
-							</a>
-						</div>
-						<div class="line6"><a href="#">课程名称</a></div>
-						<div class="line6">
-							<a href="#">类型</a>
-							<a href="#">观看人数</a>
-							<a href="#">等级</a>
-						</div>
-						<div class="line6"><a href="#">价格</a></div>
-	        	</div>
-	        	<div class="lessen">
-	        			<div class="lepic">
-							<a href="#">
-								<img src="images/lepic.jpg">
-							</a>
-						</div>
-						<div class="line6"><a href="#">课程名称</a></div>
-						<div class="line6">
-							<a href="#">类型</a>
-							<a href="#">观看人数</a>
-							<a href="#">等级</a>
-						</div>
-						<div class="line6"><a href="#">价格</a></div>
-	        	</div>
-	        	<div class="lessen">
-	        			<div class="lepic">
-							<a href="#">
-								<img src="images/lepic.jpg">
-							</a>
-						</div>
-						<div class="line6"><a href="#">课程名称</a></div>
-						<div class="line6">
-							<a href="#">类型</a>
-							<a href="#">观看人数</a>
-							<a href="#">等级</a>
-						</div>
-						<div class="line6"><a href="#">价格</a></div>
-	        	</div>
-	        	<div class="lessen">
-	        			<div class="lepic">
-							<a href="#">
-								<img src="images/lepic.jpg">
-							</a>
-						</div>
-						<div class="line6"><a href="#">课程名称</a></div>
-						<div class="line6">
-							<a href="#">类型</a>
-							<a href="#">观看人数</a>
-							<a href="#">等级</a>
-						</div>
-						<div class="line6"><a href="#">价格</a></div>
-	        	</div>
-	        	<div class="lessen">
-	        			<div class="lepic">
-							<a href="#">
-								<img src="images/lepic.jpg">
-							</a>
-						</div>
-						<div class="line6"><a href="#">课程名称</a></div>
-						<div class="line6">
-							<a href="#">类型</a>
-							<a href="#">观看人数</a>
-							<a href="#">等级</a>
-						</div>
-						<div class="line6"><a href="#">价格</a></div>
-	        	</div>
-	         	<div class="lessen">
-	        			<div class="lepic">
-							<a href="#">
-								<img src="images/lepic.jpg">
-							</a>
-						</div>
-						<div class="line6"><a href="#">课程名称</a></div>
-						<div class="line6">
-							<a href="#">类型</a>
-							<a href="#">观看人数</a>
-							<a href="#">等级</a>
-						</div>
-						<div class="line6"><a href="#">价格</a></div>
-	        	</div>
 	        	<div class="lessen">
 	        			<div class="lepic">
 							<a href="#">

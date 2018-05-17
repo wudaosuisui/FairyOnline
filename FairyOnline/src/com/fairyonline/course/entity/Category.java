@@ -18,7 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class Category {
 	
 	private int ID;
-	private String CategoryName;
+	private String categoryName;
 	private Set<Course> courseSet = new HashSet<Course>();
 	@Id
 	@GeneratedValue(generator="my_gen")
@@ -30,14 +30,13 @@ public class Category {
 		this.ID = iD;
 	}
 	public String getCategoryName() {
-		return CategoryName;
+		return categoryName;
 	}
 	public void setCategoryName(String categoryName) {
-		this.CategoryName = categoryName;
+		this.categoryName = categoryName;
 	}
-	
 	@OneToMany//(mappedBy="Category", targetEntity=Course.class, cascade=CascadeType.ALL)
-	@JoinColumn(name="CategoryID")
+	@JoinColumn(name="categoryID")
 	public Set<Course> getCourseSet() {
 		return courseSet;
 	}

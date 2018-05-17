@@ -3,46 +3,110 @@ package com.fairyonline.course.entity;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.fairyonline.user.entity.User;
+@Entity
+@Table(name="cart")
 public class Cart{
 	
 	 //private Map<String,Course> map = new LinkedHashMap<String, Course>(); 
 	 //用户会买一本书多本,会出现重复的书,要使用购物项,避免重复书出现。
-	 private Map<String,CartItem> map = new LinkedHashMap<String, CartItem>();
-	 private double price;  //总计
-	 
-	 public void add(Course course){
-		  //首先判断要买的书是否已经在购物车里
-		  CartItem  item = map.get(course.getID());
-		  if(item!=null){
-		   item.setQuantity(item.getQuantity()+1);
-		  }else{
-		   //第一次买这本书
-		   item = new CartItem();
-		   item.setCourse(course);
-		   item.setQuantity(1);
-		   map.put(course.getCName(),item);
-		  }
-		  
-		 }
+	// private Map<String,CartItem> map = new LinkedHashMap<String, CartItem>();
+	// private int price;  //总计
+	 private int cartId;
+	 private int count;
+     private User userId;
+   	 private Course courseId;
+   	@Id
+	@GeneratedValue(generator="my_gen")
+    @GenericGenerator(name="my_gen", strategy="increment")  
+   	 public int getCartId() {
+			return cartId;
+	    }
+     
+     public void setCartId(int cartId) {
+			this.cartId = cartId;
+		}
+//     public double getPrice() {
+//			return price;
+//		}
+//
+//	 public void setPrice(int price) {
+//			this.price = price;
+//		}
+   	   
+//	   public void add(Course course){
+//		  //首先判断要买的书是否已经在购物车里
+//		  CartItem  item = map.get(course.getID());
+//		  if(item!=null){
+//		   item.setQuantity(item.getQuantity()+1);
+//		  }else{
+//		   //第一次买这本书
+//		   item = new CartItem();
+//		   item.setCourse(course);
+//		   item.setQuantity(1);
+//		   map.put(course.getCName(),item);
+//		  }
+//		  
+//	    }
 		 
-		 public Map<String, CartItem> getMap() {
-		  return map;
-		 }
+//	    public Map<String, CartItem> getMap() {
+//		  return map;
+//	    }
+//
+//	    public void setMap(Map<String, CartItem> map) {
+//		  this.map = map;
+//	    }
+//	  
+//        public double getPrice() {
+//		  double totalprice =0;
+//		  for(Map.Entry<String,CartItem> me: map.entrySet()){
+//		      totalprice = totalprice+me.getValue().getPrice();
+//		  }
+//		  this.price=totalprice;
+//		  return price;
+//	    }
+//      
+//        public void setPrice(double price) {
+//		  this.price = price;
+//	    }
+        
+        public int getCount() {
+			return count;
+		}
 
-		 public void setMap(Map<String, CartItem> map) {
-		  this.map = map;
-		 }
+		public void setCount(int count) {
+			this.count = count;
+		}
+		@ManyToOne()
+		@JoinColumn(name="userId")
+		public User getUserId() {
+			return userId;
+		}
 
-		 public double getPrice() {
-		  double totalprice =0;
-		  for(Map.Entry<String,CartItem> me: map.entrySet()){
-		   totalprice = totalprice+me.getValue().getPrice();
-		  }
-		  this.price=totalprice;
-		  return price;
-		 }
+		public void setUserId(User userId) {
+			this.userId = userId;
+		}
+		@ManyToOne
+		@JoinColumn(name="courseId")
+		public Course getCourseId() {
+			return courseId;
+		}
 
-		 public void setPrice(double price) {
-		  this.price = price;
-		 }
+		public void setCourseId(Course courseId) {
+			this.courseId = courseId;
+		}
+		
+		 
+
+	
 }

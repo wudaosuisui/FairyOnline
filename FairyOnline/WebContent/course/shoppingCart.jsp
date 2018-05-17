@@ -111,7 +111,7 @@
                 购买人：${c.userId.petName}
                 </div>
     		</div>
-                </c:forEach>
+               </c:forEach>
             <input type="submit" value="删除选中项"/>
             <input type="submit" value="生成订单"/>
             

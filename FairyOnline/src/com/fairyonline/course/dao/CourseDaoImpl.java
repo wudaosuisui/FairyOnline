@@ -77,17 +77,6 @@ public class CourseDaoImpl {
 	}
 	
 	//购物车
-//	 public Course find(int id) {
-//		 Session session = sessionFactory.openSession();
-//		 Course course = session.get(Course.class,id);
-//		 session.close(); 
-//		 return course; 
-//		 }
-//	 public List<Course> getALL() {
-//		 Query q=this.sessionFactory.getCurrentSession().createQuery("from Course");
-//		//List<Course> c=this.sessionFactory.getCurrentSession().createQuery("from Course").list();
-//		 return q.list();
-//		 }
 	public List<Cart> selectAll() {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
@@ -95,36 +84,16 @@ public class CourseDaoImpl {
 		List<Cart> list = query.list();
 		return list;
 	}
-
-	public List<Cart> selectByUserId(int userId) {
-		// TODO Auto-generated method stub
-		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("from Cart where userId=?");
-		query.setParameter(0, userId);
-		List<Cart> list = query.list();
-		return list;
-	}
-	public List<Cart> selectById(String[] c){
-		Session session = sessionFactory.openSession();
-		List<Cart> list = new ArrayList<Cart>();
-		for(int i =0; i < c.length; i ++) {
-			Query query = session.createQuery("from Cart where cartId=?");
-			query.setParameter(0, Integer.parseInt(c[i]));
-			Cart cart = (Cart)query.uniqueResult();
-			list.add(cart);
-		}
-		return list;
-	}
 	
-	public Boolean addCart(int userId, int ID) {
+	public Boolean addCart(int id, int ID) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		Query query = session.createQuery("from Crouse where ID=?");
+		Query query = session.createQuery("from Course where ID=?");
 		query.setParameter(0,ID);
 		Course Course = (Course) query.uniqueResult();
 		
-		User user = session.get(User.class, new Integer(userId));
+		User user = session.get(User.class, new Integer(id));
 		Set<Cart> set = user.getCartSet();
 		Iterator<Cart> it = set.iterator();
 		while(it.hasNext()) {
@@ -148,6 +117,26 @@ public class CourseDaoImpl {
 		tx.commit();
 		session.close();
 		return true;
+	}
+	
+	public List<Cart> selectByUserId(int userId) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery("from Cart where userId=?");
+		query.setParameter(0, userId);
+		List<Cart> list = query.list();
+		return list;
+	}
+	public List<Cart> selectById(String[] c){
+		Session session = sessionFactory.openSession();
+		List<Cart> list = new ArrayList<Cart>();
+		for(int i =0; i < c.length; i ++) {
+			Query query = session.createQuery("from Cart where cartId=?");
+			query.setParameter(0, Integer.parseInt(c[i]));
+			Cart cart = (Cart)query.uniqueResult();
+			list.add(cart);
+		}
+		return list;
 	}
 
 	public void deleteCart(int cartId) {
@@ -197,6 +186,17 @@ public class CourseDaoImpl {
 		this.sessionFactory = sessionFactory;
 	}
 	
+//	 public Course find(int id) {
+//	 Session session = sessionFactory.openSession();
+//	 Course course = session.get(Course.class,id);
+//	 session.close(); 
+//	 return course; 
+//	 }
+//public List<Course> getALL() {
+//	 Query q=this.sessionFactory.getCurrentSession().createQuery("from Course");
+//	//List<Course> c=this.sessionFactory.getCurrentSession().createQuery("from Course").list();
+//	 return q.list();
+//	 }
 //	/*模糊查询*/
 //	public List<Course> getCourseByPartName(String courseName){
 //		Query q = this.sessionFactory.getCurrentSession().createQuery("from Watch where name like ?");

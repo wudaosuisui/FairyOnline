@@ -102,6 +102,12 @@ public class CourseControllerImpl {
 			System.out.println(list.size());
 			return "course/shoppingCart";
 		}
+		@RequestMapping("/addcart")
+		public String addCart(int id,int ID) {
+			System.out.println(ID);
+			csi.addCart(id, ID);
+			return "course/CurriculumSpecial";
+		}
 		//后台购物车列表
 		@RequestMapping("/cartlist1")
 		public String selectAll1(Model model) {
@@ -115,13 +121,6 @@ public class CourseControllerImpl {
 			List<Cart> list = csi.selectByUserId(userId);
 			model.addAttribute("usershopping",list);
 			return "user/user_shopping";
-		}
-		
-		@RequestMapping("/addcart")
-		public String addCart(int userId,int fruits_id) {
-			System.out.println(fruits_id);
-			csi.addCart(userId, fruits_id);
-			return "front/fruitsDetail";
 		}
 		
 		@RequestMapping("carttoorders")

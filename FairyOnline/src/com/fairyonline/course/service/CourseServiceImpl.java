@@ -53,7 +53,11 @@ public class CourseServiceImpl {
 		List<Cart> list = cdi.selectAll();
 		return list;
 	}
-	
+    
+    public void addCart(int id,int ID ) {
+			cdi.addCart(id, ID);
+	}
+    
     public List<Cart> selectByUserId(int userId){
 		List<Cart> list = cdi.selectByUserId(userId);
 		return list;
@@ -62,10 +66,6 @@ public class CourseServiceImpl {
     public List<Cart> selectById(String[] c){
 			List<Cart> list = cdi.selectById(c);
 			return list;
-	}
-    
-    public void addCart(int userId,int fruits_id ) {
-			cdi.addCart(userId, fruits_id);
 	}
     
     public void deleteCart(int cartId) {

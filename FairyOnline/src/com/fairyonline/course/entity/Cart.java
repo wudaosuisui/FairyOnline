@@ -1,13 +1,12 @@
 package com.fairyonline.course.entity;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -87,7 +86,7 @@ public class Cart{
 		public void setCount(int count) {
 			this.count = count;
 		}
-		@ManyToOne()
+		@ManyToOne(cascade = CascadeType.ALL,optional = false,fetch = FetchType.LAZY)
 		@JoinColumn(name="userId")
 		public User getUserId() {
 			return userId;

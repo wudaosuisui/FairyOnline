@@ -1,6 +1,5 @@
 package com.fairyonline.course.entity;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -20,6 +19,8 @@ import javax.persistence.Table;
 //import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fairyonline.teacher.entity.Teacher;
+
 @Entity
 @Table(name="course")
 public class Course {
@@ -28,18 +29,20 @@ public class Course {
 	private int Price;
 	private Category categoryID;
 	private Date UPTime;
-	private int TID;
+	private Teacher tId;
+	private String cImg;
+	private String cIntroduction;
 	private List<Chapters> chaptersList = new ArrayList<Chapters>();
 	private Set<Cart> cartSet = new HashSet<Cart>();
 	
 	public Course() {
 		
 	}
-	public Course(String cName,int Price,Date UPTime,int TID) {
+	public Course(String cName,int Price,Date UPTime) {
 		this.CName=cName;
 		this.Price=Price;
 		this.UPTime = UPTime;
-		this.TID = TID;
+	
 		
 	}
 	public Course(String cName2, int price2, java.sql.Date now1, int tID2) {
@@ -80,11 +83,25 @@ public class Course {
 	public void setUPTime(Date uPTime) {
 		UPTime = uPTime;
 	}
-	public int getTID() {
-		return TID;
+	@ManyToOne
+	@JoinColumn(name="tId")
+	public Teacher gettId() {
+		return tId;
 	}
-	public void setTID(int tID) {
-		this.TID = tID;
+	public void settId(Teacher tId) {
+		this.tId = tId;
+	}
+	public String getcImg() {
+		return cImg;
+	}
+	public void setcImg(String cImg) {
+		this.cImg = cImg;
+	}
+	public String getcIntroduction() {
+		return cIntroduction;
+	}
+	public void setcIntroduction(String cIntroduction) {
+		this.cIntroduction = cIntroduction;
 	}
 	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)//»ý¼«¼ÓÔØEAGER
 	@JoinColumn(name="CID")
@@ -107,7 +124,7 @@ public class Course {
 	@Override
 	public String toString() {
 		return "Course [ID=" + ID + ", CName=" + CName + ", Price=" + Price + ", categoryID=" + categoryID + ", UPTime="
-				+ UPTime + ", TID=" + TID + ", chaptersList=" + chaptersList + "]";
+				+ UPTime + ", tId=" + tId + ", chaptersList=" + chaptersList + "]";
 	}
 	
 

@@ -73,7 +73,7 @@
 		          <button id="button1">购物车</button>
 		          <img src="../images/a1.png" height="30px">
 		          <div id="img1">
-                     
+                     ${userLogin2.user.petName}
                    </div>
 		         </div>
     		 </div>
@@ -96,7 +96,7 @@
     		<button><a href="">教师（申请）</a></button>
     		<button><a href="">教师（主页）</a></button>
     		</div>
-             <c:forEach  var="c" items="${cartlist}">
+             <c:forEach  var="c" items="${userLogin2.user.cartSet}">
     		<div id="body2">
     		    <div id="body2-checkbox">
     		         <input name="save" id="save" type="checkbox" onClick="save_ck(this);"/>
@@ -106,8 +106,9 @@
                 </div>   
                 <div id="body2-text">
                 <p></p>
-                <p>${c.courseId.categoryID.categoryName}&nbsp;&nbsp;&nbsp;讲师：讲师姓名&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
-                <p>课程简介：简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容</p>
+                <p>${c.courseId.categoryID.categoryName}&nbsp;&nbsp;&nbsp;讲师：${c.courseId.tId.name }&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
+                <p>课程简介：${c.courseId.cIntroduction }</p>
+                购买人：${c.userId.petName}
                 </div>
     		</div>
                 </c:forEach>

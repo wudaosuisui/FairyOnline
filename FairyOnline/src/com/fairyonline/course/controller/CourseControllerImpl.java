@@ -45,7 +45,7 @@ public class CourseControllerImpl {
 			System.out.println("get add");
 			Date now = null;
 			
-			Course course = new Course("courseName",1,now, 1);
+			Course course = new Course("courseName",1,now);
 			csi.Add(course);
 			return "Example/Example";
 		}

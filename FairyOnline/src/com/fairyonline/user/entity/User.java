@@ -20,6 +20,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fairyonline.teacher.entity.Teacher;
+
 @Entity
 @Table(name="user")
 public class User {
@@ -30,6 +32,7 @@ public class User {
 	private String sex;
 	private UserLogin userLogin;
 	private List<User> followUserList = new ArrayList<User>();
+	private List<Teacher> teacherList = new ArrayList<Teacher>();
 	
 	public User(String petName,String img,String tName,String sex,UserLogin userLogin) {
 		// TODO Auto-generated constructor stub
@@ -93,6 +96,17 @@ public class User {
 	}
 	public void setFollowUserList(List<User> followUserList) {
 		this.followUserList = followUserList;
+	}
+	
+	@ManyToMany
+	@JoinTable(name="USERTEACHER", 
+	    joinColumns=@JoinColumn(name="UID"),
+	    inverseJoinColumns=@JoinColumn(name="TID"))
+    public List<Teacher> getTeacherList() {
+		return teacherList;
+	}
+	public void setTeacherList(List<Teacher> teacherList) {
+		this.teacherList = teacherList;
 	}
 	
 	

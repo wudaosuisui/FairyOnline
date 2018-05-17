@@ -55,57 +55,94 @@
     		<button><a href="">教师（主页）</a></button>
     		</div>
 
-    		<div id="body2">
-    		    
-    		    <div id="body2-img">
-                <img src="../images/5.png">
-                </div>
-
-                <div id="body2-text">
-                <p>课程名称</p>
-                <p>种类&nbsp;&nbsp;&nbsp;讲师：讲师姓名&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
-                <p>课程简介：简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容</p>
-                </div>
-    		</div>
-
-    		<div id="body2">
-    		    
-    		    <div id="body2-img">
-                <img src="../images/5.png">
-                </div>
-
-                <div id="body2-text">
-                <p>课程名称</p>
-                <p>种类&nbsp;&nbsp;&nbsp;讲师：讲师姓名&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
-                <p>课程简介：简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容</p>
-                </div>
-    		</div>
-
-    		<div id="body2">
-    		    
-    		    <div id="body2-img">
-                <img src="../images/5.png">
-                </div>
-
-                <div id="body2-text">
-                <p>课程名称</p>
-                <p>种类&nbsp;&nbsp;&nbsp;讲师：讲师姓名&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
-                <p>课程简介：简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容</p>
-                </div>
-    		</div>
-    		<div id="body2">
-    		    
-    		    <div id="body2-img">
-                <img src="../images/5.png">
-                </div>
-
-                <div id="body2-text">
-                <p>课程名称</p>
-                <p>种类&nbsp;&nbsp;&nbsp;讲师：讲师姓名&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
-                <p>课程简介：简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容</p>
-                </div>
-    		</div>
     		
+    		<!--  <table border="1" color="#cbc7c6">
+            	    <tr>
+	                  <td>姓名</td>
+	                  <td>课程名称</td>
+	                  <td>种类</td>
+	                  </tr>
+	                  
+            		  <c:forEach items="${list}" var="teacher">
+            		  <tr>
+            		  
+            		  <c:forEach items="${teacher.getCourseList()}" var="course">
+	                      <tr>
+	                      <td><a href="">${teacher.name}</a></td>
+	                      <td><a href="">${course.ID}</a></td>
+	                      <td><a href="">${course.CName}</a></td>
+	                      <td><a href="">${course.categoryID.categoryName}</a></td>
+	                      </tr>
+	                  </c:forEach>
+	                  </tr>
+	                </c:forEach>
+    		     -->
+    		    
+    		     <c:forEach items="${list}" var="teacher">
+    		     <c:forEach items="${teacher.getCourseList()}" var="course">
+    		     <div id="body2">
+    		     <div id="body2-img">
+    		     <img src="../images/5.png">
+    		     </div>
+    		      <div id="body2-text">
+                
+                <p>${course.CName}</p>
+                <p>${course.categoryID.categoryName}&nbsp;&nbsp;&nbsp;讲师：<a href="">${teacher.name}</a>&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
+                <p>课程简介：简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容</p>
+                </div>
+                </div>
+    		    </c:forEach> 
+    		     </c:forEach>
+                
+             
+              <!--  
+                <div id="body2-text">
+                
+                <p>课程名称</p>
+                <p>种类&nbsp;&nbsp;&nbsp;讲师：讲师姓名&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
+                <p>课程简介：简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容</p>
+                </div>
+                
+    		</div>
+			
+    		<div id="body2">
+    		    
+    		    <div id="body2-img">
+                <img src="../images/5.png">
+                </div>
+
+                <div id="body2-text">
+                <p>课程名称</p>
+                <p>种类&nbsp;&nbsp;&nbsp;讲师：讲师姓名&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
+                <p>课程简介：简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容</p>
+                </div>
+    		</div>
+
+    		<div id="body2">
+    		    
+    		    <div id="body2-img">
+                <img src="../images/5.png">
+                </div>
+
+                <div id="body2-text">
+                <p>课程名称</p>
+                <p>种类&nbsp;&nbsp;&nbsp;讲师：讲师姓名&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
+                <p>课程简介：简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容</p>
+                </div>
+    		</div>
+    		<div id="body2">
+    		    
+    		    <div id="body2-img">
+                <img src="../images/5.png">
+                </div>
+
+                <div id="body2-text">
+                <p>课程名称</p>
+                <p>种类&nbsp;&nbsp;&nbsp;讲师：讲师姓名&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
+                <p>课程简介：简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容</p>
+                </div>
+    		</div>
+    		 -->
 
     	</div>
      </body>

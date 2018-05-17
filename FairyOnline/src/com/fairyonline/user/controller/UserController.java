@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fairyonline.course.entity.Course;
+import com.fairyonline.teacher.entity.Teacher;
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
 
@@ -214,6 +216,18 @@ public class UserController {
 		@RequestMapping("/homePage")
 		public String userlist1(Model model,String userName) {
 			UserLogin user = this.userServiceImpl.findUser1(userName);
+			List<Teacher> list = user.getUser().getTeacherList();
+			for(Teacher teacher : list) {
+				System.out.println("teacher id £» "+teacher.getName());
+			  /* for(Course course : teacher.getCourseList()) {
+			    	System.out.println("course id £» "+course.getID()+"course name : "+course.getCName());
+			    	model.addAttribute("list1",teacher.getCourseList());
+			    } */
+			   
+			}
+			
+			model.addAttribute("list",list);
+			
 			if(user != null) {
 				model.addAttribute("user",user);
 				return "user/homePage";

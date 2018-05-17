@@ -226,11 +226,12 @@ public class UserController {
 		@RequestMapping("/followUser")
 		public String followUser(Model model,int id) {
 			User user = this.userServiceImpl.findUserById(id);
-			for(int i=0;i<user.getFollowUserList().size();i++) {
-				System.out.println("user.getFollowUserList()[i].Uid");
-				user.getFollowUserList().UID
+			for(User use : user.getFollowUserList()) {
+				System.out.println("user id £» "+use.getId()+"user name : "+use.getUserLogin().getUserName());
 			}
-			return "";
+			List<User> list = user.getFollowUserList();
+			model.addAttribute("list",list);
+			return "user/followUser";
 		}
 		 
 }

@@ -3,6 +3,7 @@ package com.fairyonline.user.service;
 import java.util.List;
 
 
+
 import javax.annotation.Resource;
 
 import org.hibernate.Session;
@@ -10,10 +11,12 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fairyonline.teacher.entity.Teacher;
 import com.fairyonline.user.dao.UserDaoImpl;
+import com.fairyonline.user.entity.FollowUser;
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
-import com.fairyonline.user.entity.UserLogin1;
+
 
 
 @Service
@@ -62,10 +65,20 @@ public class UserServiceImpl {
 		session.close();
 	}
 	
-	public UserLogin findUser1(String userName) {
+	public int addFollowUserStatus(User user) {
+		int i = this.userDaoImpl.addFollowUserStatus(user);
+		return i;
+	}
+	
+	public int updateFollowUserStatus(User user1,int id) {
+		int i = this.userDaoImpl.updateFollowUserStatus(user1,id);
+		return i;
+	}
+	public UserLogin findUser(String userName) {
 		UserLogin user = this.userDaoImpl.findUser(userName);
 		return user;
 	}
+	
 	/*public void addupUser(User user) {
 		Session session = sessionFactory.openSession();
 		this.userDaoImpl.addupUser(user);
@@ -75,4 +88,8 @@ public class UserServiceImpl {
         return this.userDaoImpl.getUserByPartName(userName);
 	}
 	
+	public Teacher findTeacher(String Name) {
+		Teacher teacher = this.userDaoImpl.findTeacher(Name);
+		return teacher;
+	}
 }

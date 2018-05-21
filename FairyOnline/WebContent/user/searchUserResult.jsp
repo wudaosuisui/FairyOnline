@@ -20,7 +20,7 @@
 			    <img src="../images/logo.jpeg" height="60px">
 		        </div>
 		        <div id="found">
-			      <form action="post" method="1.html">
+			      <form action="${ctx}/user/searchUser">
 				     <input type="text" name="found" height="20px" width="100px" placeholder="搜索框"/>
 				     <button >搜索</button>
 			      </form>
@@ -35,8 +35,10 @@
     	</div>
     	<div id="body">
     	    <div id="body1">
+    	    <form action="${ctx}/user/searchUser">
     		<input type="text" name="found" placeholder="搜索框"/>
     		<button>搜索</button>
+    		</form>
     		</div>
             <div id="body-bottom">
             	<table border="1" color="#cbc7c6">

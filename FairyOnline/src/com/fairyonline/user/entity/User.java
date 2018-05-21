@@ -97,7 +97,6 @@ public class User {
 	public void setFollowUserList(List<User> followUserList) {
 		this.followUserList = followUserList;
 	}
-	
 	@ManyToMany
 	@JoinTable(name="USERTEACHER", 
 	    joinColumns=@JoinColumn(name="UID"),

@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fairyonline.course.entity.Course;
 import com.fairyonline.teacher.entity.Teacher;
+import com.fairyonline.user.entity.FollowUser;
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
 
@@ -54,6 +55,7 @@ public class UserController {
 			User user1 = list.get(0);
 			user1.setFollowUserList(list);
 			userServiceImpl.updateUser(user1);
+			userServiceImpl.addFollowUserStatus(user1);
 			model.addAttribute("list",list);
 			return "user/userList1"; 
 		}
@@ -130,7 +132,7 @@ public class UserController {
 			
 		}
 		
-		
+		//完善个人信息
 		@RequestMapping(value="/updateitem",method= {RequestMethod.POST,RequestMethod.GET})
 		public String updateItems(MultipartFile picture, String UserName,HttpServletRequest request,HttpServletResponse response) throws Exception {
 			String userName = request.getParameter("UserName");
@@ -204,7 +206,9 @@ public class UserController {
 			this.userServiceImpl.addupUser(items);
 			 */
 		}
-       
+        //修改个人信息
+		//public 
+		//检索用户
 		@RequestMapping("/searchUser")
 		public String userlist(Model model,String userName,HttpServletRequest request,HttpServletResponse response){
 			userName = request.getParameter("found");
@@ -212,10 +216,11 @@ public class UserController {
 		    model.addAttribute("list",list);
 			return "user/searchUserResult";
 		}  
-
+		
+		//用户主页
 		@RequestMapping("/homePage")
 		public String userlist1(Model model,String userName) {
-			UserLogin user = this.userServiceImpl.findUser1(userName);
+			UserLogin user = this.userServiceImpl.findUser(userName);
 			List<Teacher> list = user.getUser().getTeacherList();
 			for(Teacher teacher : list) {
 				System.out.println("teacher id ； "+teacher.getName());
@@ -223,11 +228,8 @@ public class UserController {
 			    	System.out.println("course id ； "+course.getID()+"course name : "+course.getCName());
 			    	model.addAttribute("list1",teacher.getCourseList());
 			    } */
-			   
 			}
-			
 			model.addAttribute("list",list);
-			
 			if(user != null) {
 				model.addAttribute("user",user);
 				return "user/homePage";
@@ -237,15 +239,51 @@ public class UserController {
 			}
 		}
 		
+		@RequestMapping("/addFollowUser")
+		public String addFollowUser(Model model,int id) {
+			List<User> list = this.userServiceImpl.listAll();
+			User user1 = list.get(0);
+			user1.setFollowUserList(list);
+			userServiceImpl.updateUser(user1);
+			userServiceImpl.addFollowUserStatus(user1);
+			model.addAttribute("list",list);
+			userServiceImpl.updateFollowUserStatus(user1,id);
+			//model.addAttribute("fid",fid);
+			return "user/homePage"; 
+		}
+		
+		//关注列表
 		@RequestMapping("/followUser")
 		public String followUser(Model model,int id) {
 			User user = this.userServiceImpl.findUserById(id);
 			for(User use : user.getFollowUserList()) {
 				System.out.println("user id ； "+use.getId()+"user name : "+use.getUserLogin().getUserName());
 			}
-			List<User> list = user.getFollowUserList();
+ 			List<User> list = user.getFollowUserList();
+			model.addAttribute("list",list);
+			return "user/followUser";
+		} 
+		/*public String followUser(Model model,int id) {
+			User user = this.userServiceImpl.findUserById(id);
+			for(User use : user.getFollowUserList()) {
+				System.out.println("user id ； "+use.getId()+"user name : "+use.getUserLogin().getUserName());
+			}
+ 			List<User> list = user.getFollowUserList();
 			model.addAttribute("list",list);
 			return "user/followUser";
 		}
-		 
+		 */
+		//教师主页
+		@RequestMapping("/teacHomePage")
+		public String teacherList(Model model,String Name) {
+			Teacher teacher = this.userServiceImpl.findTeacher(Name);
+			if(teacher != null) {
+			model.addAttribute("teacher",teacher);
+			return "user/teacHomePage";
+			}else {
+				System.out.println("失败");
+				return "user/index";
+			}
+		}
+		
 }

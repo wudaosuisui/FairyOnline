@@ -20,7 +20,7 @@
 			    <img src="../images/logo.jpeg" height="60px">
 		        </div>
 		        <div id="found">
-			      <form action="post" method="1.html">
+			      <form action="${ctx}/user/searchUser">
 				     <input type="text" name="found" height="20px" width="100px" placeholder="搜索框"/>
 				     <button >搜索</button>
 			      </form>
@@ -29,9 +29,8 @@
 		         <div id="shop">
 		          <button id="button1"><a href="shoppingCart.html">购物车</a></button>
 		          <img src="../images/a1.png" height="30px">
-		         
-                    <a href="${ctx}/user/followUser?id=${userLogin2.user.id}" ><img  id="img1" name="img1" src="${ctx}/images/userImages/${userLogin2.user.img}">
-                    </a>
+		          <a href="${ctx}/user/personal?id=${userLogin2.user.id}" ><img  id="img1" name="img1" src="${ctx}/images/userImages/${userLogin2.user.img}">
+                  </a>
 		         </div>
     		 </div>
 
@@ -39,7 +38,7 @@
     		     <div>
     		      	<img  id="img" src="${ctx}/images/userImages/${user.user.img}">
     		     </div>
-    		     <p>关注|粉丝</p>
+    		     <p><a href="${ctx}/user/followUser?id=${user.user.id}">关注</a>|<a href="${ctx}/user/followUser1?">粉丝</p>
     		  </div> 
 
     	    </div>
@@ -53,33 +52,11 @@
     		<button><a href="">购物车</a></button>
     		<button><a href="">教师（申请）</a></button>
     		<button><a href="">教师（主页）</a></button>
+    		<a href="${ctx}/user/addFollowUser?id=${user.user.id}"><button>关注</button></a>
     		</div>
-
     		
-    		<!--  <table border="1" color="#cbc7c6">
-            	    <tr>
-	                  <td>姓名</td>
-	                  <td>课程名称</td>
-	                  <td>种类</td>
-	                  </tr>
-	                  
-            		  <c:forEach items="${list}" var="teacher">
-            		  <tr>
-            		  
-            		  <c:forEach items="${teacher.getCourseList()}" var="course">
-	                      <tr>
-	                      <td><a href="">${teacher.name}</a></td>
-	                      <td><a href="">${course.ID}</a></td>
-	                      <td><a href="">${course.CName}</a></td>
-	                      <td><a href="">${course.categoryID.categoryName}</a></td>
-	                      </tr>
-	                  </c:forEach>
-	                  </tr>
-	                </c:forEach>
-    		     -->
-    		    
-    		     <c:forEach items="${list}" var="teacher">
-    		     <c:forEach items="${teacher.getCourseList()}" var="course">
+    		  <c:forEach items="${list}" var="teacher">
+    		  <c:forEach items="${teacher.getCourseList()}" var="course">
     		     <div id="body2">
     		     <div id="body2-img">
     		     <img src="../images/5.png">
@@ -87,24 +64,13 @@
     		      <div id="body2-text">
                 
                 <p>${course.CName}</p>
-                <p>${course.categoryID.categoryName}&nbsp;&nbsp;&nbsp;讲师：<a href="">${teacher.name}</a>&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
+                <p>${course.categoryID.categoryName}&nbsp;&nbsp;&nbsp;讲师：<a href="${ctx}/user/teacHomePage?Name=${teacher.name}">${teacher.name}</a>&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
                 <p>课程简介：简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容</p>
                 </div>
                 </div>
-    		    </c:forEach> 
-    		     </c:forEach>
-                
-             
-              <!--  
-                <div id="body2-text">
-                
-                <p>课程名称</p>
-                <p>种类&nbsp;&nbsp;&nbsp;讲师：讲师姓名&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
-                <p>课程简介：简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容简介内容</p>
-                </div>
-                
-    		</div>
-			
+    		    </c:forEach>
+             </c:forEach>
+			<!--  
     		<div id="body2">
     		    
     		    <div id="body2-img">

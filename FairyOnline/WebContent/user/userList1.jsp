@@ -12,7 +12,7 @@
     <table border="1">
 	<c:forEach items="${list}" var="user">
 	${user.id}
-	${user.getFollowUserList()[2].fid}
+	${user.getFollowUserList()[1]}
 	</c:forEach>
 	</table>
 </body>

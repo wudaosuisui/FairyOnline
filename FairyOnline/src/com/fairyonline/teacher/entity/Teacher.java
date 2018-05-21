@@ -20,30 +20,30 @@ import com.fairyonline.user.entity.User;
 @Entity
 @Table(name="teacher")
 public class Teacher {
-	private int ID;
-	private String IDName;
-	private String Name;
+	private int id;
+	private String idName;
+	private String name;
 	private List<Course> courseList = new ArrayList<Course>();
 	private List<User> userList = new ArrayList<User>();
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getID() {
-		return ID;
+	public int getId() {
+		return id;
 	}
-	public void setID(int id) {
-		this.ID = id;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getIDName() {
-		return IDName;
+	public String getIdName() {
+		return idName;
 	}
-	public void setIDName(String IDName) {
-		this.IDName = IDName;
+	public void setIdName(String idName) {
+		this.idName = idName;
 	}
 	public String getName() {
-		return Name;
+		return name;
 	}
-	public void setName(String Name) {
-		this.Name = Name;
+	public void setName(String name) {
+		this.name = name;
 	}
 	@OneToMany(mappedBy="teacher", targetEntity=Course.class, 
 	        cascade=CascadeType.ALL)

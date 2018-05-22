@@ -55,7 +55,6 @@ public class UserController {
 			User user1 = list.get(0);
 			user1.setFollowUserList(list);
 			userServiceImpl.updateUser(user1);
-			userServiceImpl.addFollowUserStatus(user1);
 			model.addAttribute("list",list);
 			return "user/userList1"; 
 		}
@@ -83,17 +82,17 @@ public class UserController {
 		
 		@RequestMapping("/regist")
 		public String userRegist(HttpServletRequest request, HttpServletResponse response){
+			
 			String userName = request.getParameter("UserName");
 			String passWord = request.getParameter("PassWord");
-			List<UserLogin> list = this.userServiceImpl.allUserLogin();
+//			List<UserLogin> list = this.userServiceImpl.allUserLogin();
 			UserLogin userLogin = new UserLogin();
 			userLogin.setUserName(userName);
 			userLogin.setPassWord(passWord);
-			list.add(userLogin);
-			//UserLogin userLogin = new UserLogin("UserName","PassWord");
-			//User user = new User("zhangsan","dddfdfd","zhangsan","女",userLogin);
+//			list.add(userLogin);
+			System.out.println("user name : " +userLogin.getUserName()+"  user password :  "+userLogin.getPassWord() );
+			
 			this.userServiceImpl.addUserLogin(userLogin);
-			//this.userServiceImpl.addUser(user);
 			return "user/personal";
 			
 			
@@ -206,8 +205,7 @@ public class UserController {
 			this.userServiceImpl.addupUser(items);
 			 */
 		}
-        //修改个人信息
-		//public 
+      
 		//检索用户
 		@RequestMapping("/searchUser")
 		public String userlist(Model model,String userName,HttpServletRequest request,HttpServletResponse response){
@@ -239,16 +237,35 @@ public class UserController {
 			}
 		}
 		
+		//关注
 		@RequestMapping("/addFollowUser")
-		public String addFollowUser(Model model,int id) {
-			List<User> list = this.userServiceImpl.listAll();
-			User user1 = list.get(0);
+		public String addFollowUser(Model model,int id1,int id2) {
+			//通过ID1  获取第一个 user1
+			User user1 = userServiceImpl.findUserById(id1);
+			//通过id2  获取第二个user2
+			User user2 = userServiceImpl.findUserById(id2);
+			//将user2 加入到 user1的关注列表（FollowUserList）
+			List<User> list = user1.getFollowUserList();
+			list.add(user2);
 			user1.setFollowUserList(list);
+			// user.getFollowUserList.add(user2)
+			//更新user1
 			userServiceImpl.updateUser(user1);
-			userServiceImpl.addFollowUserStatus(user1);
-			model.addAttribute("list",list);
-			userServiceImpl.updateFollowUserStatus(user1,id);
-			//model.addAttribute("fid",fid);
+			
+			/*
+			User user1 = userServiceImpl.findUserById(id1);
+			User user2 = userServiceImpl.findUserById(id2);
+			
+			List<User> list = user1.getFollowUserList();
+			Boolean gz = false;
+			for(User use : list) {
+				if(use.getId()==user2.getId()) {
+					gz = true;
+					
+				}
+			}
+			
+			*/
 			return "user/homePage"; 
 		}
 		
@@ -263,16 +280,7 @@ public class UserController {
 			model.addAttribute("list",list);
 			return "user/followUser";
 		} 
-		/*public String followUser(Model model,int id) {
-			User user = this.userServiceImpl.findUserById(id);
-			for(User use : user.getFollowUserList()) {
-				System.out.println("user id ； "+use.getId()+"user name : "+use.getUserLogin().getUserName());
-			}
- 			List<User> list = user.getFollowUserList();
-			model.addAttribute("list",list);
-			return "user/followUser";
-		}
-		 */
+		
 		//教师主页
 		@RequestMapping("/teacHomePage")
 		public String teacherList(Model model,String Name) {

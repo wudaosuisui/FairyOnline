@@ -29,7 +29,8 @@
 		         <div id="shop">
 		          <button id="button1"><a href="shoppingCart.html">购物车</a></button>
 		          <img src="../images/a1.png" height="30px">
-		          <img  id="img1" src="${ctx}/images/userImages/${userLogin2.user.img}">
+		          <a href="${ctx}/user/homePage?id=${userLogin2.userName}" ><img  id="img1" src="${ctx}/images/userImages/${userLogin2.user.img}">
+		          </a>
 		        </div>
     		 </div>
     	</div>
@@ -47,15 +48,13 @@
 	                  <td>昵称</td>
 	                  <td>性别</td>
 	                  <td>头像</td>
-	                  <td><a href="">是否关注</a></td>
-	                  </tr>
-            		<c:forEach items="${list}" var="user">
+	                </tr>
+            		<c:forEach items="${list}" var="userLogin">
 	                  <tr>
-	                  <td><a href="${ctx}/user/homePage?userName=${user.userName}">${user.userName}</a></td>
-	                  <td><a href="">${user.user.petName}</a></td>
-	                  <td>${user.user.sex}</td>
-	                  <td><a href=""><img src="${ctx}/images/userImages/${user.user.img}" width="50px" height="50px" /></a></td>
-	                  <td><a href="">是</a></td>
+	                 	<td><a href="${ctx}/user/homePage?userName=${userLogin.userName}">${userLogin.userName}</a></td>
+	                  	<td><a href="">${userLogin.user.petName}</a></td>
+	                  	<td>${userLogin.user.sex}</td>
+	                  	<td><a href=""><img src="${ctx}/images/userImages/${userLogin.user.img}" width="50px" height="50px" /></a></td>
 	                  </tr>
 	                </c:forEach>
             	</table>

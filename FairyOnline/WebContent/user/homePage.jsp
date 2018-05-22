@@ -29,7 +29,7 @@
 		         <div id="shop">
 		          <button id="button1"><a href="shoppingCart.html">购物车</a></button>
 		          <img src="../images/a1.png" height="30px">
-		          <a href="${ctx}/user/personal?id=${userLogin2.user.id}" ><img  id="img1" name="img1" src="${ctx}/images/userImages/${userLogin2.user.img}">
+		          <a href="${ctx}/user/followUser?id=${userLogin2.user.id}" ><img  id="img1" name="img1" src="${ctx}/images/userImages/${userLogin2.user.img}">
                   </a>
 		         </div>
     		 </div>
@@ -52,7 +52,7 @@
     		<button><a href="">购物车</a></button>
     		<button><a href="">教师（申请）</a></button>
     		<button><a href="">教师（主页）</a></button>
-    		<a href="${ctx}/user/addFollowUser?id=${user.user.id}"><button>关注</button></a>
+    		<a href="${ctx}/user/addFollowUser?id1=${userLogin2.user.id}&id2=${user.user.id}"><button>关注</button></a>
     		</div>
     		
     		  <c:forEach items="${list}" var="teacher">

@@ -40,8 +40,9 @@ public class UserDaoImpl {
 	public void addUserLogin(UserLogin userLogin) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction tra = session.beginTransaction();//¿ªÆôÊÂÎñ
+		System.out.println("user name : " +userLogin.getUserName()+"  user password :  "+userLogin.getPassWord() );
 		session.save(userLogin);
-		System.out.println("save success");
+		System.out.println("user name : " +userLogin.getUserName()+"  user password :  "+userLogin.getPassWord() );
 		session.flush();
 		tra.commit();
 		System.out.println("out Dao");
@@ -52,7 +53,6 @@ public class UserDaoImpl {
 		session.save(user);
         return true;
 	}
-	
 	
 	public UserLogin login(String userName,String passWord) {
 		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where userName=? and passWord=?");

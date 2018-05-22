@@ -25,9 +25,10 @@ public class UserLogin {
 	public UserLogin() {
 	}
 	
+//	@Id
+//	@GeneratedValue(generator="system-uuid")
+//	@GenericGenerator(name="system-uuid", strategy = "uuid")
 	@Id
-	@GeneratedValue(generator="system-uuid")
-	@GenericGenerator(name="system-uuid", strategy = "uuid")
 	public String getUserName() {
 		return userName;
 	}

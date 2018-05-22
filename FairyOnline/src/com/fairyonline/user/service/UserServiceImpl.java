@@ -45,6 +45,7 @@ public class UserServiceImpl {
 		this.userDaoImpl.addUser(user);
 		session.close();
 	}
+	
 	public UserLogin login(String userName,String passWord) {
 		UserLogin userLogin = this.userDaoImpl.login(userName, passWord);
 		return userLogin;

@@ -13,6 +13,7 @@ import com.fairyonline.course.entity.Cart;
 import com.fairyonline.course.entity.CartItem;
 import com.fairyonline.course.entity.Chapters;
 import com.fairyonline.course.entity.Course;
+import com.fairyonline.course.entity.Video;
 import com.fairyonline.user.entity.User;
 
 @Service
@@ -47,7 +48,11 @@ public class CourseServiceImpl {
 		Course course = cdi.selectById(id);
 		return course;
 	}
-	
+	//观看视频
+	public Video videoview(int id) {
+		Video video = cdi.videoview(id);
+		return video;
+	}
 	//购物车
 	public List<Cart> selectAll(){
 		List<Cart> list = cdi.selectAll();

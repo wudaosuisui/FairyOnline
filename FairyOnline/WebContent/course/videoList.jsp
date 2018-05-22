@@ -36,8 +36,8 @@
     		 <div id="head-body">
     		 <div> 
                 <video width="1010" height="243" controls autoplay="autoplay">
-                 	<source src="../Example/1第一章总结 (1).mp4" type="video/mp4">
-                 	<source src="../Example/1第一章总结 (1).ogg" type="video/ogg" />
+                 	<source src="${video.URL }" type="video/mp4">
+                 	<source src="${video.URL }" type="video/ogg" />
                  	Your browser does not support HTML5 video.
                  </video> 
               <div>

@@ -13,8 +13,8 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name="video")
 public class Video {
 	private int ID;
-	private String Name;
-	private Chapters ChapterID;
+	private String name;
+	//private Chapters ChapterID;
 	private int TID;//后期再加一对多
 	private String URL;
 	
@@ -28,20 +28,20 @@ public class Video {
 		this.ID = iD;
 	}
 	public String getName() {
-		return Name;
+		return name;
 	}
 	public void setName(String name) {
-		this.Name = name;
+		this.name = name;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="ChapterID")
-	public Chapters getChapterID() {
-		return ChapterID;
-	}
-	public void setChapterID(Chapters chapterID) {
-		ChapterID = chapterID;
-	}
+//	@ManyToOne
+//	@JoinColumn(name="ChapterID")
+//	public Chapters getChapterID() {
+//		return ChapterID;
+//	}
+//	public void setChapterID(Chapters chapterID) {
+//		ChapterID = chapterID;
+//	}
 	public int getTID() {
 		return TID;
 	}

@@ -63,13 +63,23 @@ public class CourseControllerImpl {
 		@RequestMapping("/crousedetail")
 		public String selectById(Model model,int id) {
 			Course course =csi.selectById(id);	
-			List<Course> list = this.csi.getList();
-			model.addAttribute("list", list);
-			System.out.println(list.size());
-			model.addAttribute("course",course);
+			//List<Course> list = this.csi.getList();
+			//List<Chapters> chapterlist = course.getChaptersList();
+			model.addAttribute("course", course);
 			Chapters chapter = csi.selectBycId(id);	
 			model.addAttribute("chapter",chapter);
 			return "course/list";
+		}
+		//π€ø¥ ”∆µ
+		@RequestMapping("/watching")
+		public String videoview(Model model,int id) {
+			Video video =csi.videoview(id);	
+			//List<Course> list = this.csi.getList();
+			//List<Chapters> chapterlist = course.getChaptersList();
+			model.addAttribute("video", video);
+//			Chapters chapter = csi.selectBycId(id);	
+//			model.addAttribute("chapter",chapter);
+			return "course/videoList";
 		}
 		@RequestMapping("/test")
 		public String test(Model model) {

@@ -20,6 +20,7 @@ import com.fairyonline.course.entity.Cart;
 import com.fairyonline.course.entity.Category;
 import com.fairyonline.course.entity.Chapters;
 import com.fairyonline.course.entity.Course;
+import com.fairyonline.course.entity.Video;
 import com.fairyonline.user.entity.User;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -76,6 +77,20 @@ public class CourseDaoImpl {
 		return course; 
 	}
 	
+	//观看视频
+	public Video videoview(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+		System.out.println("get dao success");
+//		Query query = session.createQuery("from Course where id = ?");
+//		query.setParameter(0, id);
+//		Course course = (Course)query.uniqueResult();
+		Video video = session.get(Video.class,id);
+		session.close();
+//		System.out.println("get dao success course name is : " + course.getCName());
+		System.out.println("get dao2 success");
+		return video; 
+	}
 	//购物车
 	public List<Cart> selectAll() {
 		// TODO Auto-generated method stub

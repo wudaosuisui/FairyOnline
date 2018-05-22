@@ -54,11 +54,10 @@
 	           </div>
 	         
 	       	   <div id="l1">
-	       	        <c:forEach items="${list}" var="l1">  
-	       	        ${fn:length(list)}
+	       	        <c:forEach items="${course.chaptersList}" var="l1">  
 	       	   	    <h3>${l1.ID } &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp章节名字</h3>
-	       	   	          <c:forEach items="${list}" var="l">  
-	       	   	              <p><a href="videoList.html">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp第一节&nbsp&nbsp&nbsp课程名字&nbsp&nbsp（课程时间）</a></p>
+	       	   	          <c:forEach items="${chapter.videoList}" var="l">  
+	       	   	              <p><a href="watching.do?id=${l.ID }">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${l.name }&nbsp&nbsp&nbsp课程名字&nbsp&nbsp（课程时间）</a></p>
 	       	   	           </c:forEach>
 	       	   	    </c:forEach>
 	       	   </div>

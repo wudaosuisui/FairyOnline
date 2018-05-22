@@ -108,6 +108,20 @@ public class CourseControllerImpl {
 			csi.addCart(id, ID);
 			return "course/CurriculumSpecial";
 		}
+		@RequestMapping("/carttoorders")
+		public String toOrdersCourse(Model model,HttpServletRequest request) {
+			System.out.println("cartcartcart");
+			String[] c = request.getParameterValues("cart");
+			List<Cart> list = csi.selectById(c);	
+			int sum = 0;
+			for(int i = 0; i < list.size(); i ++) {
+				sum+= list.get(i).getCourseId().getPrice()* list.get(i).getCount();
+			}
+			model.addAttribute("toorders", list);
+			model.addAttribute("sum", sum);
+			System.out.println("cartcartcart1");
+			return "course/order";
+		}
 		//后台购物车列表
 		@RequestMapping("/cartlist1")
 		public String selectAll1(Model model) {
@@ -121,21 +135,7 @@ public class CourseControllerImpl {
 			List<Cart> list = csi.selectByUserId(userId);
 			model.addAttribute("usershopping",list);
 			return "user/user_shopping";
-		}
-		
-		@RequestMapping("carttoorders")
-		public String toOrdersFruits(Model model,HttpServletRequest request) {
-			String[] c = request.getParameterValues("cart");
-			List<Cart> list = csi.selectById(c);
-			int sum = 0;
-			for(int i = 0; i < list.size(); i ++) {
-				sum+= list.get(i).getCourseId().getPrice()* list.get(i).getCount();
-			}
-			model.addAttribute("toorders", list);
-			model.addAttribute("sum", sum);
-			return "order/user_toorders";
-		}
-		
+		}	
 		@RequestMapping("/deletecart")
 		public String deleteFruits(int cartId) {
 			System.out.println("delete");

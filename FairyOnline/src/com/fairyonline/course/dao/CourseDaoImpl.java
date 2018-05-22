@@ -119,14 +119,6 @@ public class CourseDaoImpl {
 		return true;
 	}
 	
-	public List<Cart> selectByUserId(int userId) {
-		// TODO Auto-generated method stub
-		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("from Cart where userId=?");
-		query.setParameter(0, userId);
-		List<Cart> list = query.list();
-		return list;
-	}
 	public List<Cart> selectById(String[] c){
 		Session session = sessionFactory.openSession();
 		List<Cart> list = new ArrayList<Cart>();
@@ -136,6 +128,16 @@ public class CourseDaoImpl {
 			Cart cart = (Cart)query.uniqueResult();
 			list.add(cart);
 		}
+		return list;
+	}
+
+	
+	public List<Cart> selectByUserId(int userId) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery("from Cart where userId=?");
+		query.setParameter(0, userId);
+		List<Cart> list = query.list();
 		return list;
 	}
 

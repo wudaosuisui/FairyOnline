@@ -8,7 +8,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>视频详情页面</title>
-		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="../css/css1.css">
         <link rel="stylesheet" type="text/css" href="../css/css2.css"> 
 	    <link rel="stylesheet" type="text/css" href="../css/list.css">

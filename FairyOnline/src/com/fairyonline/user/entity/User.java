@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fairyonline.course.entity.Cart;
+import com.fairyonline.course.entity.Orders;
 
 @Entity
 @Table(name="user")
@@ -33,7 +34,7 @@ public class User {
 	private String sex;
 	private UserLogin userLogin;
 	private Set<Cart> cartSet = new HashSet<Cart>();
-	
+	private Set<Orders> orderSet = new HashSet<Orders>();
 	
 	public User(String petName,String img,String tName,String sex,UserLogin userLogin) {
 		// TODO Auto-generated constructor stub
@@ -96,6 +97,14 @@ public class User {
 	}
 	public void setCartSet(Set<Cart> cartSet) {
 		this.cartSet = cartSet;
+	}
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name="UserId")
+	public Set<Orders> getOrderSet() {
+		return orderSet;
+	}
+	public void setOrderSet(Set<Orders> orderSet) {
+		this.orderSet = orderSet;
 	}
 
 	

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+#body-bottom table{
+	border:solid 1px #cbc7c6;
+	margin-left: 73px;
+	margin-top:30px;
+	
+	width: 734px;
+}
+a{
+	text-decoration : none;
+	color:#000;
+}
+a:hover{
+	text-decoration:underline;
+	color:#cbc7c6;
+} 

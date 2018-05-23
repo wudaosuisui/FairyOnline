@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fairyonline.example.entity.Example;
@@ -16,7 +17,8 @@ public class ExampleControllerImpl {/*驼峰式命名*/
 	@Resource
 	private ExampleServiceImpl exampleServiceImple;
 
-	@RequestMapping(value="/Add")/*方法对应地址*/
+//	@RequestMapping(value="/Add")/*方法对应地址*/
+	@PostMapping("/Add")
 	public String Add() {/*驼峰式命名*/
 		System.out.println("get add");
 		Example example = new Example("中文exampleName");

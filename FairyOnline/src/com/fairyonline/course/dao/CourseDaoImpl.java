@@ -15,11 +15,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
 import com.fairyonline.course.entity.Cart;
 import com.fairyonline.course.entity.Category;
 import com.fairyonline.course.entity.Chapters;
 import com.fairyonline.course.entity.Course;
+import com.fairyonline.course.entity.FollowCourse;
 import com.fairyonline.course.entity.Video;
 import com.fairyonline.user.entity.User;
 import com.mysql.jdbc.Connection;
@@ -90,6 +92,44 @@ public class CourseDaoImpl {
 //		System.out.println("get dao success course name is : " + course.getCName());
 		System.out.println("get dao2 success");
 		return video; 
+	}
+	//收藏课程
+	public Boolean collection(int id,int ID) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		Query query = session.createQuery("from Course where ID=?");
+		query.setParameter(0,ID);
+		Course Course = (Course) query.uniqueResult();
+		User user = session.get(User.class, new Integer(id));
+		Set<FollowCourse> set = user.getFcSet();
+		Iterator<FollowCourse> it = set.iterator();
+//		while(it.hasNext()) {
+//			FollowCourse c = it.next();
+//			if(c.getFcid().equals(ID)) {
+//			//	int count = c.getCount();
+//				//c.setCount(count+1);
+//				session.update(c);
+//				tx.commit();
+//				session.close();
+//				return true;
+//			}
+//		}
+		FollowCourse fc = new FollowCourse();
+		fc.setFcid(Course);;;
+		fc.setFuid(user);
+		user.getFcSet().add(fc);
+		session.save(fc);
+		session.update(user);
+		tx.commit();
+		session.close();
+		return true;
+	}
+	//取消收藏
+	//查询收藏的课程
+	public List<FollowCourse> selectfc() {
+		Query q=this.sessionFactory.getCurrentSession().createQuery("from FollowCourse");
+		return q.list();
+		
 	}
 	//购物车
 	public List<Cart> selectAll() {

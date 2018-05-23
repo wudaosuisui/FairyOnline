@@ -37,6 +37,7 @@ public class Course {
 	private List<Chapters> chaptersList = new ArrayList<Chapters>();
 	private Set<Cart> cartSet = new HashSet<Cart>();
 	private Set<Orders> orderSet = new HashSet<Orders>();
+	private Set<FollowCourse> fcSet = new HashSet<FollowCourse>();
 	
 	public Course() {
 		
@@ -133,6 +134,14 @@ public class Course {
 	}
 	public void setOrderSet(Set<Orders> orderSet) {
 		this.orderSet = orderSet;
+	}
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name="fcid")
+	public Set<FollowCourse> getFcSet() {
+		return fcSet;
+	}
+	public void setFcSet(Set<FollowCourse> fcSet) {
+		this.fcSet = fcSet;
 	}
 	@Override
 	public String toString() {

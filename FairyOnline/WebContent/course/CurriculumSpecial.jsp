@@ -93,6 +93,7 @@
 						<div class="line6">
 							<a href="#">${l.categoryID.categoryName}</a>
 							<a href="${ctx }/course/addcart.do?id=${userLogin2.user.id }&&ID=${l.ID}">加入购物车</a>
+							<a href="${ctx }/course/collection.do?id=${userLogin2.user.id }&&ID=${l.ID}">收藏课程</a>
 							<a href="#">观看人数</a>
 							<a href="#">等级</a>
 						</div>

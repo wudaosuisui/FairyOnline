@@ -7,12 +7,14 @@ import javax.annotation.Resource;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.fairyonline.course.dao.CourseDaoImpl;
 import com.fairyonline.course.entity.Cart;
 import com.fairyonline.course.entity.CartItem;
 import com.fairyonline.course.entity.Chapters;
 import com.fairyonline.course.entity.Course;
+import com.fairyonline.course.entity.FollowCourse;
 import com.fairyonline.course.entity.Video;
 import com.fairyonline.user.entity.User;
 
@@ -52,6 +54,17 @@ public class CourseServiceImpl {
 	public Video videoview(int id) {
 		Video video = cdi.videoview(id);
 		return video;
+	}
+	//收藏课程
+	public void collection(int id,int ID) {
+		cdi.collection(id, ID);
+	}
+	//取消收藏
+	//查询收藏的课程
+	public List<FollowCourse> selectfc() {
+		List<FollowCourse> list = cdi.selectfc();
+		return list;
+		
 	}
 	//购物车
 	public List<Cart> selectAll(){

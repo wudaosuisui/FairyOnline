@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.sql.*,java.io.*,java.util.*"%>  
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -90,7 +91,7 @@
 
     	<div id="bodya">
     	    <div id="body1">
-    		<button><a href="">收藏的课程</a></button>
+    		<a href="${ctx }/course/selectfc"><button>收藏的课程</button></a>
     		<button><a href="">学习的课程</a></button>
     		<button><a href="">购物车</a></button>
     		<button><a href="">教师（申请）</a></button>

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fairyonline.course.entity.Cart;
 import com.fairyonline.course.entity.Chapters;
 import com.fairyonline.course.entity.Course;
+import com.fairyonline.course.entity.FollowCourse;
 import com.fairyonline.course.entity.Video;
 import com.fairyonline.course.service.CourseServiceImpl;
 import com.fairyonline.user.entity.User;
@@ -81,6 +82,26 @@ public class CourseControllerImpl {
 //			model.addAttribute("chapter",chapter);
 			return "course/videoList";
 		}
+		//收藏课程
+		@RequestMapping("/collection")
+		public String collection(int id,int ID) {
+			csi.collection(id, ID);
+			return "course/CurriculumSpecial";
+		}
+		//取消收藏
+		
+		//查询收藏的课程
+		@RequestMapping("/selectfc")
+		public String selectfc(Model model) {
+			List<FollowCourse> list = this.csi.selectfc();
+			model.addAttribute("list", list);
+			System.out.println("****************");
+			System.out.println(list.size());
+			return "course/followcourse";
+		}
+		
+		
+		
 		@RequestMapping("/test")
 		public String test(Model model) {
 			System.out.println("test");

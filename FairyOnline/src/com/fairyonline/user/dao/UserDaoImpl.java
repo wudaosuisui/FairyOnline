@@ -29,12 +29,16 @@ public class UserDaoImpl {
 	}
 	
 	public List<UserLogin> allUserLogin(){
+		System.out.println("get dao success");
 		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin");
-		List<UserLogin> list = query.list();
-		return list;
+//		List<UserLogin> list = query.list();
+		System.out.println("out dao success");
+//		return list;
+		return query.list();
 	}
 	
 	public void addUserLogin(UserLogin userLogin) {
+		System.out.println("get dao success");
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction tra = session.beginTransaction();//¿ªÆôÊÂÎñ
 		session.save(userLogin);
@@ -77,6 +81,8 @@ public class UserDaoImpl {
 		User user = (User)query.uniqueResult();
 		return user;
 	}
+	
+	
 	
 	/*public boolean updateUser(User user) {
 		Query query = this.sessionFactory.getCurrentSession().createQuery("update User set petName=?,img=?,sex=?,tName=? where id=?");

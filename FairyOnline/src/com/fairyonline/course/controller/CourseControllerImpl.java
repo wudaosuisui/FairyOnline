@@ -112,12 +112,14 @@ public class CourseControllerImpl {
 			System.out.println(list.size());
 			return "course/shoppingCart";
 		}
-		@RequestMapping("/addcart")
+		
+		/*@RequestMapping("/addcart")
 		public String addCart(int id,int ID) {
 			System.out.println(ID);
 			csi.addCart(id, ID);
 			return "course/CurriculumSpecial";
-		}
+		}*/
+		
 		@RequestMapping("/carttoorders")
 		public String toOrdersCourse(Model model,HttpServletRequest request) {
 			System.out.println("cartcartcart");

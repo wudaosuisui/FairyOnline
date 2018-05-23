@@ -28,7 +28,11 @@ public class UserServiceImpl {
 		return this.userDaoImpl.findAll();
 	}
 	public List<UserLogin> allUserLogin(){
+//		Session session = sessionFactory.openSession();
+		System.out.println("get allUserLogin service  success ");
 		List<UserLogin> list = this.userDaoImpl.allUserLogin();
+//		session.close();
+		System.out.println("out allUserLogin service  success ");
 		return list;
 	}
 	

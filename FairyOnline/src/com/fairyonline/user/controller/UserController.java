@@ -73,13 +73,14 @@ public class UserController {
 //		
 		@RequestMapping("/regist")
 		public String userRegist(HttpServletRequest request, HttpServletResponse response){
+			System.out.println("get  regist controller");
 			String userName = request.getParameter("UserName");
 			String passWord = request.getParameter("PassWord");
-			List<UserLogin> list = this.userServiceImpl.allUserLogin();
+//			List<UserLogin> list = this.userServiceImpl.allUserLogin();
 			UserLogin userLogin = new UserLogin();
 			userLogin.setUserName(userName);
 			userLogin.setPassWord(passWord);
-			list.add(userLogin);
+//			list.add(userLogin);
 			//UserLogin userLogin = new UserLogin("UserName","PassWord");
 			//User user = new User("zhangsan","dddfdfd","zhangsan","Ů",userLogin);
 			this.userServiceImpl.addUserLogin(userLogin);
@@ -91,6 +92,7 @@ public class UserController {
 		
 		@RequestMapping("/login")
 		public String userLogin(Model model,HttpServletRequest request,HttpServletResponse response)throws IOException{
+			System.out.println("get  login controller");
 			UserLogin userLogin2 = new UserLogin();
 			String userName2;
 			HttpSession session = request.getSession();
@@ -127,11 +129,14 @@ public class UserController {
 		
 		@RequestMapping(value="/updateitem",method= {RequestMethod.POST,RequestMethod.GET})
 		public String updateItems(MultipartFile picture, String UserName,HttpServletRequest request,HttpServletResponse response) throws Exception {
+			System.out.println("get updateitem controller");
 			String userName = request.getParameter("UserName");
 			List<UserLogin> list = this.userServiceImpl.allUserLogin();
+			System.out.println("get  userLogin  list");
 			if(userName != null) {
 			for(int i=0;i<list.size();i++) {
 				if(list.get(i).getUserName().equals(userName)) {
+					System.out.println("get  add if ");
 					String petName = request.getParameter("PetName");
 					String sex = request.getParameter("Sex");
 					String img = request.getParameter("Img");
@@ -177,8 +182,9 @@ public class UserController {
 				  */
 					this.userServiceImpl.addUser(user); 
 				}
+				
 			  }
-			
+			System.out.println("for end ");
 			   
 		   }
 			 return "user/index";

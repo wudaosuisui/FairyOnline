@@ -59,9 +59,9 @@ public class CourseServiceImpl {
 		return list;
 	}
     
-    public void addCart(int id,int ID ) {
+   /* public void addCart(int id,int ID ) {
 			cdi.addCart(id, ID);
-	}
+	}*/
     
     public List<Cart> selectById(String[] c){
 			List<Cart> list = cdi.selectById(c);

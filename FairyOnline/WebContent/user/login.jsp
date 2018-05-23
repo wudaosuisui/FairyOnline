@@ -50,9 +50,10 @@ $(function (){
 		    		<p>用户账户</p><input id="txtName" type="text" placeholder="请输入您的账户" name="UserName" required data-validation-required-message="Please enter your UserName."/>
 		    		<p>用户密码</p><input id="txtPass" type="password" placeholder="请输入您的密码" name="PassWord"  required data-validation-required-message="Please enter your PassWord."/>
 		    		</br>
-		    		<input id="login" type="submit" value="登录">
-		    		<a href="regist.html"><input id="regist" type="button" value="前往注册"></a>
-		    	</form>
+		    		<input id="login" type="submit" value="登录">  <a href="regist.jsp"  id="regist" > &nbsp;&nbsp;&nbsp;注册&nbsp;&nbsp;&nbsp;</a>
+		    		</form>
+		    		<!-- <a href="regist.jsp"><input  type="button" value="前往注册"><button id="regist">注册</button></a> -->
+		    	
 		    </div>
 			
 		</div>

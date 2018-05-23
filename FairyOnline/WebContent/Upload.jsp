@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/homePage.css"> 
     <link rel="stylesheet" type="text/css" href="css/uploading.css">
       <script type="text/javascript">  
-        <!-- 添加按钮-->  
+        <!-- 添加-->  
         function addOne(){  
             document.getElementById("addDiv").innerHTML+="<div class='add'> <input type='file' name='file'/><a href="video/drop?Id=${video.ID}"><input type='button' value='删掉' onclick='delOne(this)' ></a></div>";  
         }  

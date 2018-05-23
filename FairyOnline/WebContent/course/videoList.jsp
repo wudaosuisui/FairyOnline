@@ -25,7 +25,7 @@
 			      </form>
 		        </div> 
 		        <div id="shop">
-		          <button id="button1"><a href="shoppingCart.html">购物车</a></button>
+		          <button id="button1"><a href="shoppingCart.jsp">购物车</a></button>
 		          <img src="../images/a1.png" height="30px">
 		          <!--<button id="button1">头像</button>-->
                   <div id="img1">

@@ -115,6 +115,8 @@ public class UserController {
 				session.setAttribute("userLogin",userName2);
 				//System.out.println("********");
 				session.setAttribute("userLogin2",userLogin2);
+				User user = userServiceImpl.findUser(userLogin2.getUserName());
+				session.setAttribute("user",user);
 				System.out.println(userName2.length());
 				model.addAttribute("admin",userName2);
 				System.out.println("login÷¥––≥…π¶");

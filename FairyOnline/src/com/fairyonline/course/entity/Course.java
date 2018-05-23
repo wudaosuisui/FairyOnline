@@ -35,8 +35,8 @@ public class Course {
 	private String cImg;
 	private String cIntroduction;
 	private List<Chapters> chaptersList = new ArrayList<Chapters>();
-	private Set<Cart> cartSet = new HashSet<Cart>();
-	private Set<Orders> orderSet = new HashSet<Orders>();
+//	private Set<Cart> cartSet = new HashSet<Cart>();
+//	private Set<Orders> orderSet = new HashSet<Orders>();
 	
 	public Course() {
 		
@@ -116,24 +116,24 @@ public class Course {
 	public void setChaptersList(List<Chapters> chaptersList) {
 		this.chaptersList = chaptersList;
 	}
-	@OneToMany
-	@JoinColumn(name="courseId")
-	public Set<Cart> getCartSet() {
-		return cartSet;
-	}
-	public void setCartSet(Set<Cart> cartSet) {
-		this.cartSet = cartSet;
-	}
-	@ManyToMany
-	@JoinTable(name="CARTLIST", 
-	    joinColumns=@JoinColumn(name="OID"),
-	    inverseJoinColumns=@JoinColumn(name="CID"))
-	public Set<Orders> getOrderSet() {
-		return orderSet;
-	}
-	public void setOrderSet(Set<Orders> orderSet) {
-		this.orderSet = orderSet;
-	}
+//	@OneToMany
+//	@JoinColumn(name="courseId")
+//	public Set<Cart> getCartSet() {
+//		return cartSet;
+//	}
+//	public void setCartSet(Set<Cart> cartSet) {
+//		this.cartSet = cartSet;
+//	}
+//	@ManyToMany
+//	@JoinTable(name="CARTLIST", 
+//	    joinColumns=@JoinColumn(name="OID"),
+//	    inverseJoinColumns=@JoinColumn(name="CID"))
+//	public Set<Orders> getOrderSet() {
+//		return orderSet;
+//	}
+//	public void setOrderSet(Set<Orders> orderSet) {
+//		this.orderSet = orderSet;
+//	}
 	@Override
 	public String toString() {
 		return "Course [ID=" + ID + ", CName=" + CName + ", Price=" + Price + ", categoryID=" + categoryID + ", UPTime="

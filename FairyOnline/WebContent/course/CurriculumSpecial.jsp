@@ -37,7 +37,7 @@
 			        
 			        <div id="shop">
 				          <!-- <button id="button1"></button> -->
-				          <a href="../course/cartlist">购物车</a>
+				          <a href="../course/cartlist?id=${userLogin2.user.id }">购物车</a>
 				          <img src="../images/a1.png" height="30px">
 		                  <div id="img1">${userLogin2.user.petName}</div>
 			        </div>

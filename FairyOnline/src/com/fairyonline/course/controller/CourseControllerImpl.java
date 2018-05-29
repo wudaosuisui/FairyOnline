@@ -8,9 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.SessionFactory;
@@ -27,6 +25,7 @@ import com.fairyonline.course.entity.FollowCourse;
 import com.fairyonline.course.entity.Video;
 import com.fairyonline.course.service.CourseServiceImpl;
 import com.fairyonline.user.entity.User;
+import com.fairyonline.user.service.UserServiceImpl;
 
 
 @Controller
@@ -34,6 +33,8 @@ import com.fairyonline.user.entity.User;
 @RequestMapping("course")
 public class CourseControllerImpl {
 	
+	@Resource
+	private UserServiceImpl usi;
 	@Resource
 	private CourseServiceImpl csi;
 	@Resource
@@ -127,10 +128,12 @@ public class CourseControllerImpl {
 		}
 		//¹ºÎï³µ
 		@RequestMapping("/cartlist")
-		public String selectAll(Model model) {
-			List<Cart> list = csi.selectAll();
-			model.addAttribute("cartlist",list);
-			System.out.println(list.size());
+		public String selectAll(Model model,int id) {
+//			List<Cart> list = csi.selectAll();
+//			model.addAttribute("cartlist",list);
+//			System.out.println(list.size());
+			User user = usi.findUserById(id);
+			model.addAttribute("user",user);
 			return "course/shoppingCart";
 		}
 		@RequestMapping("/addcart")
@@ -145,9 +148,9 @@ public class CourseControllerImpl {
 			String[] c = request.getParameterValues("cart");
 			List<Cart> list = csi.selectById(c);	
 			int sum = 0;
-			for(int i = 0; i < list.size(); i ++) {
-				sum+= list.get(i).getCourseId().getPrice()* list.get(i).getCount();
-			}
+//			for(int i = 0; i < list.size(); i ++) {
+//				sum+= list.get(i).getCourseId().getPrice()* list.get(i).getCount();
+//			}
 			model.addAttribute("toorders", list);
 			model.addAttribute("sum", sum);
 			System.out.println("cartcartcart1");

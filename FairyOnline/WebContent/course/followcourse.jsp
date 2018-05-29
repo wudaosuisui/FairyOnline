@@ -41,7 +41,8 @@
 	         <div id="specific">
             <div id="bord">
          
-                <c:forEach var="l" items="${userLogin2.user.fcSet}">
+                <c:forEach var="l" items="${user.fcSet}">
+             
                 <div class="lessen">
 	        			<div class="lepic">
 							<a href="#">

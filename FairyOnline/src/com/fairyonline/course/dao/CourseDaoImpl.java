@@ -151,20 +151,20 @@ public class CourseDaoImpl {
 		User user = session.get(User.class, new Integer(id));
 		Set<Cart> set = user.getCartSet();
 		Iterator<Cart> it = set.iterator();
-		while(it.hasNext()) {
-			Cart c = it.next();
-			if(c.getCourseId().equals(ID)) {
-				int count = c.getCount();
-				c.setCount(count+1);
-				session.update(c);
-				tx.commit();
-				session.close();
-				return true;
-			}
-		}
+//		while(it.hasNext()) {
+//			Cart c = it.next();
+//			if(c.getCourseId().equals(ID)) {
+//				int count = c.getCount();
+//				c.setCount(count+1);
+//				session.update(c);
+//				tx.commit();
+//				session.close();
+//				return true;
+//			}
+//		}
 		Cart c = new Cart();
 		c.setCourseId(Course);;
-		c.setCount(1);
+		//c.setCount(1);
 		c.setUserId(user);
 		user.getCartSet().add(c);
 		session.save(c);
@@ -209,8 +209,8 @@ public class CourseDaoImpl {
 	public User addCount(int id) {
 		Session session = sessionFactory.getCurrentSession();
 		Cart cart = session.get(Cart.class, new Integer(id));
-		int count = cart.getCount();
-		cart.setCount(count+1);
+	//	int count = cart.getCount();
+	//	cart.setCount(count+1);
 		session.update(cart);
 		int userId = 1;
 		Query query = session.createQuery("from User where id=?");
@@ -227,8 +227,8 @@ public class CourseDaoImpl {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		Cart cart = session.get(Cart.class, new Integer(id));
-		int count = cart.getCount();
-		cart.setCount(count-1);
+	//	int count = cart.getCount();
+	//	cart.setCount(count-1);
 		session.update(cart);
 		tx.commit();
 		session.close();

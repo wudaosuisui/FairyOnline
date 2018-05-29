@@ -98,7 +98,7 @@
     		<button><a href="">教师（主页）</a></button>
     		</div>
     		<form action="../course/carttoorders">
-             <c:forEach  var="c" items="${userLogin2.user.cartSet}">
+             <c:forEach  var="c" items="${user.cartSet}">
     		<div id="body2">
     		    <div id="body2-checkbox">
     		         <input name="cart" id="save" type="checkbox" value="${c.cartId }" />

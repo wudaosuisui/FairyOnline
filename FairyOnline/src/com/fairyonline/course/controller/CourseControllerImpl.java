@@ -1,7 +1,5 @@
 package com.fairyonline.course.controller;
 
-
-
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -90,14 +88,21 @@ public class CourseControllerImpl {
 			return "course/CurriculumSpecial";
 		}
 		//取消收藏
+		@RequestMapping("/uncollection")
+		public String unCollection(int id,int uid) {
+			csi.unCollection(id,uid);
+			return "course/followcourse";
+		}
 		
 		//查询收藏的课程
 		@RequestMapping("/selectfc")
-		public String selectfc(Model model) {
-			List<FollowCourse> list = this.csi.selectfc();
-			model.addAttribute("list", list);
-			System.out.println("****************");
-			System.out.println(list.size());
+		public String selectfc(Model model,int id) {
+//			List<FollowCourse> list = this.csi.selectfc();
+//			model.addAttribute("list", list);
+//			System.out.println("****************");
+//			System.out.println(list.size());
+			User user = usi.findUserById(id);
+			model.addAttribute("user",user);
 			return "course/followcourse";
 		}
 		

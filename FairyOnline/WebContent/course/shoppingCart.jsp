@@ -91,7 +91,7 @@
 
     	<div id="bodya">
     	    <div id="body1">
-    		<a href="${ctx }/course/selectfc"><button>收藏的课程</button></a>
+    		<a href="${ctx }/course/selectfc?id=${userLogin2.user.id }"><button>收藏的课程</button></a>
     		<button><a href="">学习的课程</a></button>
     		<button><a href="">购物车</a></button>
     		<button><a href="">教师（申请）</a></button>

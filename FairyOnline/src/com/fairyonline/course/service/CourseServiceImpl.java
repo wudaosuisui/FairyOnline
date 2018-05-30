@@ -60,6 +60,9 @@ public class CourseServiceImpl {
 		cdi.collection(id, ID);
 	}
 	//取消收藏
+	public void unCollection(int id,int uid) {
+		cdi.unCollection(id,uid);
+	}
 	//查询收藏的课程
 	public List<FollowCourse> selectfc() {
 		List<FollowCourse> list = cdi.selectfc();

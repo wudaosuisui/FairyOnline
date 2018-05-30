@@ -9,7 +9,6 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -125,6 +124,22 @@ public class CourseDaoImpl {
 		return true;
 	}
 	//取消收藏
+	public void unCollection(int id,int uid) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		System.out.println("get dao");
+		
+		User u = session.get(User.class, uid);
+		FollowCourse fc= session.get(FollowCourse.class, id);
+		u.getFcSet().remove(fc);
+		session.update(u);
+		session.update(fc);
+	//	session.delete(fc);
+		tx.commit();
+		session.close();
+	}
+
 	//查询收藏的课程
 	public List<FollowCourse> selectfc() {
 		Query q=this.sessionFactory.getCurrentSession().createQuery("from FollowCourse");

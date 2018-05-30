@@ -28,19 +28,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.fairyonline.teacher.entity.Video;
-import com.fairyonline.teacher.service.TeacherService;
+import com.fairyonline.teacher.service.VideoService;
 @Controller  
 @RequestMapping("/video")  
 public class VideoController {
 	@Resource
 	private SessionFactory sessionFactory;
+	private VideoService videoService;
 	 @RequestMapping("/add")  
-	    public String oneFileUpload(  
+	    public String oneFileUpload(
+	    		@RequestParam("CName")String CName,
+				@RequestParam("ChapterName")String ChapterName,
 	            @RequestParam("file") MultipartFile files[],  
 	            HttpServletRequest request, ModelMap model) throws org.bytedeco.javacv.FrameGrabber.Exception, IOException {  
-	  
-		 List<Video> list = new ArrayList<Video>();
+		 boolean flag = videoService.submit(CName,ChapterName);
+		
+	     List<Video> list = new ArrayList<Video>();	
 		 List<String> list1 = new ArrayList<String>();
 		    // 获得项目的路径  
 		    ServletContext sc = request.getSession().getServletContext();  

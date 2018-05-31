@@ -13,49 +13,6 @@
     <link rel="stylesheet" type="text/css" href="../css/css2.css"> 
     <link rel="stylesheet" type="text/css" href="../css/homePage.css"> 
     <link rel="stylesheet" type="text/css" href="../css/shoppingCart.css">
-    <script>
-     function doDelete(id){
-      var b = window.confirm("您确定删除吗??");
-      if(b){
-       window.location.href="${pageContext.request.contextPath }/servlet/DeleteBookServlet?id="+id;
-      }
-     }
-     
-     function clearCart(){
-      var b = window.confirm("您确定清空吗??");
-      if(b){
-       window.location.href="${pageContext.request.contextPath }/servlet/ClearCartServlet";
-      }
-     }
-     
-     function updateCart(input,bookid,oldvalue){
-      var b = window.confirm("您确定修改吗??");
-      if(b){
-        var quantity = input.value;
-        if(quantity==""){
-         alert("请输入数字！！");
-         input.value=oldvalue;
-         return;
-        }
-        if(!quantity.match("\\d+")){
-         alert("请输入数字!!");
-         input.value=oldvalue;
-         return;
-        }
-        if(quantity<1){
-         alert("请输入有效数字!!");
-         input.value=oldvalue;
-         return;
-        }
-        
-        
-        
-       window.location.href='${pageContext.request.contextPath}/servlet/UpdateCartServlet?bookid='+bookid+'&quantity='+quantity;
-      }else{
-       input.value=oldvalue;
-      }
-     }
-    </script>
 </head>
 <body>
 <div id="head1">
@@ -97,11 +54,20 @@
     		<button><a href="">教师（申请）</a></button>
     		<button><a href="">教师（主页）</a></button>
     		</div>
-    		<form action="../course/carttoorders">
+    		<form action="../course/carttoorders" id="userForm">
+    		<div id="body3">
+    	
+    		   <div id="body2-checkbox">
+    		         <input name="cartId" type="checkbox" id="all" class="whole_check" value="${c.cartId }" />
+    		    </div> 
+    		   <div id="l"><p>全选<p></div> 
+    		</div>
+    		  
+    		 
              <c:forEach  var="c" items="${user.cartSet}">
-    		<div id="body2">
+    		<div id="body2" class="cartBox">
     		    <div id="body2-checkbox">
-    		         <input name="cart" id="save" type="checkbox" value="${c.cartId }" />
+    		         <input name="cart" id="save" type="checkbox" class="son_check" value="${c.cartId }" />
     		    </div> 
     		    <div id="body2-img">
                 <img src="../images/5.png">
@@ -114,11 +80,13 @@
                 </div>
     		</div>
                </c:forEach>
-            <input type="submit" value="删除选中项"/>
+            <input type="button" value="删除选中项" name="btn" onclick="delet()"/>
             <input type="submit" value="生成订单"/>
             </form>        
     		
     	</div>
+    	<script src="../js/jquery.min.js"></script>
+        <script src="../js/carts.js"></script>
 
 </body>
 </html>

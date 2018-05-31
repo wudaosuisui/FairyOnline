@@ -94,6 +94,7 @@ public class UserController {
 			UserLogin userLogin2 = new UserLogin();
 			String userName2;
 			HttpSession session = request.getSession();
+			session.setMaxInactiveInterval(3600);//·þÎñÆ÷¶ËµÄ3600Ãë
 			if(session.getAttribute("userLogin")!=null) {
 				session.removeAttribute("userLogin");
 			}

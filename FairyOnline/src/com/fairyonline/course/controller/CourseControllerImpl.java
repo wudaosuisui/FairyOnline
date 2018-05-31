@@ -161,6 +161,13 @@ public class CourseControllerImpl {
 			System.out.println("cartcartcart1");
 			return "course/order";
 		}
+		//删除购物车列表信息
+		@RequestMapping("/deletecart")
+		public String deleteCrouse(int cartId) {
+			System.out.println("delete");
+			csi.deleteCart(cartId);
+			return "redirect:cart";
+		}
 		//后台购物车列表
 		@RequestMapping("/cartlist1")
 		public String selectAll1(Model model) {
@@ -175,12 +182,7 @@ public class CourseControllerImpl {
 			model.addAttribute("usershopping",list);
 			return "user/user_shopping";
 		}	
-		@RequestMapping("/deletecart")
-		public String deleteFruits(int cartId) {
-			System.out.println("delete");
-			csi.deleteCart(cartId);
-			return "redirect:cart";
-		}
+		
 		
 		@RequestMapping("/addcount")
 		public String addCount(int id,HttpServletRequest request) {

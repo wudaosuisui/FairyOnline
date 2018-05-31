@@ -76,7 +76,27 @@
 	border:solid 1px #cbc7c6; 
 	height:210px;
 	width: 868px;
+	
 }
+#body3{
+	margin-right:auto;
+	margin-left:auto;
+	margin-top:-20px;
+	height:80px;
+	width: 868px;
+	
+}
+#body3 #l{
+	margin-top:40px;
+	margin-left:-60px;
+	float:left;
+	height:55px;
+}
+#body3 #l p{
+	font-size:23px;
+}
+
+
 #body2-img{
     margin-top:30px;
 	margin-left:-45px;

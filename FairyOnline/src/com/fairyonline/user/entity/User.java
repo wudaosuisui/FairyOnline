@@ -33,6 +33,8 @@ public class User {
 	private UserLogin userLogin;
 	private List<User> followUserList = new ArrayList<User>();
 	private List<Teacher> teacherList = new ArrayList<Teacher>();
+	private List<RUser> reportUserList = new ArrayList<RUser>();
+	//private List<User> reportUserList1 = new ArrayList<User>();
 	
 	public User(String petName,String img,String tName,String sex,UserLogin userLogin) {
 		// TODO Auto-generated constructor stub
@@ -108,6 +110,26 @@ public class User {
 		this.teacherList = teacherList;
 	}
 	
+	@OneToMany(mappedBy="rid", targetEntity=RUser.class, 
+	        cascade=CascadeType.ALL)
+	public List<RUser> getReportUserList() {
+		return reportUserList;
+	}
+	public void setReportUserList(List<RUser> reportUserList) {
+		this.reportUserList = reportUserList;
+	}
+	
+	/*@ManyToMany
+	@JoinTable(name="RUSER", 
+    joinColumns=@JoinColumn(name="UID"),
+    inverseJoinColumns=@JoinColumn(name="RID"))
+	public List<User> getReportUserList1() {
+		return reportUserList1;
+	}
+	public void setReportUserList1(List<User> reportUserList1) {
+		this.reportUserList1 = reportUserList1;
+	}
+	*/
 	
 	
 }

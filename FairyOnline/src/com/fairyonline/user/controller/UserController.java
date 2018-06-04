@@ -1,6 +1,7 @@
 package com.fairyonline.user.controller;
 
 import java.io.File;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -18,11 +19,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fairyonline.course.entity.Course;
 import com.fairyonline.teacher.entity.Teacher;
-import com.fairyonline.user.entity.FollowUser;
+import com.fairyonline.user.entity.RUser;
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
 
@@ -49,7 +51,7 @@ public class UserController {
 		@Resource
 		private UserServiceImpl userServiceImpl;
 		
-		@RequestMapping("/userList1")
+		/*@RequestMapping("/userList1")
 		public String list(Model model) {
 			List<User> list = this.userServiceImpl.listAll();
 			User user1 = list.get(0);
@@ -57,7 +59,7 @@ public class UserController {
 			userServiceImpl.updateUser(user1);
 			model.addAttribute("list",list);
 			return "user/userList1"; 
-		}
+		}*/
 		
 		@RequestMapping("/regist1")
 		public String regist(String userName)throws IOException{
@@ -103,6 +105,7 @@ public class UserController {
 			UserLogin userLogin2 = new UserLogin();
 			String userName2;
 			HttpSession session = request.getSession();
+			//session.setMaxInactiveInterval(3600);//服务器端的3600秒
 			if(session.getAttribute("userLogin")!=null) {
 				session.removeAttribute("userLogin");
 			}
@@ -201,9 +204,6 @@ public class UserController {
 			   
 		   }
 			 return "user/index";
-			/*User items = new User("PetName","TName","Sex");
-			this.userServiceImpl.addupUser(items);
-			 */
 		}
       
 		//检索用户
@@ -239,36 +239,54 @@ public class UserController {
 		
 		//关注
 		@RequestMapping("/addFollowUser")
-		public String addFollowUser(Model model,int id1,int id2) {
+		@ResponseBody
+		public boolean addFollowUser(Model model,int id1,int id2) {
 			//通过ID1  获取第一个 user1
 			User user1 = userServiceImpl.findUserById(id1);
 			//通过id2  获取第二个user2
 			User user2 = userServiceImpl.findUserById(id2);
 			//将user2 加入到 user1的关注列表（FollowUserList）
 			List<User> list = user1.getFollowUserList();
-			list.add(user2);
-			user1.setFollowUserList(list);
-			// user.getFollowUserList.add(user2)
-			//更新user1
-			userServiceImpl.updateUser(user1);
-			
-			/*
-			User user1 = userServiceImpl.findUserById(id1);
-			User user2 = userServiceImpl.findUserById(id2);
-			
-			List<User> list = user1.getFollowUserList();
-			Boolean gz = false;
+			Boolean fow = true;
 			for(User use : list) {
-				if(use.getId()==user2.getId()) {
-					gz = true;
-					
+				if(use.getId() != user2.getId()) {
+					fow = false;
 				}
 			}
-			
-			*/
-			return "user/homePage"; 
+			if(fow) {
+				list.add(user2);
+				user1.setFollowUserList(list);
+				// user.getFollowUserList.add(user2)
+				//更新user1
+				userServiceImpl.updateUser(user1);
+			}
+			return true; 
 		}
 		
+		//取消关注
+		@RequestMapping("/deleteFollowUser")
+		@ResponseBody
+		public boolean deleteFollowUser(Model model,int id1,int id2) {
+			//通过ID1  获取第一个 user1
+			User user1 = userServiceImpl.findUserById(id1);
+			//通过id2  获取第二个user2
+			User user2 = userServiceImpl.findUserById(id2);
+			List<User> list = user1.getFollowUserList();
+			Boolean fow = true;
+			for(User use : list) {
+				if(use.getId() != user2.getId()) {
+					fow = false;
+				}
+			}
+			if(fow) {
+				list.remove(user2);
+				user1.setFollowUserList(list);
+				// user.getFollowUserList.add(user2)
+				//更新user1
+				userServiceImpl.updateUser(user1);
+			}
+			return true;
+		}
 		//关注列表
 		@RequestMapping("/followUser")
 		public String followUser(Model model,int id) {
@@ -294,4 +312,28 @@ public class UserController {
 			}
 		}
 		
+		//举报用户
+		@RequestMapping("/reportUser")
+		public String reportUser(Model model,int id) {
+			User reportUser = this.userServiceImpl.findUserById(id);
+			model.addAttribute("reportUser",reportUser);
+			return "user/report";
+		}
+		
+		@RequestMapping("/report")
+		public String report(HttpServletRequest request,HttpServletResponse response,Model model,int id1,int id2) {
+			String reportReason = request.getParameter("reportReason");
+			User reportUser1 = this.userServiceImpl.findUserById(id1);
+			User reportUser2 = this.userServiceImpl.findUserById(id2);
+			List<RUser> reportList = this.userServiceImpl.listAllRUser();	
+			RUser ruser = new RUser();
+		    ruser.setReason(reportReason);
+			ruser.setRid(reportUser2);
+			ruser.setUid(reportUser1);
+			reportList.add(ruser);
+			this.userServiceImpl.addRUser(ruser); 
+			return "report.do";
+		}
+		
+	
 }

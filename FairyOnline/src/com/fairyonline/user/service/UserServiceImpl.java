@@ -4,6 +4,7 @@ import java.util.List;
 
 
 
+
 import javax.annotation.Resource;
 
 import org.hibernate.Session;
@@ -13,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fairyonline.teacher.entity.Teacher;
 import com.fairyonline.user.dao.UserDaoImpl;
-import com.fairyonline.user.entity.FollowUser;
+import com.fairyonline.user.entity.RUser;
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
 
@@ -66,15 +67,6 @@ public class UserServiceImpl {
 		session.close();
 	}
 	
-	public int addFollowUserStatus(User user) {
-		int i = this.userDaoImpl.addFollowUserStatus(user);
-		return i;
-	}
-	
-	public int updateFollowUserStatus(User user1,int id) {
-		int i = this.userDaoImpl.updateFollowUserStatus(user1,id);
-		return i;
-	}
 	public UserLogin findUser(String userName) {
 		UserLogin user = this.userDaoImpl.findUser(userName);
 		return user;
@@ -92,5 +84,14 @@ public class UserServiceImpl {
 	public Teacher findTeacher(String Name) {
 		Teacher teacher = this.userDaoImpl.findTeacher(Name);
 		return teacher;
+	}
+	
+	public List<RUser> listAllRUser(){
+		return this.userDaoImpl.findAllRUser();
+	}
+	public void addRUser(RUser ruser) {
+		Session session = sessionFactory.openSession();
+		this.userDaoImpl.addRUser(ruser);
+		session.close();
 	}
 }

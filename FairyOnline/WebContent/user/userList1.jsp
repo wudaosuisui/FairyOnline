@@ -10,10 +10,11 @@
 </head>
 <body>
     <table border="1">
-	<c:forEach items="${list}" var="user">
-	${user.id}
-	${user.getFollowUserList()[1]}
+	<c:forEach items="${a}" var="user">
+
+	${user.reason}
 	</c:forEach>
+	
 	</table>
 </body>
 </html>

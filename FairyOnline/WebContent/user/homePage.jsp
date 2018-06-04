@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE>
 <html>
@@ -10,7 +10,22 @@
 	<link rel="stylesheet" type="text/css" href="../css/css1.css">
     <link rel="stylesheet" type="text/css" href="../css/css2.css"> 
     <link rel="stylesheet" type="text/css" href="../css/homePage.css"> 
-
+    <script type="text/javascript">
+    function change(){
+		var mark = document.getElementById('btn').innerText;
+		if (mark == '关注') {
+			window.location.href="${ctx}/user/addFollowUser?id1=${userLogin2.user.id}&id2=${user.user.id}";
+			document.getElementById('btn').innerText = "已关注";
+		}else {
+			window.location.href="${ctx}/user/deleteFollowUser?id1=${userLogin2.user.id}&id2=${user.user.id}";
+			document.getElementById('btn').innerText = "关注";
+        }
+		
+	}
+    function report(){
+    	window.location.href="${ctx}/user/reportUser?id=${user.user.id}";
+    }
+	</script>
 
      </head>
      <body>
@@ -38,7 +53,7 @@
     		     <div>
     		      	<img  id="img" src="${ctx}/images/userImages/${user.user.img}">
     		     </div>
-    		     <p><a href="${ctx}/user/followUser?id=${user.user.id}">关注</a>|<a href="${ctx}/user/followUser1?">粉丝</p>
+    		     <p><a href="${ctx}/user/followUser?id=${user.user.id}">关注</a>|<a href="${ctx}/user/followUser1">粉丝</p>
     		  </div> 
 
     	    </div>
@@ -52,8 +67,11 @@
     		<button><a href="">购物车</a></button>
     		<button><a href="">教师（申请）</a></button>
     		<button><a href="">教师（主页）</a></button>
-    		<a href="${ctx}/user/addFollowUser?id1=${userLogin2.user.id}&id2=${user.user.id}"><button>关注</button></a>
+    		<!--<a href="${ctx}/user/addFollowUser?id1=${userLogin2.user.id}&id2=${user.user.id}">  -->
+    		<button id="btn" onclick="change()">关注</button>
+    		<button id="btn1" onclick="report()">举报</button>
     		</div>
+    		
     		
     		  <c:forEach items="${list}" var="teacher">
     		  <c:forEach items="${teacher.getCourseList()}" var="course">

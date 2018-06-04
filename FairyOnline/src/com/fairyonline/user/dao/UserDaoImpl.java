@@ -4,6 +4,7 @@ import java.util.List;
 
 
 
+
 import javax.annotation.Resource;
 
 import org.hibernate.Query;
@@ -15,7 +16,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.fairyonline.teacher.entity.Teacher;
-import com.fairyonline.user.entity.FollowUser;
+import com.fairyonline.user.entity.RUser;
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
 
@@ -80,12 +81,6 @@ public class UserDaoImpl {
 		User user = (User)query.uniqueResult();
 		return user;
 	} 
-	/*public User findUserById(int id) {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("from FollowUser where uid=? and status='已关注'");
-		query.setParameter(0,id);
-		User user = (User)query.uniqueResult();
-		return user;
-	}*/
 	public void updateUser(User user) {//更新user
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tra = session.beginTransaction();//开启事务
@@ -93,25 +88,7 @@ public class UserDaoImpl {
 		session.flush();
 		tra.commit();
 	}
-	
-	public int addFollowUserStatus(User user) {
-		Session session = sessionFactory.getCurrentSession();
-		Transaction tra = session.beginTransaction();//开启事务
-		Query query = session.createQuery("update FollowUser set status='关注'");
-		int i = query.executeUpdate();
-		tra.commit();
-		return i;
-	}
-	
-	public int updateFollowUserStatus(User user1,int id) {
-		Session session = sessionFactory.getCurrentSession();
-		Transaction tra = session.beginTransaction();//开启事务
-		Query query = session.createQuery("update FollowUser set status='已关注'where fid=?");
-		query.setParameter(0,id);
-		int i = query.executeUpdate();
-		tra.commit();
-		return i;
-	}
+   
 	public UserLogin findUser(String userName) {
 		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where userName=?");
 		query.setParameter(0,userName);
@@ -130,5 +107,15 @@ public class UserDaoImpl {
 		query.setParameter(0,Name);
 		Teacher teacher = (Teacher)query.uniqueResult();
 		return teacher;
+	}
+	
+	public List<RUser> findAllRUser(){
+		Query q = this.sessionFactory.getCurrentSession().createQuery("from RUser");
+		return q.list();
+	}
+	public boolean addRUser(RUser ruser) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.save(ruser);
+        return true;
 	}
 }

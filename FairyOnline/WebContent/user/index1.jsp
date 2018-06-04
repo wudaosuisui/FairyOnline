@@ -57,5 +57,7 @@
 	
 	
 	<a href="${ctx}/user/userList1">商品</a> 
+	<a href="${ctx}/user/a?id=28">商品</a>
+	<a href="${ctx}/user/a">商品</a>
 </body>
 </html>

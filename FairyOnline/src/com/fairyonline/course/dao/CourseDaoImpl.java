@@ -20,6 +20,7 @@ import com.fairyonline.course.entity.Cart;
 import com.fairyonline.course.entity.Category;
 import com.fairyonline.course.entity.Chapters;
 import com.fairyonline.course.entity.Course;
+import com.fairyonline.course.entity.Coursebk;
 import com.fairyonline.course.entity.FollowCourse;
 import com.fairyonline.course.entity.Video;
 import com.fairyonline.user.entity.User;
@@ -257,6 +258,17 @@ public class CourseDaoImpl {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+	
+	//审核课程列表
+	public List<Coursebk> getcbkList(){
+		Query q=this.sessionFactory.getCurrentSession().createQuery("from Coursebk");
+		//List<Course> c=this.sessionFactory.getCurrentSession().createQuery("from Course").list();
+		return q.list();
+	}
+	//审查课程详情
+	
+	
+	
 	
 //	 public Course find(int id) {
 //	 Session session = sessionFactory.openSession();

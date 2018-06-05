@@ -14,6 +14,7 @@ import com.fairyonline.course.entity.Cart;
 import com.fairyonline.course.entity.CartItem;
 import com.fairyonline.course.entity.Chapters;
 import com.fairyonline.course.entity.Course;
+import com.fairyonline.course.entity.Coursebk;
 import com.fairyonline.course.entity.FollowCourse;
 import com.fairyonline.course.entity.Video;
 import com.fairyonline.user.entity.User;
@@ -109,7 +110,15 @@ public class CourseServiceImpl {
 	public void setCartDao(CourseDaoImpl cdi) {
 			this.cdi = cdi;
 	}
-
+    
+	//审核课程列表
+	public List<Coursebk> getcbkList(){
+		List<Coursebk> list = cdi.getcbkList();
+		return list;	
+	}
+	//审查课程详情
+	
+	
 //	 public List<Course> getAllCourse() {
 //		  
 //		  return cdi.getALL();

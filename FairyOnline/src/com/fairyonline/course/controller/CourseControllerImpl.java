@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fairyonline.course.entity.Cart;
 import com.fairyonline.course.entity.Chapters;
 import com.fairyonline.course.entity.Course;
+import com.fairyonline.course.entity.Coursebk;
 import com.fairyonline.course.entity.FollowCourse;
 import com.fairyonline.course.entity.Video;
 import com.fairyonline.course.service.CourseServiceImpl;
@@ -198,13 +199,25 @@ public class CourseControllerImpl {
 			return "user/user_shopping";
 		}
 		
+		//审核课程列表
+		@RequestMapping("/auditlist")
+		public String AuditCourseList(Model model) {
+			System.out.println("select success");
+			List<Coursebk> list = this.csi.getcbkList();
+			model.addAttribute("list", list);
+			System.out.println("select success");
+			return "course-bk/AuditCourse";
+		}
+		//审查课程详情
+		
 		public CourseServiceImpl getCartServiceImpl() {
 			return csi;
 		}
 
 		public void setCartServiceImpl(CourseServiceImpl csi) {
 			this.csi =csi;
-		}
+		}		
+		
 //		@RequestMapping("/buyCourse")
 //		public String buyCourse(int id,HttpServletRequest request, HttpServletResponse response) {
 //			

@@ -21,7 +21,7 @@
                 </div> 
             </li>
             <li>
-                <a href="AuditCourse.jsp">
+                <a href="../course/auditlist">
                     <button class="button">审核课程</button>
                 </a>
             </li>

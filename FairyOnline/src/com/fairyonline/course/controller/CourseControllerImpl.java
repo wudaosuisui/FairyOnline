@@ -163,7 +163,7 @@ public class CourseControllerImpl {
 		}
 		//删除购物车列表信息
 		@RequestMapping("/deletecart")
-		public String deleteCrouse(int cartId) {
+		public String deleteCrouse(int cartId,int uid) {
 			System.out.println("delete");
 			csi.deleteCart(cartId);
 			return "redirect:cart";

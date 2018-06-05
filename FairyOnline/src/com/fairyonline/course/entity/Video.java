@@ -1,13 +1,21 @@
 package com.fairyonline.course.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.fairyonline.user.entity.RCourse;
+import com.fairyonline.user.entity.RUser;
 
 @Entity
 @Table(name="video")
@@ -17,6 +25,7 @@ public class Video {
 	private Chapters ChapterID;
 	private int TID;//后期再加一对多
 	private String URL;
+	private List<RCourse> reportVideoList = new ArrayList<RCourse>();
 	
 	@Id
 	@GeneratedValue(generator="my_gen")
@@ -54,5 +63,15 @@ public class Video {
 	public void setURL(String uRL) {
 		this.URL = uRL;
 	}
+	
+	@OneToMany(mappedBy="rid", targetEntity=RUser.class, 
+	        cascade=CascadeType.ALL)
+	public List<RCourse> getReportVideoList() {
+		return reportVideoList;
+	}
+	public void setReportVideoList(List<RCourse> reportVideoList) {
+		this.reportVideoList = reportVideoList;
+	}
 
+	
 }

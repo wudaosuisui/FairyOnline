@@ -41,7 +41,7 @@
     	</div>
     	<div id="body1">
     		<h1>举报理由：</h1> 
-    		<form action="${ctx}/user/report?id1=${userLogin2.user.id}&id2=${reportUser.id}" enctype="multipart/form-data" method="post">
+    		<form action="${ctx}/user/report1?id1=${userLogin2.user.id}&id2=${reportVideo.ID}" enctype="multipart/form-data" method="post">
     		<input id="body2" type="text" name="reportReason"/>
     		<button onclick="history()">提交</button>
     		</form>

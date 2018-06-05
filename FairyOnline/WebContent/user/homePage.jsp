@@ -22,7 +22,7 @@
         }
 		
 	}
-    function report(){
+    function reportUser(){
     	window.location.href="${ctx}/user/reportUser?id=${user.user.id}";
     }
 	</script>
@@ -69,7 +69,7 @@
     		<button><a href="">教师（主页）</a></button>
     		<!--<a href="${ctx}/user/addFollowUser?id1=${userLogin2.user.id}&id2=${user.user.id}">  -->
     		<button id="btn" onclick="change()">关注</button>
-    		<button id="btn1" onclick="report()">举报</button>
+    		<button onclick="reportUser()">举报</button>
     		</div>
     		
     		

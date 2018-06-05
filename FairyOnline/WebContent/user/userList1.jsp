@@ -10,9 +10,11 @@
 </head>
 <body>
     <table border="1">
-	<c:forEach items="${a}" var="user">
-
-	${user.reason}
+	<c:forEach items="${a}" var="a">
+    <tr>
+	<td>${a.reason}</td>
+	<td> ${a.uid.petName} </td>
+	<td>${a.uid.userLogin.userName}
 	</c:forEach>
 	
 	</table>

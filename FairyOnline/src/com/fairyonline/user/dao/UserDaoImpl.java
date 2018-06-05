@@ -15,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.fairyonline.course.entity.Video;
 import com.fairyonline.teacher.entity.Teacher;
+import com.fairyonline.user.entity.RCourse;
 import com.fairyonline.user.entity.RUser;
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
@@ -113,9 +115,28 @@ public class UserDaoImpl {
 		Query q = this.sessionFactory.getCurrentSession().createQuery("from RUser");
 		return q.list();
 	}
+	
 	public boolean addRUser(RUser ruser) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.save(ruser);
+        return true;
+	}
+	
+	public Video findVideoById(int id) {
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from Video where id=?");
+		query.setParameter(0,id);
+		Video video = (Video)query.uniqueResult();
+		return video;
+	} 
+	
+	public List<RCourse> findAllRCourse(){
+		Query q = this.sessionFactory.getCurrentSession().createQuery("from RCourse");
+		return q.list();
+	}
+	
+	public boolean addRCourse(RCourse rcourse) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.save(rcourse);
         return true;
 	}
 }

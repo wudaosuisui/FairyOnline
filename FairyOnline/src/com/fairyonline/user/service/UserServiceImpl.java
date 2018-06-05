@@ -12,8 +12,10 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fairyonline.course.entity.Video;
 import com.fairyonline.teacher.entity.Teacher;
 import com.fairyonline.user.dao.UserDaoImpl;
+import com.fairyonline.user.entity.RCourse;
 import com.fairyonline.user.entity.RUser;
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
@@ -92,6 +94,18 @@ public class UserServiceImpl {
 	public void addRUser(RUser ruser) {
 		Session session = sessionFactory.openSession();
 		this.userDaoImpl.addRUser(ruser);
+		session.close();
+	}
+	public Video  findVideoById(int id) {
+		Video video = this.userDaoImpl. findVideoById(id);
+		return video;
+	}
+	public List<RCourse> listAllRCourse(){
+		return this.userDaoImpl.findAllRCourse();
+	}
+	public void addRCourse(RCourse rcourse) {
+		Session session = sessionFactory.openSession();
+		this.userDaoImpl.addRCourse(rcourse);
 		session.close();
 	}
 }

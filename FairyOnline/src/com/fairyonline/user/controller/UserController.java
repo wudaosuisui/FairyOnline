@@ -4,8 +4,9 @@ import java.io.File;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-
-
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +24,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fairyonline.course.entity.Course;
+import com.fairyonline.course.entity.Video;
 import com.fairyonline.teacher.entity.Teacher;
+import com.fairyonline.user.entity.RCourse;
 import com.fairyonline.user.entity.RUser;
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
@@ -323,17 +326,55 @@ public class UserController {
 		@RequestMapping("/report")
 		public String report(HttpServletRequest request,HttpServletResponse response,Model model,int id1,int id2) {
 			String reportReason = request.getParameter("reportReason");
+			Date now = new Date();
+			Calendar cal = Calendar.getInstance();
+			DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM,DateFormat.MEDIUM);
+			String str = df.format(now);
 			User reportUser1 = this.userServiceImpl.findUserById(id1);
 			User reportUser2 = this.userServiceImpl.findUserById(id2);
 			List<RUser> reportList = this.userServiceImpl.listAllRUser();	
 			RUser ruser = new RUser();
 		    ruser.setReason(reportReason);
+		    ruser.setDate(str); 
 			ruser.setRid(reportUser2);
 			ruser.setUid(reportUser1);
 			reportList.add(ruser);
 			this.userServiceImpl.addRUser(ruser); 
-			return "report.do";
+			return "user/index";
 		}
 		
-	
+		//¾Ù±¨ÊÓÆµ
+		@RequestMapping("/reportVideo")
+		public String reportVideo(Model model,int id) {
+			Video reportVideo = this.userServiceImpl.findVideoById(id);
+			model.addAttribute("reportVideo",reportVideo);
+			return "user/videoReport";
+		}
+		
+		@RequestMapping("/report1")
+		public String report1(HttpServletRequest request,HttpServletResponse response,Model model,int id1,int id2) {
+			String reportReason = request.getParameter("reportReason");
+			Date now = new Date();
+			Calendar cal = Calendar.getInstance();
+			DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM,DateFormat.MEDIUM);
+			String str = df.format(now);
+			User reportUser = this.userServiceImpl.findUserById(id1);
+			Video reportVideo = this.userServiceImpl.findVideoById(id2);
+			List<RCourse> reportList = this.userServiceImpl.listAllRCourse();
+			RCourse rcourse = new RCourse();
+			rcourse.setReason(reportReason);
+			rcourse.setDate(str);
+			rcourse.setUid(reportUser);
+			rcourse.setRid(reportVideo);
+			reportList.add(rcourse);
+			this.userServiceImpl.addRCourse(rcourse); 
+			return "user/index";
+		}
+		
+		@RequestMapping("/reportList")
+		public String reportList(Model model) {
+			List<RUser> reportList = this.userServiceImpl.listAllRUser();
+			model.addAttribute("a",reportList);
+			return "user/userList1";
+		}
 }

@@ -11,21 +11,25 @@ import javax.persistence.Table;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
+import com.fairyonline.course.entity.Video;
+
 @Entity
 @Table(name="ruser")
-public class RUser {
+public class RCourse {
 	private int id;
 	private String reason;
 	private String date;
 	private boolean tof;
 	private User uid;
-	private User rid;
-	public RUser() {
+	private Video rid;
+	
+	public RCourse() {
+		
 	}
-	public RUser(String reason,User uid,User rid) {
+	public RCourse(String reason,User uid,Video rid) {
 		this.reason = reason;
 		this.uid = uid;
-		this.rid = rid;
+		this.rid= rid;
 	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +42,6 @@ public class RUser {
 	public String getReason() {
 		return reason;
 	}
-	
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
@@ -54,6 +57,7 @@ public class RUser {
 	public void setTof(boolean tof) {
 		this.tof = tof;
 	}
+	
 	@ManyToOne
 	@JoinColumn(name="UID")
 	@NotFound(action=NotFoundAction.IGNORE)
@@ -63,16 +67,16 @@ public class RUser {
 	public void setUid(User uid) {
 		this.uid = uid;
 	}
+	
 	@ManyToOne
 	@JoinColumn(name="RID")
 	@NotFound(action=NotFoundAction.IGNORE)
-	public User getRid() {
+	public Video getRid() {
 		return rid;
 	}
-	
-	public void setRid(User rid) {
+	public void setRid(Video rid) {
 		this.rid = rid;
 	}
-
+	
 	
 }

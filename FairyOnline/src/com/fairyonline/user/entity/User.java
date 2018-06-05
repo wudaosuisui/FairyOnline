@@ -119,17 +119,7 @@ public class User {
 		this.reportUserList = reportUserList;
 	}
 	
-	/*@ManyToMany
-	@JoinTable(name="RUSER", 
-    joinColumns=@JoinColumn(name="UID"),
-    inverseJoinColumns=@JoinColumn(name="RID"))
-	public List<User> getReportUserList1() {
-		return reportUserList1;
-	}
-	public void setReportUserList1(List<User> reportUserList1) {
-		this.reportUserList1 = reportUserList1;
-	}
-	*/
+
 	
 	
 }

@@ -66,7 +66,7 @@
                 </div>
                 <div class="leibiegaishu">
                     <textarea rows="30"cols="80">
-                        这里是类别概述
+                        ${category.introduce}
                     </textarea>
                 </div>
             </div>

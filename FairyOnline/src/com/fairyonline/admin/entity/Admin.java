@@ -27,13 +27,13 @@ public class Admin {
 		return userName;
 	}
 	public void setUserName(String userName) {
-		userName = userName;
+		this.userName = userName;
 	}
 	public String getPassWord() {
 		return PassWord;
 	}
 	public void setPassWord(String passWord) {
-		PassWord = passWord;
+		this.PassWord = passWord;
 	}
 	
 }

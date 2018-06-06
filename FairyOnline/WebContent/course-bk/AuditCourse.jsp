@@ -59,7 +59,7 @@
                         <div class="right-middle-title">${a.CName}</div>
                         <div class="right-middle-title">${a.UPTime }</div>
                         <div class="right-middle-title">
-                            <a href="06.html"><button class="right-middle-btn">详情</button></a>
+                            <a href="../course//AuditCoursedetail?id=${a.ID }"><button class="right-middle-btn">详情</button></a>
                         </div> 
                      </li>
                     

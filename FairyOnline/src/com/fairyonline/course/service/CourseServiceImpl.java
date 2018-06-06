@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import com.fairyonline.course.dao.CourseDaoImpl;
 import com.fairyonline.course.entity.Cart;
 import com.fairyonline.course.entity.CartItem;
+import com.fairyonline.course.entity.Category;
 import com.fairyonline.course.entity.Chapters;
 import com.fairyonline.course.entity.Course;
 import com.fairyonline.course.entity.Coursebk;
@@ -117,7 +118,14 @@ public class CourseServiceImpl {
 		return list;	
 	}
 	//Éó²é¿Î³ÌÏêÇé
-	
+	public Coursebk selectBycbkId(int id) {
+		Coursebk coursebk = cdi.selectBycbkId(id);
+		return coursebk;
+	}
+	public List<Category> getcList(){
+		List<Category> list = cdi.getcList();
+		return list;	
+	}
 	
 //	 public List<Course> getAllCourse() {
 //		  

@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" import="java.sql.*,java.io.*,java.util.*"%>  
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>举报详情</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/06.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="${ctx }/course-bk/css/06.css" />
 </head>
 <body>
     <div class="container">
@@ -57,11 +60,11 @@
             </div>
             <div class="right-middle">
                 <div class="name">
-                    <div class="name-1">课程名称：</div>
-                    <div class="name-2">教师:</div>
+                    <div class="name-1">${coursebk.CName }：</div>
+                    <div class="name-2">${coursebk.tId.name }:</div>
                 </div>
                 <div class="gaishu">
-                    课程概述：
+                    课程概述：${coursebk.cIntroduction }
                 </div>
             </div>
             <div class="right-bottom">

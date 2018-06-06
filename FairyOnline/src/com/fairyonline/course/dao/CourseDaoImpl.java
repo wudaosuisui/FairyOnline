@@ -266,6 +266,25 @@ public class CourseDaoImpl {
 		return q.list();
 	}
 	//审查课程详情
+	public Coursebk selectBycbkId(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+		System.out.println("get dao success");
+//		Query query = session.createQuery("from Course where id = ?");
+//		query.setParameter(0, id);
+//		Course course = (Course)query.uniqueResult();
+		Coursebk coursebk = session.get(Coursebk.class,id);
+		session.close();
+//		System.out.println("get dao success course name is : " + course.getCName());
+		System.out.println("get dao2 success");
+		return coursebk; 
+	}
+	//分类列表
+	public List<Category> getcList(){
+		Query q=this.sessionFactory.getCurrentSession().createQuery("from Category");
+		//List<Course> c=this.sessionFactory.getCurrentSession().createQuery("from Course").list();
+		return q.list();
+	}
 	
 	
 	

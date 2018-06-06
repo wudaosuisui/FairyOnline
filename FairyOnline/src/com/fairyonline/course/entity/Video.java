@@ -64,7 +64,7 @@ public class Video {
 		this.URL = uRL;
 	}
 	
-	@OneToMany(mappedBy="rid", targetEntity=RUser.class, 
+	@OneToMany(mappedBy="rid", targetEntity=RCourse.class, 
 	        cascade=CascadeType.ALL)
 	public List<RCourse> getReportVideoList() {
 		return reportVideoList;

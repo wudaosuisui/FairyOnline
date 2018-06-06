@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" import="java.sql.*,java.io.*,java.util.*"%>  
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>管理课程分类</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/07.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="${ctx }/course-bk/css/07.css" />
 
 </head>
 <body>
@@ -53,7 +56,48 @@
             </div>
             <div class="right-middle">
                 <ul>
-                    <li>
+                    <c:forEach var="cl" items="${list }">
+                      <li>
+                        <div class="right-middle-title">${cl.categoryName }</div>
+                        <div class="right-middle-title">${cl.uptime }</div>
+                        <div class="right-middle-title">
+                            <button class="right-middle-btn">删除</button>
+                            <a href="../course/classesdetail?id=${cl.ID }"><button class="right-middle-btn">详情</button></a>
+                        </div> 
+                     </li>
+                    </c:forEach>
+                    
+                </ul>
+            </div>
+            <div class="right-bottom">
+                <div class="right-bottom-page">
+                    <div class="page-left">
+                        <button class="page-btn">上一页</button>
+                    </div>
+                    <div class="page-middle">
+                        <ul>
+                            <li>1&nbsp;|</li>
+                            <li>2&nbsp;|</li>
+                            <li>3&nbsp;|</li>
+                            <li>4&nbsp;|</li>
+                            <li>5&nbsp;|</li>
+                            <li>..&nbsp;|</li>
+                            <li>9</li>
+                        </ul>
+                    </div>
+                    <div class="page-left">
+                        <button class="page-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+<!-- <li>
                        <div class="right-middle-title">课程分类名称</div>
                        <div class="right-middle-title">添加时间</div>
                        <div class="right-middle-title">
@@ -116,32 +160,4 @@
                             <button class="right-middle-btn">删除</button>
                             <a href="08.html"><button class="right-middle-btn">详情</button></a>
                         </div> 
-                     </li>
-                </ul>
-            </div>
-            <div class="right-bottom">
-                <div class="right-bottom-page">
-                    <div class="page-left">
-                        <button class="page-btn">上一页</button>
-                    </div>
-                    <div class="page-middle">
-                        <ul>
-                            <li>1&nbsp;|</li>
-                            <li>2&nbsp;|</li>
-                            <li>3&nbsp;|</li>
-                            <li>4&nbsp;|</li>
-                            <li>5&nbsp;|</li>
-                            <li>..&nbsp;|</li>
-                            <li>9</li>
-                        </ul>
-                    </div>
-                    <div class="page-left">
-                        <button class="page-btn">下一页</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</body>
-</html>
+                     </li> -->

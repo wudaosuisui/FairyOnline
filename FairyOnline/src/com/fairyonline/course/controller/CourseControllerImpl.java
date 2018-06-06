@@ -219,11 +219,20 @@ public class CourseControllerImpl {
 			return "course-bk/ReportDetails";
 		}
 		//课程分类列表
-		@RequestMapping("categorylist")
+		@RequestMapping("/categorylist")
 		public String selectcategoryList(Model model) {
+			System.out.println("get collu");
 			List<Category> list = this.csi.getcList();
 			model.addAttribute("list", list);
+			System.out.println("out collu");
 			return "course-bk/ClassesList";
+		}
+		//课程分类详情
+		@RequestMapping("/classesdetail")
+		public String classesDetail(Model model,int id) {
+			Category category =csi.classesDetail(id);	
+     		model.addAttribute("category", category);
+			return "course-bk/ClassesListDetail";
 		}
 		
 		public CourseServiceImpl getCartServiceImpl() {

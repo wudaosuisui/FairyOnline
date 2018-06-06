@@ -281,9 +281,21 @@ public class CourseDaoImpl {
 	}
 	//分类列表
 	public List<Category> getcList(){
+		System.out.println("get dao");
 		Query q=this.sessionFactory.getCurrentSession().createQuery("from Category");
+		System.out.println("out dao");
 		//List<Course> c=this.sessionFactory.getCurrentSession().createQuery("from Course").list();
 		return q.list();
+	}
+	//课程分类详情
+	public Category classesDetail(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+		System.out.println("get dao success");
+		Category category = session.get(Category.class,id);
+		session.close();
+		System.out.println("get dao2 success");
+		return category; 
 	}
 	
 	

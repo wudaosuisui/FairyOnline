@@ -122,9 +122,20 @@ public class CourseServiceImpl {
 		Coursebk coursebk = cdi.selectBycbkId(id);
 		return coursebk;
 	}
+	//课程分类
 	public List<Category> getcList(){
+		Session session = sessionFactory.openSession();
+
+		System.out.println("get ser");
 		List<Category> list = cdi.getcList();
+		session.close();
+		System.out.println("out ser");
 		return list;	
+	}
+	//课程分类详情
+	public Category classesDetail(int id) {
+		Category category = cdi.classesDetail(id);
+		return category;
 	}
 	
 //	 public List<Course> getAllCourse() {

@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" import="java.sql.*,java.io.*,java.util.*"%>  
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>课程分类详情</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" type="text/css" media="screen" href="css/08.css" />
+     <link rel="stylesheet" type="text/css" media="screen" href="${ctx }/course-bk/css/08.css" />
 </head>
 <body>
      <div class="container">
@@ -52,9 +55,9 @@
                    <a href="07.html"><button class="btn">返回</button></a>
                </div>
                 <div class="title">
-                    <p class="p">课程分类名称：</p>
-                    <p class="p">添加时间：</p>
-                    <p class="p">添加人：</p>
+                    <p class="p">${category.categoryName }：</p>
+                    <p class="p">${category.uptime }：</p>
+                    <p class="p">${category.adminId.userName }：</p>
                 </div>
             </div>
             <div class="right-middle">

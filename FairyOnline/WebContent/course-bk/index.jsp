@@ -31,7 +31,7 @@
         <ul class="list clearfix">
             <li>
                 <div class="btn">
-                     <a href="ClassesList.jsp">
+                     <a href="../course/categorylist">
                         <button class="button">管理课程分类</button>
                      </a>
                 </div>

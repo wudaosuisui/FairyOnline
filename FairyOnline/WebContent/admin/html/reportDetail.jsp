@@ -63,10 +63,12 @@
                 </div>
             </div>
             <div class="right-middle">
+            <form action="${ctx}/admin/gag?aName=<%=session.getAttribute("admin")%>&&id=${ruser.rid}" enctype="multipart/form-data" method="post">
                 <div class="deal">
                     <p class="p-size">处理方式:</p>
                 </div>
                 <div class="ban">
+                
                     <div class="ban-first-tittle">
                         禁言：
                     </div>
@@ -74,28 +76,32 @@
                         禁言时间：
                     </div>
                     <div class="ban-last-tittle">
-                        <input type="text" style="width: 80px;height: 25px"></input>&nbsp&nbsp天
+                        <input type="text" style="width: 80px;height: 25px" name="gagTime"/>&nbsp&nbsp天
                     </div>
                 </div>
                 <div class="reason">
                     <div class="reason-first">给予理由:</div>
-                    <div class="reason-second">
-                       
-                    </div>
+                    <!--<div class="reason-second">
+                    </div> -->
+                    <input class="reason-second" type="text" name="gagReason"/>  
                 </div>
                 <div class="yes">
                     <button class="yes-btn">确认禁言</button>
                 </div>
+               </form> 
             </div>
             <div class="right-bottom">
+            <form action="${ctx}/admin/title?aName=<%=session.getAttribute("admin")%>&&id=${ruser.rid}" enctype="multipart/form-data" method="post">
                 <div class="right-bottom-first">
                     <div class="number-first">封号：</div>
                     <div class="number-second">给予理由:</div>
-                    <div class="number-third"></div>
+                    <input class="number-third" type="text" name="titleReason"/>
+                    
                 </div>
                 <div class="right-bottom-second">
                     <button class="no-btn">确认封号</button>
                 </div>
+                </form>
                 <div class="right-bottom-third">
                     <div class="clear-first">澄清：</div>
                     <div class="clear-second">

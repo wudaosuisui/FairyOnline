@@ -17,7 +17,7 @@ import com.fairyonline.user.entity.User;
 @Table(name="gag")
 public class Gag {
      private int id;
-     private int time;
+     private String time;
      private String sTime;
      private String eTime;
      private String reason;
@@ -25,7 +25,7 @@ public class Gag {
      private Admins aName;
      
     public Gag() {}
-    public Gag(int time,String eTime,String sTime,String reason,User uid,Admins aName) {
+    public Gag(String time,String eTime,String sTime,String reason,User uid,Admins aName) {
     	this.time = time;
     	this.eTime = eTime;
     	this.sTime = sTime;
@@ -41,10 +41,10 @@ public class Gag {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getTime() {
+	public String getTime() {
 		return time;
 	}
-	public void setTime(int time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 	public String getsTime() {

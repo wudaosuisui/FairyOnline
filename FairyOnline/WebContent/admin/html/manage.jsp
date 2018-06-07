@@ -44,8 +44,8 @@
             <ul class="left-title">
                 <li><a href="${ctx}/admin/reportUserList">被举报用户</a></li>
                 <li>被澄清用户</li>
-                <li>禁言用户</li>
-                <li id="last">封号用户</li>
+                <li><a href="${ctx}/admin/gagList">禁言用户</a></li>
+                <li id="last"><a href="${ctx}/admin/titleList">封号用户</a></li>
                 <li><a href="${ctx}/admin/reportVideoList">被举报课程</a></li>
             </ul>
         </div>

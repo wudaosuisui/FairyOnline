@@ -17,12 +17,13 @@ import com.fairyonline.user.entity.User;
 @Table(name="title")
 public class Title {
 	private int id;
-	private int time;
+	private String time;
+	private String reason;
 	private User uid;
 	private Admins aName;
 	
 	public Title() {}
-	public Title(int time,User uid,Admins aName) {
+	public Title(String time,User uid,Admins aName) {
 		this.time = time;
 		this.uid= uid;
 		this.aName = aName;
@@ -35,13 +36,18 @@ public class Title {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getTime() {
+	public String getTime() {
 		return time;
 	}
-	public void setTime(int time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
-	
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
 	@ManyToOne
 	@JoinColumn(name="UID")
 	@NotFound(action=NotFoundAction.IGNORE)

@@ -7,19 +7,16 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>被举报用户</title>
+    <title>封号用户</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="${ctx}/admin/css/09.css" />
 	<script type="text/javascript">
      function before(){
-    	window.location.href="${ctx}/admin/reportUserList?pages=${(pages<1)?pages:(pages-1)}";
+    	window.location.href="${ctx}/admin/titleList?pages=${(pages<1)?pages:(pages-1)}";
     }
      function next(){
-     	window.location.href="${ctx}/admin/reportUserList?pages=${(pages>=totalPages)?pages:(pages+1)}";
+     	window.location.href="${ctx}/admin/titleList?pages=${(pages>=totalPages)?pages:(pages+1)}";
      }
-     function detail(){
-      	window.location.href="${ctx}/admin/reportDetail?id=${reportUser.id}";
-      }
 	</script>
 </head>
 <body>
@@ -66,13 +63,11 @@
             </div>
             <div class="right-middle">
                 <ul>
-                    <c:forEach items="${reportUserList}" var="reportUser">
+                    <c:forEach items="${titleList}" var="title">
                     <li>
-                       <div class="right-middle-title">用户名:${reportUser.rid.userLogin.userName}</div>
-                       <div class="right-middle-title">被举报时间:${reportUser.date}</div>
-                       <div class="right-middle-title">
-                       <!--  <button class="right-middle-btn" onclick="detail()">举报详情</button> -->
-                       <a href="${ctx}/admin/reportDetail?id=${reportUser.id}">举报详情</a>
+                       <div class="right-middle-title">用户名:${title.uid.userLogin.userName}</div>
+                       <div class="right-middle-title">处理人:${title.aName.UserName}</div>
+                       <div class="right-middle-title">封号时间:${title.time}</div>
                        </div> 
                     </li>
                     </c:forEach>

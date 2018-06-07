@@ -96,7 +96,7 @@ public class AdminsControllerImpl {
 		
 		//Ω˚—‘
 		@RequestMapping("gag")
-		public String gag(HttpServletRequest request,HttpServletResponse response,Model model,String aName,int id) {
+		public String gag(HttpServletRequest request,HttpServletResponse response,Model model,String aName,int id,int id1) {
 			String gagTime = request.getParameter("gagTime");
 			String gagReason = request.getParameter("gagReason");
 			User gagUser = this.userServiceImpl.findUserById(id);
@@ -122,12 +122,16 @@ public class AdminsControllerImpl {
 			gag.setaName(gagAdmins);
 			gagList.add(gag);
 			this.adminsServiceImpl.addGag(gag);
+			RUser ruser1 = this.adminsServiceImpl.findRUserById(id1);
+			boolean a = true;
+			ruser1.setTof(a);
+			this.adminsServiceImpl.updateRUser(ruser1);
 			return "admin/html/index.html";
 		}
 		
        //∑‚∫≈
 		@RequestMapping("title")
-		public String title(HttpServletRequest request,HttpServletResponse response,Model model,String aName,int id) {
+		public String title(HttpServletRequest request,HttpServletResponse response,Model model,String aName,int id,int id1) {
 			String titleReason = request.getParameter("titleReason");
 			User titleUser = this.userServiceImpl.findUserById(id);
 			Admins titleAdmins = this.adminsServiceImpl.findAdminsByName(aName);
@@ -143,53 +147,57 @@ public class AdminsControllerImpl {
 			title.setReason(titleReason);
 			titleList.add(title);
 			this.adminsServiceImpl.addTitle(title);
+			RUser ruser1 = this.adminsServiceImpl.findRUserById(id1);
+			boolean a = true;
+			ruser1.setTof(a);
+			this.adminsServiceImpl.updateRUser(ruser1);
 			return "admin/html/index.html";
 		}
 		
 		//Ω˚—‘¡–±Ì
-				@RequestMapping("/gagList")
-				public String gagList(Integer pages,Model model) {
-					int totalPages = this.adminsServiceImpl.totalPages();
-					if(pages == null) {
-						pages = 1;
-					}
-					if(pages < 1) {
-						pages = 1;
-					}
-					if(pages > totalPages) {
-						pages = totalPages;
-					}
-					List<Gag> gagList = this.adminsServiceImpl.findGagByPage(pages);
-					if(gagList != null) {
-						model.addAttribute("gagList",gagList);
-						model.addAttribute("totalPages",totalPages);
-						model.addAttribute("pages",pages);
-						return "admin/html/gagList";
-					}
-					return "admin/html/gagList";
-				}	
-				//∑‚∫≈¡–±Ì
-				@RequestMapping("/titleList")
-				public String titleList(Integer pages,Model model) {
-					int totalPages = this.adminsServiceImpl.totalPages();
-					if(pages == null) {
-						pages = 1;
-					}
-					if(pages < 1) {
-						pages = 1;
-					}
-					if(pages > totalPages) {
-						pages = totalPages;
-					}
-					List<Title> titleList = this.adminsServiceImpl.findTitleByPage(pages);
-					if(titleList != null) {
-						model.addAttribute("titleList",titleList);
-						model.addAttribute("totalPages",totalPages);
-						model.addAttribute("pages",pages);
-						return "admin/html/titleList";
-					}
-					return "admin/html/titleList";
-				}	
+		@RequestMapping("/gagList")
+		public String gagList(Integer pages,Model model) {
+			int totalPages = this.adminsServiceImpl.totalPages();
+			if(pages == null) {
+				pages = 1;
+			}
+			if(pages < 1) {
+				pages = 1;
+			}
+			if(pages > totalPages) {
+				pages = totalPages;
+			}
+			List<Gag> gagList = this.adminsServiceImpl.findGagByPage(pages);
+			if(gagList != null) {
+				model.addAttribute("gagList",gagList);
+				model.addAttribute("totalPages",totalPages);
+				model.addAttribute("pages",pages);
+				return "admin/html/gagList";
+			}
+			return "admin/html/gagList";
+		}	
+		//∑‚∫≈¡–±Ì
+		@RequestMapping("/titleList")
+		public String titleList(Integer pages,Model model) {
+			int totalPages = this.adminsServiceImpl.totalPages();
+			if(pages == null) {
+				pages = 1;
+			}
+			if(pages < 1) {
+				pages = 1;
+			}
+			if(pages > totalPages) {
+				pages = totalPages;
+			}
+			List<Title> titleList = this.adminsServiceImpl.findTitleByPage(pages);
+			if(titleList != null) {
+				model.addAttribute("titleList",titleList);
+				model.addAttribute("totalPages",totalPages);
+				model.addAttribute("pages",pages);
+				return "admin/html/titleList";
+			}
+			return "admin/html/titleList";
+		}	
 }
 
 

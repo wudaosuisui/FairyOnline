@@ -79,4 +79,9 @@ public class AdminsServiceImpl {
 		// TODO Auto-generated method stub
 		return this.adminsDaoImpl.findTitleByPage(pages);
 	}
+	public void updateRUser(RUser ruser) {
+		Session session = sessionFactory.openSession();
+		this.adminsDaoImpl.updateRUser(ruser);
+		session.close();
+	}
 }

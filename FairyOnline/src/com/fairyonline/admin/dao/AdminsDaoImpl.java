@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.fairyonline.admin.entity.Admins;
@@ -116,5 +117,11 @@ public class AdminsDaoImpl {
 		query.setMaxResults(pageSize);
 		return query.list();
 	}
-	
+	public void updateRUser(RUser ruser) {
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tra = session.beginTransaction();//¿ªÆôÊÂÎñ
+		session.update(ruser);
+		session.flush();
+		tra.commit();
+	}
 }

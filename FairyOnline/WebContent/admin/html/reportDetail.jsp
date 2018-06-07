@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="right-middle">
-            <form action="${ctx}/admin/gag?aName=<%=session.getAttribute("admin")%>&&id=${ruser.rid}" enctype="multipart/form-data" method="post">
+            <form action="${ctx}/admin/gag?aName=<%=session.getAttribute("admin")%>&&id=${ruser.rid}&&id1=${ruser.id}" enctype="multipart/form-data" method="post">
                 <div class="deal">
                     <p class="p-size">处理方式:</p>
                 </div>
@@ -91,7 +91,7 @@
                </form> 
             </div>
             <div class="right-bottom">
-            <form action="${ctx}/admin/title?aName=<%=session.getAttribute("admin")%>&&id=${ruser.rid}" enctype="multipart/form-data" method="post">
+            <form action="${ctx}/admin/title?aName=<%=session.getAttribute("admin")%>&&id=${ruser.rid}&&id1=${ruser.id}" enctype="multipart/form-data" method="post">
                 <div class="right-bottom-first">
                     <div class="number-first">封号：</div>
                     <div class="number-second">给予理由:</div>

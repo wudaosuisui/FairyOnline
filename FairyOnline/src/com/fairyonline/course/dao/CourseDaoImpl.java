@@ -24,6 +24,7 @@ import com.fairyonline.course.entity.Coursebk;
 import com.fairyonline.course.entity.FollowCourse;
 import com.fairyonline.course.entity.Video;
 import com.fairyonline.user.entity.User;
+import com.fairyonline.user.entity.UserLogin;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
@@ -296,6 +297,21 @@ public class CourseDaoImpl {
 		session.close();
 		System.out.println("get dao2 success");
 		return category; 
+	}
+	//添加分类
+	public List<Category> addcatgory(){
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from Category");
+		List<Category> clist = query.list();
+		return clist;
+	}
+	public void addCategory(Category category) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Transaction tra = session.beginTransaction();//开启事务
+		session.save(category);
+		System.out.println("save success");
+		session.flush();
+		tra.commit();
+		System.out.println("out Dao");
 	}
 	
 	

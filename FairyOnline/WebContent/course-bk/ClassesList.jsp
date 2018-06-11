@@ -47,7 +47,7 @@
             <ul class="left-title">
                 <a href="07.html"><li>已有分类</li></a>
                 <a href="09.html"><li>用户申请分类</li></a>
-                <a href="10.html"><li id="last">添加分类</li></a>
+                <a href="${ctx }/course-bk/AddClass.jsp"><li id="last">添加分类</li></a>
             </ul>
         </div>
         <div class="right">

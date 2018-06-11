@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.SessionFactory;
@@ -25,6 +26,7 @@ import com.fairyonline.course.entity.FollowCourse;
 import com.fairyonline.course.entity.Video;
 import com.fairyonline.course.service.CourseServiceImpl;
 import com.fairyonline.user.entity.User;
+import com.fairyonline.user.entity.UserLogin;
 import com.fairyonline.user.service.UserServiceImpl;
 
 
@@ -234,6 +236,23 @@ public class CourseControllerImpl {
      		model.addAttribute("category", category);
 			return "course-bk/ClassesListDetail";
 		}
+		//添加分类
+		@RequestMapping("addcategory")
+		public String addcategory(HttpServletRequest request, HttpServletResponse response){
+			String userName = request.getParameter("userName");
+			List<Category> list = this.csi.addcategory();
+			Category category = new Category();
+            category.setCategoryName(userName);
+	
+			list.add(category);
+			//UserLogin userLogin = new UserLogin("UserName","PassWord");
+			//User user = new User("zhangsan","dddfdfd","zhangsan","女",userLogin);
+			this.csi.addCategory(category);
+			//this.userServiceImpl.addUser(user);
+			return "user/personal";
+			
+			
+		} 
 		
 		public CourseServiceImpl getCartServiceImpl() {
 			return csi;

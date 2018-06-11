@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%> <!--  获取系统时间必须导入的 -->
+<%@ page import="java.text.*"%> <!--获取系统时间必须导入的 -->
+<%  
+String path = request.getContextPath();  
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
+%>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,8 +59,14 @@
             <div class="right-middle">
                 <div class="title">
                     <p class="p">课程分类名称：<input type="text" name="username"></p>
-                    <p class="p">添加时间：(当前时间)</p>
-                    <p class="p">添加人：(管理员的账号)</p>
+                    <p class="p"><%  
+    java.text.SimpleDateFormat simpleDateFormat = new java.text.SimpleDateFormat(    
+     "yyyy-MM-dd HH:mm:ss");    
+   java.util.Date currentTime = new java.util.Date();    
+   String time = simpleDateFormat.format(currentTime).toString();  
+   out.println("当前时间为："+time);  
+     %>  </p>
+                    <p class="p">添加人：<!-- ${admin.name} --></p>
                 </div>
             </div>
             <div class="right-bottom">

@@ -19,6 +19,7 @@ import com.fairyonline.course.entity.Coursebk;
 import com.fairyonline.course.entity.FollowCourse;
 import com.fairyonline.course.entity.Video;
 import com.fairyonline.user.entity.User;
+import com.fairyonline.user.entity.UserLogin;
 
 @Service
 public class CourseServiceImpl {
@@ -136,6 +137,16 @@ public class CourseServiceImpl {
 	public Category classesDetail(int id) {
 		Category category = cdi.classesDetail(id);
 		return category;
+	}
+	//ÃÌº”∑÷¿‡
+	public List<Category> addcategory(){
+		List<Category> list = this.cdi.addcatgory();
+		return list;
+	}
+	public void addCategory(Category category) {
+		Session session = sessionFactory.openSession();
+		this.cdi.addCategory(category);
+		session.close();
 	}
 	
 //	 public List<Course> getAllCourse() {

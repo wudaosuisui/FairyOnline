@@ -1,5 +1,6 @@
 package com.fairyonline.course.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -139,9 +140,11 @@ public class CourseServiceImpl {
 		return category;
 	}
 	//ÃÌº”∑÷¿‡
-	public List<Category> addcategory(){
-		List<Category> list = this.cdi.addcatgory();
-		return list;
+	public boolean addcategory(String categoryName,Date uptime,String adminId,String introduce){
+	//	Session session = sessionFactory.openSession();
+		boolean c = cdi.addcatgory( categoryName, uptime, adminId, introduce);
+	//	session.close();
+		return c;
 	}
 	public void addCategory(Category category) {
 		Session session = sessionFactory.openSession();

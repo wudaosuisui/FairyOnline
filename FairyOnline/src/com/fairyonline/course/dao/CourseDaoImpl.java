@@ -3,6 +3,7 @@ package com.fairyonline.course.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -13,9 +14,13 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 
+import com.fairyonline.admin.dao.AdminDaoImpl;
+import com.fairyonline.admin.entity.Admin;
 import com.fairyonline.course.entity.Cart;
 import com.fairyonline.course.entity.Category;
 import com.fairyonline.course.entity.Chapters;
@@ -34,7 +39,10 @@ import com.mysql.jdbc.PreparedStatement;
 public class CourseDaoImpl {
 	@Resource
 	private SessionFactory sessionFactory;
-	
+//	@Autowired
+//	JdbcTemplate jdbcTemplate;
+	@Resource
+	private AdminDaoImpl admindao;
 	/*save*//*保存*/
 	public void save(Course course) {
 		Session session = sessionFactory.getCurrentSession();//获取sessio
@@ -299,10 +307,30 @@ public class CourseDaoImpl {
 		return category; 
 	}
 	//添加分类
-	public List<Category> addcatgory(){
-		Query query = this.sessionFactory.getCurrentSession().createQuery("from Category");
-		List<Category> clist = query.list();
-		return clist;
+	public boolean addcatgory(String categoryName,Date uptime,String adminId,String introduce){
+//		Query query = this.sessionFactory.getCurrentSession().createQuery("from Category");
+//		Date time= new java.sql.Date(new java.util.Date().getTime());
+//		List<Category> clist = query.list();
+		java.sql.Date uptime1=new java.sql.Date(uptime.getTime());
+		Session session = sessionFactory.openSession();//.getCurrentSession();
+		Transaction tra = session.beginTransaction();//开启事务
+		Category c = new Category();
+		c.setCategoryName(categoryName);
+		c.setUptime(uptime1);
+		Admin a = admindao.findByName(adminId);
+		System.out.println("amin name"+ a.getUserName());
+		c.setAdminId(a);
+		c.setIntroduce(introduce);
+		session.save(c);
+		tra.commit();
+		session.close();
+//		int i=jdbcTemplate.update("insert into  Category(categoryName,uptime,adminId,introduce)values(?,?,?,?)",categoryName,uptime,adminId,introduce);
+//		if(i>0) {
+//			return true;
+//		}else {
+//			return false;
+//		}
+		return true;
 	}
 	public void addCategory(Category category) {
 		Session session = this.sessionFactory.getCurrentSession();

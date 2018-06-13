@@ -1,6 +1,8 @@
 package com.fairyonline.course.controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -238,18 +240,33 @@ public class CourseControllerImpl {
 		}
 		//添加分类
 		@RequestMapping("addcategory")
-		public String addcategory(HttpServletRequest request, HttpServletResponse response){
-			String userName = request.getParameter("userName");
-			List<Category> list = this.csi.addcategory();
-			Category category = new Category();
-            category.setCategoryName(userName);
-	
-			list.add(category);
-			//UserLogin userLogin = new UserLogin("UserName","PassWord");
-			//User user = new User("zhangsan","dddfdfd","zhangsan","女",userLogin);
-			this.csi.addCategory(category);
-			//this.userServiceImpl.addUser(user);
-			return "user/personal";
+		public String addcategory(Model model,HttpServletRequest request, HttpServletResponse response){
+			String name=request.getParameter("username");
+			Date now = new Date();
+		      Calendar cal = Calendar.getInstance();
+		     
+		      DateFormat d1 = DateFormat.getDateInstance(); 
+		      String str1 = d1.format(now);
+		      DateFormat d2 = DateFormat.getDateTimeInstance();
+		      String str2 = d2.format(now);
+		      DateFormat d3 = DateFormat.getTimeInstance();
+		      String str3 = d3.format(now);
+		      DateFormat d4 = DateFormat.getInstance(); //使用SHORT风格显示日期和时间
+		      String str4 = d4.format(now);
+		      DateFormat d5 = DateFormat.getDateTimeInstance(DateFormat.FULL,DateFormat.FULL); //显示日期，周，时间（精确到秒）
+		      String str5 = d5.format(now);
+		      DateFormat d6 = DateFormat.getDateTimeInstance(DateFormat.LONG,DateFormat.LONG); //显示日期。时间（精确到秒）
+		      String str6 = d6.format(now);
+		      DateFormat d7 = DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.SHORT); //显示日期，时间（精确到分）
+		      String str7 = d7.format(now);
+		      DateFormat d8 = DateFormat.getDateTimeInstance(DateFormat.MEDIUM,DateFormat.MEDIUM); //显示日期，时间（精确到分）
+		      String str8 = d8.format(now);//与SHORT风格相比，这种方式最好用
+//		    HttpSession session=request.getSession();
+//		    String user_name=(String)session.gerAttribute("user");
+		    String adminId = "admin";  
+		    String introduce =request.getParameter("introduce");
+		    boolean c = csi.addcategory(name, now, adminId, introduce);
+		      return "course-bk/AddClass";
 			
 			
 		} 

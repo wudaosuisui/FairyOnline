@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%@ page import="java.util.*"%> <!--  获取系统时间必须导入的 -->
 <%@ page import="java.text.*"%> <!--获取系统时间必须导入的 -->
 <%  
@@ -52,6 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <a href="10.html"><li id="last">添加分类</li></a>
             </ul>
         </div>
+        <form action="../course/addcategory">
         <div class="right">
             <div class="right-top">
                 <a href="07.html"><button class="fanhui">返回</button></a>
@@ -59,13 +62,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="right-middle">
                 <div class="title">
                     <p class="p">课程分类名称：<input type="text" name="username"></p>
-                    <p class="p"><%  
-    java.text.SimpleDateFormat simpleDateFormat = new java.text.SimpleDateFormat(    
-     "yyyy-MM-dd HH:mm:ss");    
-   java.util.Date currentTime = new java.util.Date();    
-   String time = simpleDateFormat.format(currentTime).toString();  
-   out.println("当前时间为："+time);  
-     %>  </p>
+                    <p class="p"><% java.text.SimpleDateFormat simpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");    
+                                    java.util.Date currentTime = new java.util.Date();    
+                                    String time = simpleDateFormat.format(currentTime).toString();  
+                                    out.println("当前时间为："+time);%></p>
                     <p class="p">添加人：<!-- ${admin.name} --></p>
                 </div>
             </div>
@@ -74,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <p class="gaishu">类别概述：</p>
                 </div>
                 <div class="leibiegaishu">
-                    <textarea rows="20" cols="80">
+                    <textarea rows="20" cols="80" name="introduce">
                         这里是类别概述
                     </textarea>
                 </div>
@@ -83,6 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <button class="xinjian" >确认新建此课程</button>
             </div>
         </div>
+        </form>
     </div>
 
 </body>

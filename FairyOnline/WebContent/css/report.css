@@ -1,0 +1,45 @@
+@charset "UTF-8";
+#body1{
+	margin-right:auto;
+	margin-left:auto;
+	margin-top:30px;
+	border:solid 1px #cbc7c6; 
+	height:400px;
+	width: 868px;
+}
+#body1 h1{
+	color: #cbc7c6;
+	/*text-decoration: none; */
+	font-family:"楷体";
+	font-size:20px;
+	margin-left:50px;
+}
+#body2{
+	margin-right:auto;
+	margin-left:60px;
+	margin-top:20px;
+	border:solid 1px #cbc7c6; 
+	height:250px;
+	width: 750px;
+}
+#body1 button{
+	margin-top: 20px;
+	margin-left: 600px;
+	height: 35px;
+	width: 100px;
+	background-color:white;
+	 -moz-border-radius: 10px;
+     -webkit-border-radius: 15px;
+     border-radius:15px; 
+     
+}
+#body1 button a:link,a:visited {
+	text-decoration:none; /*超链接无下划线*/
+	color: #7d7b7b;
+	/*text-decoration: none; */
+	font-family:"楷体";
+	font-size:20px;
+}
+#body1 button a:hover{ 
+ text-decoration:underline;  /*鼠标放上去有下划线*/ 
+} 

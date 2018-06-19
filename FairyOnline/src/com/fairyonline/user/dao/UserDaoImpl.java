@@ -3,6 +3,8 @@ package com.fairyonline.user.dao;
 import java.util.List;
 
 
+
+
 import javax.annotation.Resource;
 
 import org.hibernate.Query;
@@ -13,9 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.fairyonline.course.entity.Video;
+import com.fairyonline.teacher.entity.Teacher;
+import com.fairyonline.user.entity.RCourse;
+import com.fairyonline.user.entity.RUser;
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
-import com.fairyonline.user.entity.UserLogin1;
+
 
 
 @Repository
@@ -29,20 +35,17 @@ public class UserDaoImpl {
 	}
 	
 	public List<UserLogin> allUserLogin(){
-		System.out.println("get dao success");
 		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin");
-//		List<UserLogin> list = query.list();
-		System.out.println("out dao success");
-//		return list;
-		return query.list();
+		List<UserLogin> list = query.list();
+		return list;
 	}
 	
 	public void addUserLogin(UserLogin userLogin) {
-		System.out.println("get dao success");
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction tra = session.beginTransaction();//开启事务
+		System.out.println("user name : " +userLogin.getUserName()+"  user password :  "+userLogin.getPassWord() );
 		session.save(userLogin);
-		System.out.println("save success");
+		System.out.println("user name : " +userLogin.getUserName()+"  user password :  "+userLogin.getPassWord() );
 		session.flush();
 		tra.commit();
 		System.out.println("out Dao");
@@ -53,7 +56,6 @@ public class UserDaoImpl {
 		session.save(user);
         return true;
 	}
-	
 	
 	public UserLogin login(String userName,String passWord) {
 		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where userName=? and passWord=?");
@@ -80,31 +82,19 @@ public class UserDaoImpl {
 		query.setParameter(0,id);
 		User user = (User)query.uniqueResult();
 		return user;
+	} 
+	public void updateUser(User user) {//更新user
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tra = session.beginTransaction();//开启事务
+		session.update(user);
+		session.flush();
+		tra.commit();
 	}
-	
-	
-	
-	/*public boolean updateUser(User user) {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("update User set petName=?,img=?,sex=?,tName=? where id=?");
-		query.setParameter(0,user.getPetName());
-		query.setParameter(1,user.getImg());
-		query.setParameter(2,user.getSex());
-		query.setParameter(3,user.gettName());
-		query.setParameter(4,user.getid());
-		int i = query.executeUpdate();
-		if(i>0) {
-			System.out.println("updateUserDao执行成功");
-			return true;
-		}else {
-			System.out.println("updateUserDao执行失败");
-			return false;
-		}
-	}
-	*/
-	public User findUser(String userName) {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("from User where userName=?");
+   
+	public UserLogin findUser(String userName) {
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from UserLogin where userName=?");
 		query.setParameter(0,userName);
-		User user = (User)query.uniqueResult();
+		UserLogin user = (UserLogin)query.uniqueResult();
 		return user;
 	}
 
@@ -114,5 +104,39 @@ public class UserDaoImpl {
 		return query.list();
 	}
 	
+	public Teacher findTeacher(String Name) {
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from Teacher where Name=?");
+		query.setParameter(0,Name);
+		Teacher teacher = (Teacher)query.uniqueResult();
+		return teacher;
+	}
 	
+	public List<RUser> findAllRUser(){
+		Query q = this.sessionFactory.getCurrentSession().createQuery("from RUser");
+		return q.list();
+	}
+	
+	public boolean addRUser(RUser ruser) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.save(ruser);
+        return true;
+	}
+	
+	public Video findVideoById(int id) {
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from Video where id=?");
+		query.setParameter(0,id);
+		Video video = (Video)query.uniqueResult();
+		return video;
+	} 
+	
+	public List<RCourse> findAllRCourse(){
+		Query q = this.sessionFactory.getCurrentSession().createQuery("from RCourse");
+		return q.list();
+	}
+	
+	public boolean addRCourse(RCourse rcourse) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.save(rcourse);
+        return true;
+	}
 }

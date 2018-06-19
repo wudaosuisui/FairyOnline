@@ -8,7 +8,8 @@
 	<title>FairyOnLine首页</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="../css/css1.css">
-
+    
+    
 </head>
 <body> 
 <div id ="head">
@@ -23,7 +24,7 @@
 			</form>
 		</div>
 		<div id="login">
-		<a href="login.jsp">登录</a>&nbsp;&nbsp;||&nbsp;&nbsp;<a href="regist.jsp">注册</a>${userLogin2.user.petName}
+		<a href="login.jsp">登录</a>&nbsp;&nbsp;||&nbsp;&nbsp;<a href="regist.jsp">注册</a>
 		</div>
 	</div>
 	<div id="head-body">

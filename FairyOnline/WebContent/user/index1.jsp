@@ -8,8 +8,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="../js/query.js" type="text/javascript"></script>
 </head>
 <body>
+<div id ="head">
+	<div id="head-line">
+		<div id="logo">
+			<img src="../images/logo.jpeg" height="60px">
+		</div>
+		<div id="found">
+			<form action="${ctx}/user/select" >
+				<input id="search_input" type="text" name="keyword" height="30px" width="100px" onkeyup="test(this.value,event)" onkeypress="test3()"/>
+				<!--  <button >搜索</button> -->
+				<select  multiple="multiple" id="sel" onchange="test2()" style="width:300px;display:none;color:gray"   >
+				</select>  
+			</form>
+		</div>
+		<div id="login">
+		<a href="login.jsp">登录</a>&nbsp;&nbsp;||&nbsp;&nbsp;<a href="regist.jsp">注册</a>
+		</div>
+	</div>
+	
+	
+	
+	
 	<a href="${ctx}/user/userList1">商品</a> 
 	<form action="${ctx}/user/updateitem" enctype="multipart/form-data" method="post">
 		<div class="form-group"  >
@@ -31,6 +53,11 @@
 								<input value="提交" type="submit" id="submit" style="margin-right:20px; margin-top:20px;">
 								</div>
 	</form>
+	</div>
 	
+	
+	<a href="${ctx}/user/userList1">商品</a> 
+	<a href="${ctx}/user/a?id=28">商品</a>
+	<a href="${ctx}/user/a">商品</a>
 </body>
 </html>

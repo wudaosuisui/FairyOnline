@@ -10,11 +10,13 @@
 </head>
 <body>
     <table border="1">
-	<c:forEach items="${list}" var="user">
-	<tr>
-	<td>${user.userName}</td>
-	<td>关注</td>
+	<c:forEach items="${a}" var="a">
+    <tr>
+	<td>${a.reason}</td>
+	<td> ${a.uid.petName} </td>
+	<td>${a.uid.userLogin.userName}
 	</c:forEach>
+	
 	</table>
 </body>
 </html>

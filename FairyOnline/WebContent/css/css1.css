@@ -3,14 +3,14 @@
 #head{
 	width: 1010px;
 	height: 318px;
-	background-image: url(../../images/2.png);
+	background-image: url(../images/2.png);
 	margin-right:auto;
 	margin-left:auto;
 }
 #head-line{
 	width: 1010px;
 	height: 75px;
-	background-image: url(../../images/1.png);
+	background-image: url(../images/1.png);
 }
 #logo{
 	float: left;
@@ -95,6 +95,6 @@
 	height: 600px;
 	width: 1000px;
 	margin-left: 20px;
-	background-image: url(../../images/6.png);
+	background-image: url(../images/6.png);
 	}
 /*bount*/

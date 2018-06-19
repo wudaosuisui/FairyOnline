@@ -28,7 +28,7 @@
 	margin-left:450px;
 	color: #4a4848;
 	/*text-decoration: none; */
-	font-family:"妤蜂綋";
+	font-family:"楷体";
 	font-size:20px;
 	
 }
@@ -45,7 +45,7 @@
 	 margin-left: 73px;
 	 margin-top:30px;
 	 border:solid 1px #cbc7c6;
-	 font-family:"妤蜂綋";
+	 font-family:"楷体";
 	 font-size:20px;
 }
 #body1 button{
@@ -60,14 +60,14 @@
      
 }
 #body1 button a:link,a:visited {
-	text-decoration:none; /*瓒呴摼鎺ユ棤涓嬪垝绾�*/
+	text-decoration:none; /*超链接无下划线*/
 	color: #7d7b7b;
 	/*text-decoration: none; */
-	font-family:"妤蜂綋";
+	font-family:"楷体";
 	font-size:20px;
 }
 #body1 button a:hover{ 
- text-decoration:underline;  /*榧犳爣鏀句笂鍘绘湁涓嬪垝绾�*/ 
+ text-decoration:underline;  /*鼠标放上去有下划线*/ 
 } 
 #body2{
 	margin-right:auto;
@@ -79,13 +79,7 @@
 }
 #body2-img{
     margin-top:30px;
-	margin-left:-45px;
-	float:left;
-}
-#body2-checkbox{
-	 margin-top:30px;
-	margin-left: -4px;
-	width:-10px;
+	margin-left: 34px;
 	float:left;
 }
 #body2 img{
@@ -94,7 +88,7 @@
 	height:148px;
 }
 #body2-text{
-	margin-right: 50px;
+	margin-right: 84px;
 	margin-top:10px;
 	float:right;
 	width:450px;
@@ -103,7 +97,7 @@
 #body2-text p{
 	color: #4a4848;
 	/*text-decoration: none; */
-	font-family:"妤蜂綋";
+	font-family:"楷体";
 	font-size:20px;
 	
 }

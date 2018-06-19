@@ -31,7 +31,7 @@
 	border:5px solid rgba(0,0,0,0.4);
 	width:40px;
 	height:40px;
-	background-image:url('images/logo.jpeg');
+	background-image:url('../images/logo.jpeg');
 	background-clip: padding-box;
 	background-size: cover;
 	background-repeat:no-repeat;

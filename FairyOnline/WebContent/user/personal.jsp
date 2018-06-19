@@ -42,7 +42,7 @@
                 <td>用户头像</td>
                 <td>
                 	<c:if test="$item.img != null">
-                    <img src="/pic/" width="140px" height="140px"/>
+                    <img src="/FairyOnline/" width="140px" height="140px"/>
                     <hr/>
                     </c:if>
                     <input type="file" name="picture"/>

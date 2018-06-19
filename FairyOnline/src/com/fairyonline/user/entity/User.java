@@ -2,12 +2,11 @@ package com.fairyonline.user.entity;
 
 
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,9 +20,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.fairyonline.course.entity.Cart;
-import com.fairyonline.course.entity.Course;
-import com.fairyonline.course.entity.Orders;
+import com.fairyonline.teacher.entity.Teacher;
 
 @Entity
 @Table(name="user")
@@ -34,8 +31,10 @@ public class User {
 	private String tName;
 	private String sex;
 	private UserLogin userLogin;
-	private Set<Course> cartSet = new HashSet<Course>();
-	private Set<Orders> orderSet = new HashSet<Orders>();
+	private List<User> followUserList = new ArrayList<User>();
+	private List<Teacher> teacherList = new ArrayList<Teacher>();
+	private List<RUser> reportUserList = new ArrayList<RUser>();
+	//private List<User> reportUserList1 = new ArrayList<User>();
 	
 	public User(String petName,String img,String tName,String sex,UserLogin userLogin) {
 		// TODO Auto-generated constructor stub
@@ -90,23 +89,37 @@ public class User {
 	public void setUserLogin(UserLogin userLogin) {
 		this.userLogin = userLogin;
 	}
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name="UserId")
-	public Set<Course> getCartSet() {
-		// TODO Auto-generated method stub
-		return cartSet;
+	@ManyToMany
+	@JoinTable(name="FOLLOWUSER", 
+    joinColumns=@JoinColumn(name="UID"),
+    inverseJoinColumns=@JoinColumn(name="FID"))
+    public List<User> getFollowUserList() {
+		return followUserList;
 	}
-	public void setCartSet(Set<Course> cartSet) {
-		this.cartSet = cartSet;
+	public void setFollowUserList(List<User> followUserList) {
+		this.followUserList = followUserList;
 	}
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name="UserId")
-	public Set<Orders> getOrderSet() {
-		return orderSet;
+	@ManyToMany
+	@JoinTable(name="USERTEACHER", 
+	    joinColumns=@JoinColumn(name="UID"),
+	    inverseJoinColumns=@JoinColumn(name="TID"))
+    public List<Teacher> getTeacherList() {
+		return teacherList;
 	}
-	public void setOrderSet(Set<Orders> orderSet) {
-		this.orderSet = orderSet;
+	public void setTeacherList(List<Teacher> teacherList) {
+		this.teacherList = teacherList;
 	}
+	
+	@OneToMany(mappedBy="rid", targetEntity=RUser.class, 
+	        cascade=CascadeType.ALL)
+	public List<RUser> getReportUserList() {
+		return reportUserList;
+	}
+	public void setReportUserList(List<RUser> reportUserList) {
+		this.reportUserList = reportUserList;
+	}
+	
 
+	
 	
 }

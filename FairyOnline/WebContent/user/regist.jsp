@@ -6,7 +6,8 @@
 <html>
 	<head>
 		<title>精灵课堂注册页面</title>
-		<meta charset="utf-8">
+		<!-- <meta charset="utf-8"> -->
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	    <link rel="stylesheet" type="text/css" href="../css/regist.css">
 	    <script type="text/javascript">
 function checkIsExist(){

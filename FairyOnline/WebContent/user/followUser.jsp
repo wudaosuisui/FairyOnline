@@ -48,9 +48,9 @@
 	                  </tr>
             		<c:forEach items="${list}" var="user">
 	                  <tr>
-	                  <td><a href="">${user.getUserLogin().getUserName()}</a></td>
+	                  <td><a href="${ctx}/user/homePage?userName=${user.getUserLogin().getUserName()}">${user.getUserLogin().getUserName()}</a></td>
 	                  <td><a href="">${user.getUserLogin().getUser().getPetName()}</a></td>
-	                  <td><a href=""><img src="${ctx}/images/userImages/${user.getUserLogin().getUser().getImg()}" width="50px" height="50px" /></a></td>${user.getUserLogin().getUser().getImg()}
+	                  <td><a href=""><img src="${ctx}/images/userImages/${user.getUserLogin().getUser().getImg()}" width="50px" height="50px" /></a></td>
 	                  <td><a href="">${user.getUserLogin().getUser().getSex()}</a></td>
 	                  
 	                  </tr>

@@ -3,6 +3,8 @@ package com.fairyonline.user.service;
 import java.util.List;
 
 
+
+
 import javax.annotation.Resource;
 
 import org.hibernate.Session;
@@ -10,10 +12,14 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fairyonline.course.entity.Video;
+import com.fairyonline.teacher.entity.Teacher;
 import com.fairyonline.user.dao.UserDaoImpl;
+import com.fairyonline.user.entity.RCourse;
+import com.fairyonline.user.entity.RUser;
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
-import com.fairyonline.user.entity.UserLogin1;
+
 
 
 @Service
@@ -28,11 +34,7 @@ public class UserServiceImpl {
 		return this.userDaoImpl.findAll();
 	}
 	public List<UserLogin> allUserLogin(){
-//		Session session = sessionFactory.openSession();
-		System.out.println("get allUserLogin service  success ");
 		List<UserLogin> list = this.userDaoImpl.allUserLogin();
-//		session.close();
-		System.out.println("out allUserLogin service  success ");
 		return list;
 	}
 	
@@ -46,6 +48,7 @@ public class UserServiceImpl {
 		this.userDaoImpl.addUser(user);
 		session.close();
 	}
+	
 	public UserLogin login(String userName,String passWord) {
 		UserLogin userLogin = this.userDaoImpl.login(userName, passWord);
 		return userLogin;
@@ -60,14 +63,17 @@ public class UserServiceImpl {
 		return user;
 	}
 	
-	/*public boolean updateUser(User user) {
-		return this.userDaoImpl.updateUser(user);
+	public void updateUser(User user) {
+		Session session = sessionFactory.openSession();
+		this.userDaoImpl.updateUser(user);
+		session.close();
 	}
-	*/
-	public User findUser(String userName) {
-		User user = this.userDaoImpl.findUser(userName);
+	
+	public UserLogin findUser(String userName) {
+		UserLogin user = this.userDaoImpl.findUser(userName);
 		return user;
 	}
+	
 	/*public void addupUser(User user) {
 		Session session = sessionFactory.openSession();
 		this.userDaoImpl.addupUser(user);
@@ -75,5 +81,31 @@ public class UserServiceImpl {
 	} */
 	public List<UserLogin> getUserByPartName(String userName){
         return this.userDaoImpl.getUserByPartName(userName);
+	}
+	
+	public Teacher findTeacher(String Name) {
+		Teacher teacher = this.userDaoImpl.findTeacher(Name);
+		return teacher;
+	}
+	
+	public List<RUser> listAllRUser(){
+		return this.userDaoImpl.findAllRUser();
+	}
+	public void addRUser(RUser ruser) {
+		Session session = sessionFactory.openSession();
+		this.userDaoImpl.addRUser(ruser);
+		session.close();
+	}
+	public Video  findVideoById(int id) {
+		Video video = this.userDaoImpl. findVideoById(id);
+		return video;
+	}
+	public List<RCourse> listAllRCourse(){
+		return this.userDaoImpl.findAllRCourse();
+	}
+	public void addRCourse(RCourse rcourse) {
+		Session session = sessionFactory.openSession();
+		this.userDaoImpl.addRCourse(rcourse);
+		session.close();
 	}
 }

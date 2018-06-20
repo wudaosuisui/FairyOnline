@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>添加分类</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/10.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="${ctx }/course-bk/css/10.css" />
 </head>
 <body>
     <div class="container">
@@ -40,8 +40,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <ul>
             
                 <a href="03.html"><li>管理用户权限</li></a>
-                <a href="05.html"><li>审核课程</li></a>
-                <a href="07.html"><li>管理课程分类</li></a>
+                <a href="${ctx }/course/auditlist"><li>审核课程</li></a>
+                <a href="${ctx }/course/categorylist"><li>管理课程分类</li></a>
                 <a href="11.html"><li>管理教师</li></a>
                 <a href="15.html"><li>管理数据</li></a>
                 <a href="16.html"><li >管理管理账号</li></a>
@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div class="left">
             <ul class="left-title">
-                <a href="07.html"><li>已有分类</li></a>
+                <a href="${ctx }/course/categorylist"><li>已有分类</li></a>
                 <a href="09.html"><li>用户申请分类</li></a>
                 <a href="10.html"><li id="last">添加分类</li></a>
             </ul>
@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <form action="../course/addcategory">
         <div class="right">
             <div class="right-top">
-                <a href="07.html"><button class="fanhui">返回</button></a>
+                <a href="${ctx }/course/categorylist"><button class="fanhui">返回</button></a>
             </div>
             <div class="right-middle">
                 <div class="title">

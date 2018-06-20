@@ -35,8 +35,8 @@
         <ul>
             
                 <a href="03.html"><li>管理用户权限</li></a>
-                <a href="05.html"><li>审核课程</li></a>
-                <a href="07.html"><li>管理课程分类</li></a>
+                <a href="${ctx }/course/auditlist"><li>审核课程</li></a>
+                <a href="${ctx }/course/categorylist"><li>管理课程分类</li></a>
                 <a href="11.html"><li>管理教师</li></a>
                 <a href="15.html"><li>管理数据</li></a>
                 <a href="16.html"><li >管理管理账号</li></a>
@@ -52,7 +52,7 @@
         <div class="right">
             <div class="right-top">
                <div class="fanhui">
-                   <a href="05.html"><button class="btn">返回</button></a>
+                   <a href="${ctx }/course/auditlist"><button class="btn">返回</button></a>
                </div>
                <div class="time">
                     申请时间：

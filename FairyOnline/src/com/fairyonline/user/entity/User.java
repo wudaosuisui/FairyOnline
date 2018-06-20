@@ -125,7 +125,6 @@ public class User {
 	public void setTeacherList(List<Teacher> teacherList) {
 		this.teacherList = teacherList;
 	}
-//<<<<<<< HEAD
 	
 	@OneToMany(mappedBy="rid", targetEntity=RUser.class, 
 	        cascade=CascadeType.ALL)
@@ -135,15 +134,23 @@ public class User {
 	public void setReportUserList(List<RUser> reportUserList) {
 		this.reportUserList = reportUserList;
 	}
-//=======
-//	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//	@JoinColumn(name="user")
-//	public Set<OrdersList> getOrderListSet() {
-//		return orderListSet;
-//	}
-//	public void setOrderListSet(Set<OrdersList> orderListSet) {
-//		this.orderListSet = orderListSet;
-//	}
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name="UserId")
+	public Set<Cart> getCartSet() {
+		// TODO Auto-generated method stub
+		return cartSet;
+	}
+	public void setCartSet(Set<Cart> cartSet) {
+		this.cartSet = cartSet;
+	}
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name="UserId")
+	public Set<Orders> getOrderSet() {
+		return orderSet;
+	}
+	public void setOrderSet(Set<Orders> orderSet) {
+		this.orderSet = orderSet;
+	}
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="fuid")
 	public Set<FollowCourse> getFcSet() {
@@ -151,20 +158,6 @@ public class User {
 	}
 	public void setFcSet(Set<FollowCourse> fcSet) {
 		this.fcSet = fcSet;
-	}
-	
-//>>>>>>> refs/remotes/origin/sy
-	public Set<Cart> getCartSet() {
-		return cartSet;
-	}
-	public void setCartSet(Set<Cart> cartSet) {
-		this.cartSet = cartSet;
-	}
-	public Set<Orders> getOrderSet() {
-		return orderSet;
-	}
-	public void setOrderSet(Set<Orders> orderSet) {
-		this.orderSet = orderSet;
 	}
 	
 

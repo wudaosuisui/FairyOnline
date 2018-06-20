@@ -446,7 +446,15 @@ public class CourseDaoImpl {
 	}
 	
 	//É¾³ý·ÖÀà
-	
+	public void deleteCategory(int categoryId) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		Category category = session.get(Category.class,new Integer(categoryId));
+		session.delete(category);
+		tx.commit();
+		session.close();
+	}
 	
 	
 	

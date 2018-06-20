@@ -310,7 +310,9 @@ public class CourseServiceImpl {
 		session.close();
 	}
 	//É¾³ý·ÖÀà
-	
+	public void deleteCategory(int categoryId) {
+		cdi.deleteCategory(categoryId);
+    }
 //	 public List<Course> getAllCourse() {
 //		  
 //		  return cdi.getALL();

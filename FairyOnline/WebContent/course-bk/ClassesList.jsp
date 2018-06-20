@@ -36,8 +36,8 @@
         <ul>
             
                 <a href="03.html"><li>管理用户权限</li></a>
-                <a href="05.html"><li>审核课程</li></a>
-                <a href="07.html"><li>管理课程分类</li></a>
+                <a href="${ctx }/course/auditlist"><li>审核课程</li></a>
+                <a href="${ctx }/course/categorylist"><li>管理课程分类</li></a>
                 <a href="11.html"><li>管理教师</li></a>
                 <a href="15.html"><li>管理数据</li></a>
                 <a href="16.html"><li >管理管理账号</li></a>
@@ -45,8 +45,8 @@
         </div>
         <div class="left">
             <ul class="left-title">
-                <a href="07.html"><li>已有分类</li></a>
-                <a href="../course/categorylist1"><li>用户申请分类</li></a>
+                <a href="${ctx }/course/categorylist"><li>已有分类</li></a>
+                <a href="${ctx }/course/categorylist1"><li>用户申请分类</li></a>
                 <a href="${ctx }/course-bk/AddClass.jsp"><li id="last">添加分类</li></a>
             </ul>
         </div>
@@ -61,7 +61,7 @@
                         <div class="right-middle-title">${cl.categoryName }</div>
                         <div class="right-middle-title">${cl.uptime }</div>
                         <div class="right-middle-title">
-                            <button class="right-middle-btn">删除</button>
+                            <a href="../course/deleteCategory?categoryId=${cl.ID }"><button class="right-middle-btn">删除</button></a>
                             <a href="../course/classesdetail?id=${cl.ID }"><button class="right-middle-btn">详情</button></a>
                         </div> 
                      </li>

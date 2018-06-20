@@ -346,7 +346,13 @@ public class CourseControllerImpl {
 		} 
 		
 		//É¾³ý·ÖÀà
-		
+		@RequestMapping("/deleteCategory")
+		public String deleteCategory(int categoryId,Model model) {
+			System.out.println("delete");
+			csi.deleteCategory(categoryId);
+			
+			return this.selectcategoryList1(model);
+		}
 		public CourseServiceImpl getCartServiceImpl() {
 			return csi;
 		}

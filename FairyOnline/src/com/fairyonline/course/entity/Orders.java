@@ -84,7 +84,7 @@ public class Orders {
 	public void setCourseSet(Set<Course> courseSet) {
 		this.courseSet = courseSet;
 	}
-	@OneToMany(fetch=FetchType.EAGER)//积极加载
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)//积极加载
    // @Cascade(value=CascadeType.ALL)
 	@JoinColumn(name="order")
 	public List<OrdersList> getItem() {

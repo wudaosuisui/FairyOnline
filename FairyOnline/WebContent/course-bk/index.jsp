@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
    <title>主页</title>
-    <link href="css/demo.css" rel="stylesheet" type="text/css" />
+    <link href="${ctx }/course-bk/css/demo.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="ppnl">
@@ -21,7 +23,7 @@
                 </div> 
             </li>
             <li>
-                <a href="../course/auditlist">
+                <a href="${ctx }/course/auditlist">
                     <button class="button">审核课程</button>
                 </a>
             </li>
@@ -31,7 +33,7 @@
         <ul class="list clearfix">
             <li>
                 <div class="btn">
-                     <a href="../course/categorylist">
+                     <a href="${ctx }/course/categorylist">
                         <button class="button">管理课程分类</button>
                      </a>
                 </div>

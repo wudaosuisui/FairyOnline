@@ -154,6 +154,18 @@ public class User {
 	}
 	
 //>>>>>>> refs/remotes/origin/sy
+	public Set<Cart> getCartSet() {
+		return cartSet;
+	}
+	public void setCartSet(Set<Cart> cartSet) {
+		this.cartSet = cartSet;
+	}
+	public Set<Orders> getOrderSet() {
+		return orderSet;
+	}
+	public void setOrderSet(Set<Orders> orderSet) {
+		this.orderSet = orderSet;
+	}
 	
 
 	

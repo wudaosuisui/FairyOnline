@@ -49,5 +49,17 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-portlet-4.3.7.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-websocket-4.3.7.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/standard.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/fastjson-1.2.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/fluent-hc-4.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient-4.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient-cache-4.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient-win-4.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpcore-4.4.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpmime-4.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jna-4.1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jna-platform-4.1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mp3spi-1.9.5-1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

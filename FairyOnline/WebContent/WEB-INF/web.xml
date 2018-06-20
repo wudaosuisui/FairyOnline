@@ -49,6 +49,10 @@
     <location>/404.jsp</location>
   </error-page>
   <session-config>
+<!-- <<<<<<< HEAD -->
 	<session-timeout>-1</session-timeout>
+<!-- ======= 
+	<session-timeout>60</session-timeout>
+>>>>>>> refs/remotes/origin/sy -->
   </session-config>
 </web-app>

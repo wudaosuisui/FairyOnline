@@ -22,7 +22,7 @@ public class Cart{
 	// private Map<String,CartItem> map = new LinkedHashMap<String, CartItem>();
 	// private int price;  //总计
 	 private int cartId;
-	 private int count;
+	// private int count;
      private User userId;
    	 private Course courseId;
    	@Id
@@ -79,13 +79,13 @@ public class Cart{
 //		  this.price = price;
 //	    }
         
-        public int getCount() {
-			return count;
-		}
-
-		public void setCount(int count) {
-			this.count = count;
-		}
+//        public int getCount() {
+//			return count;
+//		}
+//
+//		public void setCount(int count) {
+//			this.count = count;
+//		}
 		@ManyToOne(cascade = CascadeType.ALL,optional = false,fetch = FetchType.LAZY)
 		@JoinColumn(name="userId")
 		public User getUserId() {

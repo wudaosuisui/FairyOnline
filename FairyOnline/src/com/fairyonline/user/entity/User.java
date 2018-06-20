@@ -3,10 +3,13 @@ package com.fairyonline.user.entity;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +23,14 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+//<<<<<<< HEAD
 import com.fairyonline.teacher.entity.Teacher;
+//=======
+import com.fairyonline.course.entity.Cart;
+import com.fairyonline.course.entity.FollowCourse;
+import com.fairyonline.course.entity.Orders;
+import com.fairyonline.course.entity.OrdersList;
+//>>>>>>> refs/remotes/origin/sy
 
 @Entity
 @Table(name="user")
@@ -31,10 +41,16 @@ public class User {
 	private String tName;
 	private String sex;
 	private UserLogin userLogin;
+//<<<<<<< HEAD
 	private List<User> followUserList = new ArrayList<User>();
 	private List<Teacher> teacherList = new ArrayList<Teacher>();
 	private List<RUser> reportUserList = new ArrayList<RUser>();
 	//private List<User> reportUserList1 = new ArrayList<User>();
+//=======
+	private Set<Cart> cartSet = new HashSet<Cart>();
+	private Set<Orders> orderSet = new HashSet<Orders>();
+	private Set<FollowCourse> fcSet = new HashSet<FollowCourse>();
+//>>>>>>> refs/remotes/origin/sy
 	
 	public User(String petName,String img,String tName,String sex,UserLogin userLogin) {
 		// TODO Auto-generated constructor stub
@@ -109,6 +125,7 @@ public class User {
 	public void setTeacherList(List<Teacher> teacherList) {
 		this.teacherList = teacherList;
 	}
+//<<<<<<< HEAD
 	
 	@OneToMany(mappedBy="rid", targetEntity=RUser.class, 
 	        cascade=CascadeType.ALL)
@@ -118,6 +135,25 @@ public class User {
 	public void setReportUserList(List<RUser> reportUserList) {
 		this.reportUserList = reportUserList;
 	}
+//=======
+//	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//	@JoinColumn(name="user")
+//	public Set<OrdersList> getOrderListSet() {
+//		return orderListSet;
+//	}
+//	public void setOrderListSet(Set<OrdersList> orderListSet) {
+//		this.orderListSet = orderListSet;
+//	}
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name="fuid")
+	public Set<FollowCourse> getFcSet() {
+		return fcSet;
+	}
+	public void setFcSet(Set<FollowCourse> fcSet) {
+		this.fcSet = fcSet;
+	}
+	
+//>>>>>>> refs/remotes/origin/sy
 	
 
 	

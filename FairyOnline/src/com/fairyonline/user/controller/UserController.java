@@ -108,7 +108,11 @@ public class UserController {
 			UserLogin userLogin2 = new UserLogin();
 			String userName2;
 			HttpSession session = request.getSession();
-			//session.setMaxInactiveInterval(3600);//服务器端的3600秒
+//<<<<<<< HEAD
+//			//session.setMaxInactiveInterval(3600);//服务器端的3600秒
+//=======
+			session.setMaxInactiveInterval(3600);//服务器端的3600秒
+//>>>>>>> refs/remotes/origin/sy
 			if(session.getAttribute("userLogin")!=null) {
 				session.removeAttribute("userLogin");
 			}

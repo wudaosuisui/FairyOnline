@@ -27,23 +27,29 @@ import com.fairyonline.teacher.entity.Teacher;
 @Table(name="course")
 public class Course {
 	private int ID;
-	private String CName;
-	private int Price;
+	private String cName;
+	private int price;
 	private Category categoryID;
 	private Date UPTime;
 	private Teacher tId;
 	private String cImg;
 	private String cIntroduction;
 	private List<Chapters> chaptersList = new ArrayList<Chapters>();
+//<<<<<<< HEAD
 //	private Set<Cart> cartSet = new HashSet<Cart>();
 //	private Set<Orders> orderSet = new HashSet<Orders>();
+//=======
+	private Set<Cart> cartSet = new HashSet<Cart>();
+	private Set<Orders> orderSet = new HashSet<Orders>();
+	private Set<FollowCourse> fcSet = new HashSet<FollowCourse>();
+//>>>>>>> refs/remotes/origin/sy
 	
 	public Course() {
 		
 	}
 	public Course(String cName,int Price,Date UPTime) {
-		this.CName=cName;
-		this.Price=Price;
+		this.cName=cName;
+		this.price=Price;
 		this.UPTime = UPTime;
 	
 		
@@ -60,17 +66,17 @@ public class Course {
 	public void setID(int iD) {
 		this.ID = iD;
 	}
-	public String getCName() {
-		return CName;
+	public String getcName() {
+		return cName;
 	}
-	public void setCName(String cName) {
-		this.CName = cName;
+	public void setcName(String cName) {
+		this.cName = cName;
 	}
 	public int getPrice() {
-		return Price;
+		return price;
 	}
 	public void setPrice(int price) {
-		this.Price = price;
+		this.price = price;
 	}
 	@ManyToOne
 	@JoinColumn(name="categoryID")
@@ -116,6 +122,7 @@ public class Course {
 	public void setChaptersList(List<Chapters> chaptersList) {
 		this.chaptersList = chaptersList;
 	}
+//<<<<<<< HEAD
 //	@OneToMany
 //	@JoinColumn(name="courseId")
 //	public Set<Cart> getCartSet() {
@@ -134,9 +141,37 @@ public class Course {
 //	public void setOrderSet(Set<Orders> orderSet) {
 //		this.orderSet = orderSet;
 //	}
+//=======
+	@OneToMany
+	@JoinColumn(name="courseId")
+	public Set<Cart> getCartSet() {
+		return cartSet;
+	}
+	public void setCartSet(Set<Cart> cartSet) {
+		this.cartSet = cartSet;
+	}
+	@ManyToMany
+	@JoinTable(name="CARTLIST", 
+	    joinColumns=@JoinColumn(name="OID"),
+	    inverseJoinColumns=@JoinColumn(name="CID"))
+	public Set<Orders> getOrderSet() {
+		return orderSet;
+	}
+	public void setOrderSet(Set<Orders> orderSet) {
+		this.orderSet = orderSet;
+	}
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name="fcid")
+	public Set<FollowCourse> getFcSet() {
+		return fcSet;
+	}
+	public void setFcSet(Set<FollowCourse> fcSet) {
+		this.fcSet = fcSet;
+	}
+//>>>>>>> refs/remotes/origin/sy
 	@Override
 	public String toString() {
-		return "Course [ID=" + ID + ", CName=" + CName + ", Price=" + Price + ", categoryID=" + categoryID + ", UPTime="
+		return "Course [ID=" + ID + ", CName=" + cName + ", Price=" + price + ", categoryID=" + categoryID + ", UPTime="
 				+ UPTime + ", tId=" + tId + ", chaptersList=" + chaptersList + "]";
 	}
 	

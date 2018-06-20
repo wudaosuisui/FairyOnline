@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.sql.*,java.io.*,java.util.*"%>  
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -39,18 +42,19 @@
 	         <div id="specific">
             <div id="bord">
          
-                <c:forEach var="l" items="${list}">
+                <c:forEach var="l" items="${user.fcSet}">
+             
                 <div class="lessen">
 	        			<div class="lepic">
 							<a href="#">
 								<img src="../images/lepic.jpg">
 							</a>
 						</div>
-						<div class="line6"><a href="crousedetail.do?id=${l.ID }">${l.CName } </a></div>
+						<div class="line6"><a href="crousedetail.do?id=${l.fcid.ID }">${l.fcid.CName } </a></div>
 						<div class="line6">
-							<a href="#">${l.categoryID.categoryName}</a>
-							<a href="${ctx }/course/addcart.do?id=${userLogin2.user.id }&&ID=${l.ID}">加入购物车</a>
-							<a href="">取消收藏</a>
+							<a href="#">${l.fcid.categoryID.categoryName}</a>
+							<a href="${ctx }/course/addcart.do?id=${userLogin2.user.id }&&ID=${l.fcid.ID}">加入购物车</a>
+							<a href="${ctx }/course/uncollection?id=${l.id}&&uid=${userLogin2.user.id}">取消收藏</a>
 						</div>
 						<div class="line6"><a href="#">价格</a></div>
 	        	</div>

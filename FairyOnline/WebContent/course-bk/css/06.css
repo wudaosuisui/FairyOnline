@@ -1,0 +1,176 @@
+html body{
+    margin:0 0;
+    padding:0 0;
+    width:100%;
+    
+}
+ .banner ul li{
+    list-style: none;
+    float: left;
+    width:16.45%;
+    border:1px gray solid;
+    height:50px;
+    text-align: center;
+    line-height: 50px;
+}
+*{
+    margin:0 0;
+    padding:0 0;
+}
+.container{
+    width:70%;
+    margin:0 auto;
+    border:1px solid gray;
+    
+}
+.header{
+    width:100%;
+    height:150px;
+}
+.header-left-part{
+    float:left;
+    width:50%;
+    height:80%;
+    margin-top:20px;
+    margin-left:20px;
+}
+h2{
+    font-size:1.5rem;
+}
+.header-right-part{
+    width:20%;
+    float:right;
+    margin-left:20px;
+    margin-top:20px;
+    height:80%;
+    
+}
+.quit-btn{
+    margin-top:30px;
+    margin-left:50%;
+    width:70px;
+    height: 25px;
+    border-radius:5px;
+}
+.banner{
+    width:100%;
+    clear:both;
+    margin:0 auto;
+    
+}
+.left{
+    width: 18%;
+    border: 1px solid gray;
+    float:left;
+    height:850px;
+    clear:both;
+    margin-bottom:50px;
+}
+.left-title li{
+    list-style: none;
+    width:100%;
+    text-align:center;
+    height:60px;
+    line-height: 60px;
+    border-top:1px solid gray;
+    
+}
+.left-title{
+    margin-top:50px;
+}
+#last{
+    border-bottom: 1px solid gray;
+}
+.right{
+    height: 850px;
+    width:81.5%;
+    float: left;
+    border:1px solid gray;
+}
+.right-top{
+    width:100%;
+    height:80px;
+}
+.fanhui{
+    width: 50%;
+    height: 70px;
+    line-height: 70px;
+    padding-left: 20px;
+    float: left;
+}
+.btn{
+    width:80px;
+    height:30px;
+    border-radius:5px;   
+}
+.time{
+    height: 70px;
+    line-height: 70px;
+    padding-left: 150px;
+    float: left;    
+}
+.name{
+    width:100%;
+    height:70px;
+}
+.name-1{
+    height: 70px;
+    line-height: 70px;
+    float: left;    
+    padding-left: 50px;
+}
+.name-2{
+    height: 70px;
+    line-height: 70px;
+    float: left;    
+    padding-left: 425px;
+}
+.gaishu{
+    height: 120px;
+    line-height: 70px;
+    padding-left: 50px;
+    border-bottom: 1px solid gray;
+}
+.xiangqing{
+    height: 20px;
+    padding-left: 50px;
+    padding-top: 20px;
+}
+.right-bottom{
+    width:100%;
+    height:450px;
+}
+.one{
+    height: 70px;
+    line-height: 70px;
+    padding-left: 70px;
+}
+.two{
+    height: 70px;
+    line-height: 70px;
+    padding-left: 70px;
+}
+.three{
+    height: 70px;
+    line-height: 70px;
+    padding-left: 70px;
+}
+.last-1{
+    float: left;
+    padding-left: 550px
+}
+.last-2{
+    float: left;
+    padding-left: 20px;
+}
+.btn-1{
+    width:80px;
+    height:30px;
+    border-radius:5px;   
+}
+.btn-2{
+    width:80px;
+    height:30px;
+    border-radius:5px;   
+}
+

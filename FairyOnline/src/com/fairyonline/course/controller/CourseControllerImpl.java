@@ -1,14 +1,14 @@
 package com.fairyonline.course.controller;
 
-
-
 import java.io.IOException;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,14 +18,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fairyonline.course.entity.Cart;
+import com.fairyonline.course.entity.Category;
 import com.fairyonline.course.entity.Chapters;
 import com.fairyonline.course.entity.Course;
+import com.fairyonline.course.entity.Coursebk;
+import com.fairyonline.course.entity.FollowCourse;
+import com.fairyonline.course.entity.Orders;
+import com.fairyonline.course.entity.OrdersList;
 import com.fairyonline.course.entity.Video;
 import com.fairyonline.course.service.CourseServiceImpl;
 import com.fairyonline.user.entity.User;
+import com.fairyonline.user.entity.UserLogin;
+import com.fairyonline.user.service.UserServiceImpl;
 
 
 @Controller
@@ -33,6 +40,8 @@ import com.fairyonline.user.entity.User;
 @RequestMapping("course")
 public class CourseControllerImpl {
 	
+	@Resource
+	private UserServiceImpl usi;
 	@Resource
 	private CourseServiceImpl csi;
 	@Resource
@@ -81,6 +90,33 @@ public class CourseControllerImpl {
 //			model.addAttribute("chapter",chapter);
 			return "course/videoList";
 		}
+		//收藏课程
+		@RequestMapping("/collection")
+		public String collection(int id,int ID) {
+			csi.collection(id, ID);
+			return "course/CurriculumSpecial";
+		}
+		//取消收藏
+		@RequestMapping("/uncollection")
+		public String unCollection(int id,int uid) {
+			csi.unCollection(id,uid);
+			return "course/followcourse";
+		}
+		
+		//查询收藏的课程
+		@RequestMapping("/selectfc")
+		public String selectfc(Model model,int id) {
+//			List<FollowCourse> list = this.csi.selectfc();
+//			model.addAttribute("list", list);
+//			System.out.println("****************");
+//			System.out.println(list.size());
+			User user = usi.findUserById(id);
+			model.addAttribute("user",user);
+			return "course/followcourse";
+		}
+		
+		
+		
 		@RequestMapping("/test")
 		public String test(Model model) {
 			System.out.println("test");
@@ -95,7 +131,7 @@ public class CourseControllerImpl {
 			List<Chapters> chapterlist = course.getChaptersList();
 			System.out.println(chapterlist.iterator());
 			for(Chapters ch : chapterlist  ) {
-				System.out.println(course.getCName()+ch.getChapterNum()+ch.getChapterName());
+				System.out.println(course.getcName()+ch.getChapterNum()+ch.getChapterName());
 				List<Video> videoList = ch.getVideoList();
 				for(Video v : videoList) {
 					System.out.println(v.getID()+v.getName());
@@ -106,10 +142,12 @@ public class CourseControllerImpl {
 		}
 		//购物车
 		@RequestMapping("/cartlist")
-		public String selectAll(Model model) {
-			List<Cart> list = csi.selectAll();
-			model.addAttribute("cartlist",list);
-			System.out.println(list.size());
+		public String selectAll(Model model,int id) {
+//			List<Cart> list = csi.selectAll();
+//			model.addAttribute("cartlist",list);
+//			System.out.println(list.size());
+			User user = usi.findUserById(id);
+			model.addAttribute("user",user);
 			return "course/shoppingCart";
 		}
 		
@@ -127,12 +165,19 @@ public class CourseControllerImpl {
 			List<Cart> list = csi.selectById(c);	
 			int sum = 0;
 			for(int i = 0; i < list.size(); i ++) {
-				sum+= list.get(i).getCourseId().getPrice()* list.get(i).getCount();
+				sum+= list.get(i).getCourseId().getPrice();//* list.get(i).getCount();
 			}
 			model.addAttribute("toorders", list);
 			model.addAttribute("sum", sum);
 			System.out.println("cartcartcart1");
 			return "course/order";
+		}
+		//删除购物车列表信息
+		@RequestMapping("/deletecart")
+		public String deleteCrouse(int cartId,int uid) {
+			System.out.println("delete");
+			csi.deleteCart(cartId);
+			return "redirect:cart";
 		}
 		//后台购物车列表
 		@RequestMapping("/cartlist1")
@@ -148,12 +193,7 @@ public class CourseControllerImpl {
 			model.addAttribute("usershopping",list);
 			return "user/user_shopping";
 		}	
-		@RequestMapping("/deletecart")
-		public String deleteFruits(int cartId) {
-			System.out.println("delete");
-			csi.deleteCart(cartId);
-			return "redirect:cart";
-		}
+		
 		
 		@RequestMapping("/addcount")
 		public String addCount(int id,HttpServletRequest request) {
@@ -168,6 +208,146 @@ public class CourseControllerImpl {
 			csi.misCount(id);
 			return "user/user_shopping";
 		}
+		//订单
+		/*生成订单*/
+		@RequestMapping("/produceorders")
+		public String produceOrders(
+//				@RequestParam("i") int[] iList,
+				@RequestParam(value = "i", required = false) int[] iList,
+				@RequestParam("sub") String sub,
+				HttpSession session,
+				HttpServletRequest request ) {
+			if(sub.equals("支付选中商品")) {//只支付部分商品
+//				if(session.getAttribute("ItemList")!=null)
+//					session.removeAttribute("ItemList");
+				List<OrdersList> ItemS = new ArrayList<OrdersList>();
+				List<OrdersList> ItemList  = (List<OrdersList>)session.getAttribute("ItemList");
+				for(int i : iList) 
+					ItemS.add(ItemList.get(i));
+				session.setAttribute("ItemList", ItemS);
+			}
+			List<OrdersList> ItemList  = (List<OrdersList>)session.getAttribute("ItemList");
+			Orders orders = new Orders(new Date(),ItemList,(User)session.getAttribute("userInfo"));
+		//	orders.setPrice();//自动计算总价格
+			this.csi.save(orders,session);//将建立好的orders 和session交给 service进行后续处理
+			return "Shop/Orders";
+		}
+//		/*添加一本书*/
+//		@RequestMapping("/addone")
+//		public String addOne(
+//				@RequestParam("i")int i ,
+//				@RequestParam("bookId")int bookId,
+//				HttpSession session) {
+//			this.csi.addOne(bookId,i,session);
+//			return "Shop/Cart";
+//		}
+//		/*减少一本书*/
+//		@RequestMapping("/cutone")
+//		public String cutOne(
+//				@RequestParam("i")int i ,
+//				@RequestParam("bookId")int bookId,
+//				HttpSession session) {
+//			this.ordersServiceImpl.cutOne(bookId,i,session);
+//			return "Shop/Cart";
+//		}
+		/*支付*/
+		@RequestMapping("/gotopay")
+		public String	goToPay(HttpSession session) {
+			return "Shop/payPage";
+		}
+		/*输入密码后的处理*/
+		@RequestMapping("/havepay")
+		public String	havePay(HttpSession session) {
+			this.csi.havePay(session);
+			return "Shop/paySuccess";
+		}
+		//保存订单
+		
+//		//往购物车中 添加商品（子订单）
+//		@RequestMapping("/addItem")
+//		public String addItem(@RequestParam("book") Book book,
+//				HttpServletRequest request) {
+//			HttpSession session = request.getSession();
+//			UserInfo userInfo = (UserInfo)session.getAttribute("UserInfo");
+//			return "";
+//		}
+	
+		//提交订单
+		
+		
+		//审核课程列表
+		@RequestMapping("/auditlist")
+		public String AuditCourseList(Model model) {
+			System.out.println("select success");
+			List<Coursebk> list = this.csi.getcbkList();
+			model.addAttribute("list", list);
+			System.out.println("select success");
+			return "course-bk/AuditCourse";
+		}
+		//审查课程详情
+		@RequestMapping("/AuditCoursedetail")
+		public String selectAuditCourse(Model model,int id) {
+			Coursebk coursebk =csi.selectBycbkId(id);	
+			//List<Course> list = this.csi.getList();
+			//List<Chapters> chapterlist = course.getChaptersList();
+			model.addAttribute("coursebk", coursebk);
+			return "course-bk/ReportDetails";
+		}
+		//课程分类列表
+		@RequestMapping("/categorylist")
+		public String selectcategoryList1(Model model) {
+			System.out.println("get collu");
+			List<Category> list = this.csi.getcList();
+			model.addAttribute("list", list);
+			System.out.println("out collu");
+			return "course-bk/ClassesList";
+		}
+		@RequestMapping("/categorylist1")
+		public String selectcategoryList2(Model model) {
+			System.out.println("get collu");
+			List<Category> list = this.csi.getcList();
+			model.addAttribute("list", list);
+			System.out.println("o");
+			return "course-bk/ApplicationClass";
+		}
+		//课程分类详情
+		@RequestMapping("/classesdetail")
+		public String classesDetail(Model model,int id) {
+			Category category =csi.classesDetail(id);	
+     		model.addAttribute("category", category);
+			return "course-bk/ClassesListDetail";
+		}
+		//添加分类
+		@RequestMapping("addcategory")
+		public String addcategory(Model model,HttpServletRequest request, HttpServletResponse response){
+			String name=request.getParameter("username");
+			Date now = new Date();
+		      Calendar cal = Calendar.getInstance();     
+		      DateFormat d1 = DateFormat.getDateInstance(); 
+		      String str1 = d1.format(now);
+		      DateFormat d2 = DateFormat.getDateTimeInstance();
+		      String str2 = d2.format(now);
+		      DateFormat d3 = DateFormat.getTimeInstance();
+		      String str3 = d3.format(now);
+		      DateFormat d4 = DateFormat.getInstance(); //使用SHORT风格显示日期和时间
+		      String str4 = d4.format(now);
+		      DateFormat d5 = DateFormat.getDateTimeInstance(DateFormat.FULL,DateFormat.FULL); //显示日期，周，时间（精确到秒）
+		      String str5 = d5.format(now);
+		      DateFormat d6 = DateFormat.getDateTimeInstance(DateFormat.LONG,DateFormat.LONG); //显示日期。时间（精确到秒）
+		      String str6 = d6.format(now);
+		      DateFormat d7 = DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.SHORT); //显示日期，时间（精确到分）
+		      String str7 = d7.format(now);
+		      DateFormat d8 = DateFormat.getDateTimeInstance(DateFormat.MEDIUM,DateFormat.MEDIUM); //显示日期，时间（精确到分）
+		      String str8 = d8.format(now);//与SHORT风格相比，这种方式最好用
+//		    HttpSession session=request.getSession();
+//		    String user_name=(String)session.gerAttribute("user");
+		    String adminId = "admin";  
+		    String introduce =request.getParameter("introduce");
+		    boolean c = csi.addcategory(name, now, adminId, introduce);
+		      return "course-bk/AddClass";	
+		} 
+		
+		//删除分类
 		
 		public CourseServiceImpl getCartServiceImpl() {
 			return csi;
@@ -175,7 +355,8 @@ public class CourseControllerImpl {
 
 		public void setCartServiceImpl(CourseServiceImpl csi) {
 			this.csi =csi;
-		}
+		}		
+		
 //		@RequestMapping("/buyCourse")
 //		public String buyCourse(int id,HttpServletRequest request, HttpServletResponse response) {
 //			

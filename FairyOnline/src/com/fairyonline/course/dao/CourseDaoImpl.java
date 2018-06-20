@@ -27,6 +27,8 @@ import com.fairyonline.course.entity.Chapters;
 import com.fairyonline.course.entity.Course;
 import com.fairyonline.course.entity.Coursebk;
 import com.fairyonline.course.entity.FollowCourse;
+import com.fairyonline.course.entity.Orders;
+import com.fairyonline.course.entity.OrdersList;
 import com.fairyonline.course.entity.Video;
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
@@ -268,6 +270,116 @@ public class CourseDaoImpl {
 		this.sessionFactory = sessionFactory;
 	}
 	
+	
+	
+	//订单
+	/*seve*/
+	public void save(Orders orders,Session session) {
+//		Session session = sessionFactory.getCurrentSession();//获取session
+		Transaction tra = session.beginTransaction();//开启事务	
+		session.save(orders);
+		tra.commit();
+	}
+	/*get*/ //需要get么？
+	public Orders getById(int id ) {
+//		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();//获取session
+		Transaction tra = session.beginTransaction();//开启事务
+		Orders orders = session.get(Orders.class, id);
+		tra.commit();
+//		session.close();
+		return orders;
+	}
+	/* getAllList*/
+	public List<Orders> getAllList(){
+		Query q=this.sessionFactory.getCurrentSession().createQuery("from Orders");
+		return q.list();
+	}
+	
+	/* getListByUserinfo*/
+	public List<Orders> getListByUser(User user){
+		List<Orders> list = new ArrayList<Orders>();
+		List<Orders> list1 = this.getAllList();
+		for(Orders ord : list1) {
+			if(ord.getUserId().getId()==user.getId()) {//equals
+				list.add(ord);
+			}
+		}
+		return list;
+	}
+	
+	/*update*/
+	public void updateByOrders(Orders orders) {
+		Session session = sessionFactory.getCurrentSession();//获取session
+		Transaction tra = session.beginTransaction();//开启事务
+		session.update(orders);
+		tra.commit();
+	}
+	/*delet*/
+	public void deleteById(int id) {
+		Session session = sessionFactory.getCurrentSession();//获取session
+		Transaction tra = session.beginTransaction();//开启事务
+		Orders orders = session.get(Orders.class, id);
+		session.delete(orders);
+		tra.commit();
+	}
+	/*save*/
+	public void save(OrdersList ordersItem,Session session) {
+		Transaction tra = session.beginTransaction();//开启事务
+		session.save(ordersItem);
+//		session.flush();
+		tra.commit();
+	}
+	
+	/*saveList*/
+	public void saveList(List<OrdersList> list,Session session) {
+//		Session session = sessionFactory.getCurrentSession();
+		for(OrdersList t : list) 
+			this.save(t,session);
+	}
+	
+	/*get*/
+	/*getAll*/
+	public List<OrdersList> getAllList2(){
+		Query q=this.sessionFactory.getCurrentSession().createQuery("from OrdersItem");
+		return q.list();
+	}
+	/*getListByOrder*/
+	public List<OrdersList> getListByOrder(Orders orders){
+		Query q=this.sessionFactory.getCurrentSession().createQuery("from OrdersItem");
+		//执行了一些筛选操作 或者上面执行HQL语句
+		return q.list();
+	}
+	//update
+	/*delet*/
+	public void deleteItem(OrdersList item) {
+		Session session = sessionFactory.getCurrentSession();//获取session
+		Transaction tra = session.beginTransaction();//开启事务
+		session.delete(item);
+		tra.commit();
+	}
+	/* delete List*/
+	public void deleteList(List<OrdersList> list) {
+		for(OrdersList t : list) 
+			this.deleteItem(t);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//提交订单
+	
 	//审核课程列表
 	public List<Coursebk> getcbkList(){
 		Query q=this.sessionFactory.getCurrentSession().createQuery("from Coursebk");
@@ -308,9 +420,6 @@ public class CourseDaoImpl {
 	}
 	//添加分类
 	public boolean addcatgory(String categoryName,Date uptime,String adminId,String introduce){
-//		Query query = this.sessionFactory.getCurrentSession().createQuery("from Category");
-//		Date time= new java.sql.Date(new java.util.Date().getTime());
-//		List<Category> clist = query.list();
 		java.sql.Date uptime1=new java.sql.Date(uptime.getTime());
 		Session session = sessionFactory.openSession();//.getCurrentSession();
 		Transaction tra = session.beginTransaction();//开启事务
@@ -324,12 +433,6 @@ public class CourseDaoImpl {
 		session.save(c);
 		tra.commit();
 		session.close();
-//		int i=jdbcTemplate.update("insert into  Category(categoryName,uptime,adminId,introduce)values(?,?,?,?)",categoryName,uptime,adminId,introduce);
-//		if(i>0) {
-//			return true;
-//		}else {
-//			return false;
-//		}
 		return true;
 	}
 	public void addCategory(Category category) {
@@ -341,6 +444,8 @@ public class CourseDaoImpl {
 		tra.commit();
 		System.out.println("out Dao");
 	}
+	
+	//删除分类
 	
 	
 	

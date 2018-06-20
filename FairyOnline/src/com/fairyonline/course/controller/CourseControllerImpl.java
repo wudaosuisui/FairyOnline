@@ -2,6 +2,7 @@ package com.fairyonline.course.controller;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fairyonline.course.entity.Cart;
 import com.fairyonline.course.entity.Category;
@@ -25,6 +26,8 @@ import com.fairyonline.course.entity.Chapters;
 import com.fairyonline.course.entity.Course;
 import com.fairyonline.course.entity.Coursebk;
 import com.fairyonline.course.entity.FollowCourse;
+import com.fairyonline.course.entity.Orders;
+import com.fairyonline.course.entity.OrdersList;
 import com.fairyonline.course.entity.Video;
 import com.fairyonline.course.service.CourseServiceImpl;
 import com.fairyonline.user.entity.User;
@@ -128,7 +131,7 @@ public class CourseControllerImpl {
 			List<Chapters> chapterlist = course.getChaptersList();
 			System.out.println(chapterlist.iterator());
 			for(Chapters ch : chapterlist  ) {
-				System.out.println(course.getCName()+ch.getChapterNum()+ch.getChapterName());
+				System.out.println(course.getcName()+ch.getChapterNum()+ch.getChapterName());
 				List<Video> videoList = ch.getVideoList();
 				for(Video v : videoList) {
 					System.out.println(v.getID()+v.getName());
@@ -159,9 +162,9 @@ public class CourseControllerImpl {
 			String[] c = request.getParameterValues("cart");
 			List<Cart> list = csi.selectById(c);	
 			int sum = 0;
-//			for(int i = 0; i < list.size(); i ++) {
-//				sum+= list.get(i).getCourseId().getPrice()* list.get(i).getCount();
-//			}
+			for(int i = 0; i < list.size(); i ++) {
+				sum+= list.get(i).getCourseId().getPrice();//* list.get(i).getCount();
+			}
 			model.addAttribute("toorders", list);
 			model.addAttribute("sum", sum);
 			System.out.println("cartcartcart1");
@@ -203,6 +206,72 @@ public class CourseControllerImpl {
 			csi.misCount(id);
 			return "user/user_shopping";
 		}
+		//订单
+		/*生成订单*/
+		@RequestMapping("/produceorders")
+		public String produceOrders(
+//				@RequestParam("i") int[] iList,
+				@RequestParam(value = "i", required = false) int[] iList,
+				@RequestParam("sub") String sub,
+				HttpSession session,
+				HttpServletRequest request ) {
+			if(sub.equals("支付选中商品")) {//只支付部分商品
+//				if(session.getAttribute("ItemList")!=null)
+//					session.removeAttribute("ItemList");
+				List<OrdersList> ItemS = new ArrayList<OrdersList>();
+				List<OrdersList> ItemList  = (List<OrdersList>)session.getAttribute("ItemList");
+				for(int i : iList) 
+					ItemS.add(ItemList.get(i));
+				session.setAttribute("ItemList", ItemS);
+			}
+			List<OrdersList> ItemList  = (List<OrdersList>)session.getAttribute("ItemList");
+			Orders orders = new Orders(new Date(),ItemList,(User)session.getAttribute("userInfo"));
+		//	orders.setPrice();//自动计算总价格
+			this.csi.save(orders,session);//将建立好的orders 和session交给 service进行后续处理
+			return "Shop/Orders";
+		}
+//		/*添加一本书*/
+//		@RequestMapping("/addone")
+//		public String addOne(
+//				@RequestParam("i")int i ,
+//				@RequestParam("bookId")int bookId,
+//				HttpSession session) {
+//			this.csi.addOne(bookId,i,session);
+//			return "Shop/Cart";
+//		}
+//		/*减少一本书*/
+//		@RequestMapping("/cutone")
+//		public String cutOne(
+//				@RequestParam("i")int i ,
+//				@RequestParam("bookId")int bookId,
+//				HttpSession session) {
+//			this.ordersServiceImpl.cutOne(bookId,i,session);
+//			return "Shop/Cart";
+//		}
+		/*支付*/
+		@RequestMapping("/gotopay")
+		public String	goToPay(HttpSession session) {
+			return "Shop/payPage";
+		}
+		/*输入密码后的处理*/
+		@RequestMapping("/havepay")
+		public String	havePay(HttpSession session) {
+			this.csi.havePay(session);
+			return "Shop/paySuccess";
+		}
+		//保存订单
+		
+//		//往购物车中 添加商品（子订单）
+//		@RequestMapping("/addItem")
+//		public String addItem(@RequestParam("book") Book book,
+//				HttpServletRequest request) {
+//			HttpSession session = request.getSession();
+//			UserInfo userInfo = (UserInfo)session.getAttribute("UserInfo");
+//			return "";
+//		}
+	
+		//提交订单
+		
 		
 		//审核课程列表
 		@RequestMapping("/auditlist")
@@ -224,12 +293,20 @@ public class CourseControllerImpl {
 		}
 		//课程分类列表
 		@RequestMapping("/categorylist")
-		public String selectcategoryList(Model model) {
+		public String selectcategoryList1(Model model) {
 			System.out.println("get collu");
 			List<Category> list = this.csi.getcList();
 			model.addAttribute("list", list);
 			System.out.println("out collu");
 			return "course-bk/ClassesList";
+		}
+		@RequestMapping("/categorylist1")
+		public String selectcategoryList2(Model model) {
+			System.out.println("get collu");
+			List<Category> list = this.csi.getcList();
+			model.addAttribute("list", list);
+			System.out.println("o");
+			return "course-bk/ApplicationClass";
 		}
 		//课程分类详情
 		@RequestMapping("/classesdetail")
@@ -243,8 +320,7 @@ public class CourseControllerImpl {
 		public String addcategory(Model model,HttpServletRequest request, HttpServletResponse response){
 			String name=request.getParameter("username");
 			Date now = new Date();
-		      Calendar cal = Calendar.getInstance();
-		     
+		      Calendar cal = Calendar.getInstance();     
 		      DateFormat d1 = DateFormat.getDateInstance(); 
 		      String str1 = d1.format(now);
 		      DateFormat d2 = DateFormat.getDateTimeInstance();
@@ -266,10 +342,10 @@ public class CourseControllerImpl {
 		    String adminId = "admin";  
 		    String introduce =request.getParameter("introduce");
 		    boolean c = csi.addcategory(name, now, adminId, introduce);
-		      return "course-bk/AddClass";
-			
-			
+		      return "course-bk/AddClass";	
 		} 
+		
+		//删除分类
 		
 		public CourseServiceImpl getCartServiceImpl() {
 			return csi;

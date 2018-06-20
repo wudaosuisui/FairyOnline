@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" import="java.sql.*,java.io.*,java.util.*"%>  
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -45,26 +48,17 @@
 		    	    		    <th>课程名</th>
 		    	    		    <th>价格</th>
 		    	    	    </tr>
-		    	    	    <tr>
-		    	    		    <td style="vertical-align:middle; text-align:center;">课程一</td>
-		    	    		    <td style="vertical-align:middle; text-align:center;">**元</td>
+		    	         <c:forEach var="o" items="${toorders }">
+		    	               <tr>
+		    	    	     	<td style="vertical-align:middle; text-align:center;">${o.courseId.cName }</td>
+		    	    	    	<td style="vertical-align:middle; text-align:center;">${o.courseId.price }元</td>
 		    	    	    </tr>
-		    	    	    <tr>
-		    	    	     	<td style="vertical-align:middle; text-align:center;">课程一</td>
-		    	    	    	<td style="vertical-align:middle; text-align:center;">**元</td>
-		    	    	    </tr>
-		    	    	    <tr>
-		    	    	    	<td style="vertical-align:middle; text-align:center;">课程一</td>
-		    	    	    	<td style="vertical-align:middle; text-align:center;">**元</td>
-		    	    	    </tr>
-		    	    	    <tr>
-		    	    	    	<td style="vertical-align:middle; text-align:center;">课程一</td>
-		    	    	    	<td style="vertical-align:middle; text-align:center;">**元</td>
-		    	    	    </tr>
+		    	         
+		    	         </c:forEach>
 		    	        </table>
 		    	    </div>	
 		    	    <div id="sum">
-		    	    	<h2>合计：***元</h2>
+		    	    	<h2>合计：${sum }元</h2>
 		    	    </div>
 		    	    <div id="submit">
 		    	    	<input type="button" value="取消订单"/>
@@ -79,3 +73,20 @@
 
 </body>
 </html>
+
+<!--  	    <tr>
+		    	    		    <td style="vertical-align:middle; text-align:center;">课程一</td>
+		    	    		    <td style="vertical-align:middle; text-align:center;">**元</td>
+		    	    	    </tr>
+		    	    	    <tr>
+		    	    	     	<td style="vertical-align:middle; text-align:center;">课程一</td>
+		    	    	    	<td style="vertical-align:middle; text-align:center;">**元</td>
+		    	    	    </tr>
+		    	    	    <tr>
+		    	    	    	<td style="vertical-align:middle; text-align:center;">课程一</td>
+		    	    	    	<td style="vertical-align:middle; text-align:center;">**元</td>
+		    	    	    </tr>
+		    	    	    <tr>
+		    	    	    	<td style="vertical-align:middle; text-align:center;">课程一</td>
+		    	    	    	<td style="vertical-align:middle; text-align:center;">**元</td>
+		    	    	    </tr> -->

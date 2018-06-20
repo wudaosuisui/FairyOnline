@@ -24,6 +24,7 @@ import org.hibernate.annotations.GenericGenerator;
 import com.fairyonline.course.entity.Cart;
 import com.fairyonline.course.entity.FollowCourse;
 import com.fairyonline.course.entity.Orders;
+import com.fairyonline.course.entity.OrdersList;
 
 @Entity
 @Table(name="user")
@@ -108,6 +109,14 @@ public class User {
 	public void setOrderSet(Set<Orders> orderSet) {
 		this.orderSet = orderSet;
 	}
+//	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//	@JoinColumn(name="user")
+//	public Set<OrdersList> getOrderListSet() {
+//		return orderListSet;
+//	}
+//	public void setOrderListSet(Set<OrdersList> orderListSet) {
+//		this.orderListSet = orderListSet;
+//	}
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="fuid")
 	public Set<FollowCourse> getFcSet() {

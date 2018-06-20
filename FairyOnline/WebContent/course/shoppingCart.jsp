@@ -74,7 +74,7 @@
                 </div>   
                 <div id="body2-text">
                 <p></p>
-                <p>${c.courseId.categoryID.categoryName}&nbsp;&nbsp;&nbsp;讲师：${c.courseId.tId.name }&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
+                <p>${c.courseId.cName}&nbsp;&nbsp;&nbsp;讲师：${c.courseId.tId.name }&nbsp;&nbsp;&nbsp;&nbsp;等级&nbsp;&nbsp;&nbsp;观看人数</p>
                 <p>课程简介：${c.courseId.cIntroduction }</p>
                 购买人：${c.userId.petName}
                 </div>

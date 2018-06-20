@@ -55,9 +55,9 @@
                    <a href="07.html"><button class="btn">返回</button></a>
                </div>
                 <div class="title">
-                    <p class="p">${category.categoryName }：</p>
-                    <p class="p">${category.uptime }：</p>
-                    <p class="p">${category.adminId.userName }：</p>
+                    <p class="p">类别名称：${category.categoryName }：</p>
+                    <p class="p">上传时间：${category.uptime }</p>
+                    <p class="p">添加人：${category.adminId.userName }：</p>
                 </div>
             </div>
             <div class="right-middle">

@@ -2,8 +2,11 @@ package com.fairyonline.course.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,6 +21,8 @@ import com.fairyonline.course.entity.Chapters;
 import com.fairyonline.course.entity.Course;
 import com.fairyonline.course.entity.Coursebk;
 import com.fairyonline.course.entity.FollowCourse;
+import com.fairyonline.course.entity.Orders;
+import com.fairyonline.course.entity.OrdersList;
 import com.fairyonline.course.entity.Video;
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
@@ -113,7 +118,160 @@ public class CourseServiceImpl {
 	public void setCartDao(CourseDaoImpl cdi) {
 			this.cdi = cdi;
 	}
-    
+	
+	//订单
+	/*save*/
+	public void save(Orders orders,HttpSession sessionh) {
+		Session session = sessionFactory.openSession();
+		//如果之前有订单  将其删除
+		Orders sinOrders = (Orders)sessionh.getAttribute("orders");
+		if(sinOrders!=null) { //sinOrder如果不为空  说明之前已经存到过数据库中了
+			sessionh.removeAttribute("orders");
+			this.cdi.updateByOrders(sinOrders);
+		}
+		//先存子订单
+		this.cdi.saveList(orders.getItem(),session);
+		//再存订单
+		this.cdi.save(orders,session);
+		sessionh.setAttribute("orders", orders);//替换掉之前的订单
+		session.close();
+	}
+	/*HavePay*/  //删除购物车里 已经购买的内容
+	public void havePay(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		Orders orders = (Orders)session.getAttribute("orders");
+		Set<Cart> cartList = user.getCartSet();
+		List<OrdersList> ItemList = orders.getItem();
+		for(int i = 0 ; i<ItemList.size();i++) {
+			for(int j = 0 ; j<cartList.size();j++) {
+				if(cartList.iterator().next().getCartId()== ItemList.get(i).getCourse().getID()) {
+					cartList.remove(j);
+					j--;
+				}
+			}
+		}
+		user.setCartSet(cartList);
+	}
+	
+//	/*往订单中 添加一本书*/
+//	public void addOne(int bookId,int i ,HttpSession sessionh) {
+//		Session session = sessionFactory.openSession();
+//		User u = (User)sessionh.getAttribute("user");
+//		List<Book> bookList = u.getCart();
+//		bookList.add(this.bookDaoImpl.getById(bookId));
+//		u.setCart(bookList);
+//		List<OrdersItem> ItemList = (List<OrdersItem>)sessionh.getAttribute("ItemList");
+//		ItemList.get(i).setNumber(ItemList.get(i).getNumber()+1);
+//		session.close();
+//	}
+//	/*往订单中 减少一本书*/
+//	public void cutOne(int bookId,int i ,HttpSession sessionh) {
+//		Session session = sessionFactory.openSession();
+//		UserInfo u = (UserInfo)sessionh.getAttribute("userInfo");//获取UserInfo
+//		List<Book> bookList = u.getCart();//获取Cart
+//		Book rbook = this.bookDaoImpl.getById(bookId);
+//		for(Book book: bookList) {//循环移除 要减少的那本书
+//			if(book.getId()==rbook.getId()) {
+//				System.out.println("remove book "+book.getName());
+//				bookList.remove(book);//貌似可以这样写
+//				break;
+//			}
+//		}
+//		u.setCart(bookList);//将Cart 存入userInfo中
+////		sessionh.setAttribute("userInfo", u);//更新userInfo在 session 中的内容
+//		List<OrdersItem> ItemList = (List<OrdersItem>)sessionh.getAttribute("ItemList");//获取session 中的 ItemList 
+//		if(ItemList.get(i).getNumber()>1)//进行数量的更改
+//			ItemList.get(i).setNumber(ItemList.get(i).getNumber()-1);
+//		else
+//			ItemList.remove(i);
+//		session.close();
+//	}
+	
+	
+	/*get*/
+	
+	/*getAllList*/
+	public void getAllLisst(HttpServletRequest request) {
+		Session session = sessionFactory.openSession();
+		request.setAttribute("ordersList",this.cdi.getAllList());
+		session.close();
+	}
+	/*getListByUseInfo*/
+	public void getListByUserInfo(User user,HttpServletRequest request){
+		Session session = sessionFactory.openSession();
+		request.setAttribute("ordersList",this.cdi.getListByUser(user));
+		session.close();
+	}
+	/*getById*/
+	public void getById(int id ,HttpServletRequest request ) {
+		Session session = sessionFactory.openSession();
+		request.setAttribute("orders",this.cdi.getById(id));
+		session.close();
+	}
+	/*update*/
+	public void updateByOrders(Orders orders) {
+		Session session = sessionFactory.openSession();
+		this.cdi.updateByOrders(orders);
+		session.close();
+	}
+	
+//	//添加订单
+//	public void save(Orders orders) {//不知道子订单那边是否有问题
+//		//先存子订单
+//		this.ordersItemDaoImpl.saveList(orders.getItem());
+//		//再存订单
+//		this.ordersDaoImp.save(orders);
+//	}
+	//获取订单 list
+//	public List<Orders> getListByUserInfo(UserInfo userInfo){
+//		
+//	}
+	
+//	//getById
+//	public Orders getById(int id ) {
+//		return this.ordersDaoImp.getById(id);
+//	}
+	
+//	/*
+//	 * getAllList
+//	 * */
+//	public List<Orders> getAllList(){
+//		return this.ordersDaoImp.getAllList();
+//	}
+	
+//	/*
+//	 * getListByUserinfo
+//	 * */
+//	public List<Orders> getListByUserInfo(UserInfo userInfo){
+//		return this.ordersDaoImp.getListByUserInfo(userInfo);
+//	}
+	/*
+	 * upDateByOrders
+	 * */
+//	public void updateByOrders(Orders orders) {
+//		this.ordersDaoImp.updateByOrders(orders);
+//	}
+	
+	/*public void updateOrders(Orders orders) {
+		
+		// uuid orderUuid  status  10 
+		
+		
+		// get order information 
+		
+		// get user information 
+		
+		// update the user money 
+		
+		// update the order status 
+		
+		
+		//add wait send 
+		
+		// update 
+	}*/
+	//提交订单
+	
 	//审核课程列表
 	public List<Coursebk> getcbkList(){
 		List<Coursebk> list = cdi.getcbkList();
@@ -151,6 +309,7 @@ public class CourseServiceImpl {
 		this.cdi.addCategory(category);
 		session.close();
 	}
+	//删除分类
 	
 //	 public List<Course> getAllCourse() {
 //		  

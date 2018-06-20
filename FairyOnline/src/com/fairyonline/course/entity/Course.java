@@ -27,8 +27,8 @@ import com.fairyonline.teacher.entity.Teacher;
 @Table(name="course")
 public class Course {
 	private int ID;
-	private String CName;
-	private int Price;
+	private String cName;
+	private int price;
 	private Category categoryID;
 	private Date UPTime;
 	private Teacher tId;
@@ -43,8 +43,8 @@ public class Course {
 		
 	}
 	public Course(String cName,int Price,Date UPTime) {
-		this.CName=cName;
-		this.Price=Price;
+		this.cName=cName;
+		this.price=Price;
 		this.UPTime = UPTime;
 	
 		
@@ -61,17 +61,17 @@ public class Course {
 	public void setID(int iD) {
 		this.ID = iD;
 	}
-	public String getCName() {
-		return CName;
+	public String getcName() {
+		return cName;
 	}
-	public void setCName(String cName) {
-		this.CName = cName;
+	public void setcName(String cName) {
+		this.cName = cName;
 	}
 	public int getPrice() {
-		return Price;
+		return price;
 	}
 	public void setPrice(int price) {
-		this.Price = price;
+		this.price = price;
 	}
 	@ManyToOne
 	@JoinColumn(name="categoryID")
@@ -145,7 +145,7 @@ public class Course {
 	}
 	@Override
 	public String toString() {
-		return "Course [ID=" + ID + ", CName=" + CName + ", Price=" + Price + ", categoryID=" + categoryID + ", UPTime="
+		return "Course [ID=" + ID + ", CName=" + cName + ", Price=" + price + ", categoryID=" + categoryID + ", UPTime="
 				+ UPTime + ", tId=" + tId + ", chaptersList=" + chaptersList + "]";
 	}
 	

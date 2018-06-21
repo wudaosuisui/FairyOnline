@@ -108,11 +108,7 @@ public class UserController {
 			UserLogin userLogin2 = new UserLogin();
 			String userName2;
 			HttpSession session = request.getSession();
-//<<<<<<< HEAD
 //			//session.setMaxInactiveInterval(3600);//服务器端的3600秒
-//=======
-			session.setMaxInactiveInterval(3600);//服务器端的3600秒
-//>>>>>>> refs/remotes/origin/sy
 			if(session.getAttribute("userLogin")!=null) {
 				session.removeAttribute("userLogin");
 			}
@@ -133,7 +129,7 @@ public class UserController {
 				session.setAttribute("userLogin2",userLogin2);
 				model.addAttribute("admin",userName2);
 				System.out.println("login执行成功");
-				return "user/index";
+				return "course/CurriculumSpecial";//"user/index"
 			}else {
 				model.addAttribute("errormsg","用户名或密码错误");
 				return "user/login";

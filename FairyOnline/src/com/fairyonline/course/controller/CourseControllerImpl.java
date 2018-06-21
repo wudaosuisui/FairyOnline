@@ -131,7 +131,7 @@ public class CourseControllerImpl {
 			List<Chapters> chapterlist = course.getChaptersList();
 			System.out.println(chapterlist.iterator());
 			for(Chapters ch : chapterlist  ) {
-				System.out.println(course.getcName()+ch.getChapterNum()+ch.getChapterName());
+				System.out.println(course.getCName()+ch.getChapterNum()+ch.getChapterName());
 				List<Video> videoList = ch.getVideoList();
 				for(Video v : videoList) {
 					System.out.println(v.getID()+v.getName());

@@ -66,12 +66,20 @@ public class Course {
 	public void setID(int iD) {
 		this.ID = iD;
 	}
-	public String getcName() {
+	
+	public String getCName() {
 		return cName;
 	}
-	public void setcName(String cName) {
+	public void setCName(String cName) {
 		this.cName = cName;
 	}
+	//	
+//	public String getcName() {
+//		return cName;
+//	}
+//	public void setcName(String cName) {
+//		this.cName = cName;
+//	}
 	public int getPrice() {
 		return price;
 	}

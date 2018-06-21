@@ -167,7 +167,7 @@ public class CourseDaoImpl {
 		return list;
 	}
 	
-	/*public Boolean addCart(int id, int ID) {
+	public Boolean addCart(int id, int ID) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -200,7 +200,7 @@ public class CourseDaoImpl {
 		session.close();
 		return true;
 	}
-	*/
+	
 	public List<Cart> selectById(String[] c){
 		Session session = sessionFactory.openSession();
 		List<Cart> list = new ArrayList<Cart>();

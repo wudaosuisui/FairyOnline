@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fairyonline.course.controller.CourseControllerImpl;
 import com.fairyonline.course.entity.Course;
 import com.fairyonline.course.entity.Video;
 import com.fairyonline.teacher.entity.Teacher;
@@ -53,7 +54,8 @@ public class UserController {
 		
 		@Resource
 		private UserServiceImpl userServiceImpl;
-		
+		@Resource
+		private CourseControllerImpl courseControllerImpl;
 		/*@RequestMapping("/userList1")
 		public String list(Model model) {
 			List<User> list = this.userServiceImpl.listAll();
@@ -129,7 +131,8 @@ public class UserController {
 				session.setAttribute("userLogin2",userLogin2);
 				model.addAttribute("admin",userName2);
 				System.out.println("login执行成功");
-				return "course/CurriculumSpecial";//"user/index"
+//				return "course/CurriculumSpecial";//"user/index"
+				return courseControllerImpl.getList(model);
 			}else {
 				model.addAttribute("errormsg","用户名或密码错误");
 				return "user/login";
@@ -158,8 +161,6 @@ public class UserController {
 					user.setSex(sex);
 					user.settName(tName);
 					user.setUserLogin(userLogin);
-					
-					
 					/*
 					// 处理上传的单个图片    
 				    String originalFileName = picture.getOriginalFilename();// 原始名称
@@ -181,7 +182,6 @@ public class UserController {
 				       // user.setImg(user.getImg());
 				    }
 				    */
-					
 					if(picture != null) {
 						String name = picture.getName();
 						System.out.println(name);

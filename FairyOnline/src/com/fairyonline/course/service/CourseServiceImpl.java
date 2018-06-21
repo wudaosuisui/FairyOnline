@@ -88,8 +88,9 @@ public class CourseServiceImpl {
 			cdi.addCart(id, ID);
 	}
     
-    public List<Cart> selectById(String[] c){
-			List<Cart> list = cdi.selectById(c);
+    public List<Cart> selectListById(int[] c){
+    	System.out.println("service  c is "+c[0]);
+			List<Cart> list = cdi.selectListById(c);
 			return list;
 	}
     

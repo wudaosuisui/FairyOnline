@@ -59,7 +59,7 @@
     		<div id="body3">
     	
     		   <div id="body2-checkbox">
-    		         <input name="cartId" type="checkbox" id="all" class="whole_check" value="${c.cartId }" />
+    		         <input name="cartIds" type="checkbox" id="all" class="whole_check" value="${c.cartId }" />
     		    </div> 
     		   <div id="l"><p>全选<p></div> 
     		</div>

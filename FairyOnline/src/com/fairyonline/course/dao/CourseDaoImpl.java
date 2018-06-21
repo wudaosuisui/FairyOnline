@@ -201,13 +201,16 @@ public class CourseDaoImpl {
 		return true;
 	}
 	
-	public List<Cart> selectById(String[] c){
+	public List<Cart> selectListById(int[] c){
 		Session session = sessionFactory.openSession();
 		List<Cart> list = new ArrayList<Cart>();
-		for(int i =0; i < c.length; i ++) {
-			Query query = session.createQuery("from Cart where cartId=?");
-			query.setParameter(0, Integer.parseInt(c[i]));
-			Cart cart = (Cart)query.uniqueResult();
+		System.out.println("c is "+c[0]);
+		for(int i :c) {
+//		for(int i =0; i < c.length; i ++) {
+//			Query query = session.createQuery("from Cart where cartId=?");
+//			query.setParameter(0, Integer.parseInt(c[i]));
+//			Cart cart = (Cart)query.uniqueResult();
+			Cart cart  = session.get(Cart.class, i);
 			list.add(cart);
 		}
 		return list;

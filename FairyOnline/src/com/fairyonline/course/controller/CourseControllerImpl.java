@@ -154,17 +154,21 @@ public class CourseControllerImpl {
 		}
 		
 		@RequestMapping("/addcart")
-		public String addCart(int id,int ID) {
+		public String addCart(Model model,int id,int ID) {
 			System.out.println(ID);
 			csi.addCart(id, ID);
-			return "course/CurriculumSpecial";
+//			return "course/CurriculumSpecial";
+			return getList(model);
 		}
 		
 		@RequestMapping("/carttoorders")
-		public String toOrdersCourse(Model model,HttpServletRequest request) {
+		public String toOrdersCourse(Model model,HttpServletRequest request,
+				@RequestParam(value = "cartId", required = false) int[] iList
+				) {
 			System.out.println("cartcartcart");
-			String[] c = request.getParameterValues("cart");
-			List<Cart> list = csi.selectById(c);	
+//			String[] c = request.getParameterValues("cartId");
+			System.out.println("controller  c is "+iList[0]);
+			List<Cart> list = csi.selectListById(iList);	
 			int sum = 0;
 			for(int i = 0; i < list.size(); i ++) {
 				sum+= list.get(i).getCourseId().getPrice();//* list.get(i).getCount();

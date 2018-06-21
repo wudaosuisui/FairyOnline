@@ -177,15 +177,10 @@ public class CourseControllerImpl {
 		//删除购物车列表信息
 		@RequestMapping("/deletecart")
 		public String deleteCrouse(Model model,int cartId,int uid) {//,int uid
-//			System.out.println("model is "+model.toString());
-//			Map message =new HashMap<String, Object>(2);
-//			message = model.asMap();
-//			System.out.println("message is =  "+message.toString());
-//			String id = (String)message.get("user");
 			System.out.println("------------------------------------delete");
 			csi.deleteCart(cartId);
-//			return selectAll(model,uid);
-			return "redirect:cart";//redirect:cart
+			return selectAll(model,uid);
+//			return "redirect:cart";//redirect:cart
 		}
 		//后台购物车列表
 		@RequestMapping("/cartlist1")

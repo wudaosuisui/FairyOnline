@@ -55,6 +55,7 @@
     		<button><a href="">教师（主页）</a></button>
     		</div>
     		<form action="../course/carttoorders" id="userForm">
+    		<input type="hidden" name="uid" value="${user.id}">
     		<div id="body3">
     	
     		   <div id="body2-checkbox">

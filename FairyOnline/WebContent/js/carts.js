@@ -244,7 +244,7 @@ $(function () {
 function delet(){
 	var str='';
 	// var chcs=$("input[name='chcs']");
-	var cart = document.getElementsByName('cart');
+	var cart = document.getElementsByName('cartId');
 	for(var i=0;i<cart.length;i++){
 	if(cart[i].checked){
 	str+=cart[i].value+',';

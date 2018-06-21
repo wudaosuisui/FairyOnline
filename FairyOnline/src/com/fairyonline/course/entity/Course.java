@@ -47,14 +47,14 @@ public class Course {
 	public Course() {
 		
 	}
-	public Course(String cName,int Price,Date UPTime) {
-		this.cName=cName;
+	public Course(String Name,int Price,Date UPTime) {
+		this.cName=Name;
 		this.price=Price;
 		this.UPTime = UPTime;
 	
 		
 	}
-	public Course(String cName2, int price2, java.sql.Date now1, int tID2) {
+	public Course(String Name, int price, java.sql.Date now, int tID) {
 		// TODO Auto-generated constructor stub
 	}
 	@Id
@@ -73,13 +73,12 @@ public class Course {
 	public void setCName(String cName) {
 		this.cName = cName;
 	}
-	//	
-//	public String getcName() {
-//		return cName;
-//	}
-//	public void setcName(String cName) {
-//		this.cName = cName;
-//	}
+	public String getcName() {
+		return cName;
+	}
+	public void setcName(String cName) {
+		this.cName = cName;
+	}
 	public int getPrice() {
 		return price;
 	}
@@ -130,26 +129,6 @@ public class Course {
 	public void setChaptersList(List<Chapters> chaptersList) {
 		this.chaptersList = chaptersList;
 	}
-//<<<<<<< HEAD
-//	@OneToMany
-//	@JoinColumn(name="courseId")
-//	public Set<Cart> getCartSet() {
-//		return cartSet;
-//	}
-//	public void setCartSet(Set<Cart> cartSet) {
-//		this.cartSet = cartSet;
-//	}
-//	@ManyToMany
-//	@JoinTable(name="CARTLIST", 
-//	    joinColumns=@JoinColumn(name="OID"),
-//	    inverseJoinColumns=@JoinColumn(name="CID"))
-//	public Set<Orders> getOrderSet() {
-//		return orderSet;
-//	}
-//	public void setOrderSet(Set<Orders> orderSet) {
-//		this.orderSet = orderSet;
-//	}
-//=======
 	@OneToMany
 	@JoinColumn(name="courseId")
 	public Set<Cart> getCartSet() {
@@ -176,10 +155,9 @@ public class Course {
 	public void setFcSet(Set<FollowCourse> fcSet) {
 		this.fcSet = fcSet;
 	}
-//>>>>>>> refs/remotes/origin/sy
 	@Override
 	public String toString() {
-		return "Course [ID=" + ID + ", CName=" + cName + ", Price=" + price + ", categoryID=" + categoryID + ", UPTime="
+		return "Course [ID=" + ID + ", Name=" + cName + ", Price=" + price + ", categoryID=" + categoryID + ", UPTime="
 				+ UPTime + ", tId=" + tId + ", chaptersList=" + chaptersList + "]";
 	}
 	

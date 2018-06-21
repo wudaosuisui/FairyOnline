@@ -5,7 +5,9 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -131,7 +133,7 @@ public class CourseControllerImpl {
 			List<Chapters> chapterlist = course.getChaptersList();
 			System.out.println(chapterlist.iterator());
 			for(Chapters ch : chapterlist  ) {
-				System.out.println(course.getCName()+ch.getChapterNum()+ch.getChapterName());
+//				System.out.println(course.getcName()+ch.getChapterNum()+ch.getChapterName());
 				List<Video> videoList = ch.getVideoList();
 				for(Video v : videoList) {
 					System.out.println(v.getID()+v.getName());
@@ -174,10 +176,16 @@ public class CourseControllerImpl {
 		}
 		//删除购物车列表信息
 		@RequestMapping("/deletecart")
-		public String deleteCrouse(int cartId,int uid) {
-			System.out.println("delete");
+		public String deleteCrouse(Model model,int cartId,int uid) {//,int uid
+//			System.out.println("model is "+model.toString());
+//			Map message =new HashMap<String, Object>(2);
+//			message = model.asMap();
+//			System.out.println("message is =  "+message.toString());
+//			String id = (String)message.get("user");
+			System.out.println("------------------------------------delete");
 			csi.deleteCart(cartId);
-			return "redirect:cart";
+//			return selectAll(model,uid);
+			return "redirect:cart";//redirect:cart
 		}
 		//后台购物车列表
 		@RequestMapping("/cartlist1")

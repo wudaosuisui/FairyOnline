@@ -67,7 +67,7 @@
              <c:forEach  var="c" items="${user.cartSet}">
     		<div id="body2" class="cartBox">
     		    <div id="body2-checkbox">
-    		         <input name="cart" id="save" type="checkbox" class="son_check" value="${c.cartId }" />
+    		         <input name="cartId" id="save" type="checkbox" class="son_check" value="${c.cartId }" />
     		    </div> 
     		    <div id="body2-img">
                 <img src="../images/5.png">

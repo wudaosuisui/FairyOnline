@@ -43,7 +43,9 @@ public class TtsMain {
 
     private String cuid = "1234567JAVA";
 
-    public String run() throws IOException, DemoException {
+    private String savUrl =  "E:\\Program Files\\JavaEE\\eclipseWork\\FairyOnline\\mps\\";
+    
+    public String run(String name) throws IOException, DemoException {
         TokenHolder holder = new TokenHolder(appKey, secretKey, TokenHolder.ASR_SCOPE);
         holder.resfresh();
         String token = holder.getToken();
@@ -62,7 +64,7 @@ public class TtsMain {
         String contentType = conn.getContentType();
         if (contentType.contains("mp3")) {
             byte[] bytes = ConnUtil.getResponseBytes(conn);
-            File file = new File("result.mp3"); // 打开mp3文件即可播放
+            File file = new File(savUrl+name+".mp3"); // 打开mp3文件即可播放
             // System.out.println( file.getAbsolutePath());
             FileOutputStream os = new FileOutputStream(file);
             os.write(bytes);

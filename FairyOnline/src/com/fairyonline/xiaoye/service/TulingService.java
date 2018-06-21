@@ -34,19 +34,19 @@ public class TulingService {
 		String statusCode =result.getStatusCode();//状态码
 		String desc = result.getDesc();//状态码描述
 		//执行操作
-		//“询问音频”-》“询问文字”
-		String askStr = null;
-		JSONObject jsonObject =null;
-		try {
-			askStr = new AsrMain(askWar).run();
-			jsonObject = JSONArray.parseObject(askStr);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (DemoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		//“询问音频”-》“询问文字”
+//		String askStr = null;
+//		JSONObject jsonObject =null;
+//		try {
+//			askStr = new AsrMain(askWar).run();
+//			jsonObject = JSONArray.parseObject(askStr);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (DemoException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 //		//“询问文字”-》图灵-》“答案文字”
 //		String Url = "utl";
 //		Map pr =new HashMap<String, Object>(1);
@@ -54,10 +54,10 @@ public class TulingService {
 //		String jsoStr = HttpClientTool.doGet(Url,pr);//获取返回值json String
 //		JSONObject jsonObject = JSONArray.parseObject(jsoStr);//将  json String -》 json 
 //		String anStr = jsonObject.getString("anStr");
-//		//“答案文字”-》“答案音频”
-//		String anWav=null;
+		//“答案文字”-》“答案音频”
+		String anWav=null;
 //		try {
-//			anWav = new TtsMain("测试文字").run();
+//			anWav = new TtsMain("测试文字1").run("anName1");
 //		} catch (IOException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
@@ -72,9 +72,9 @@ public class TulingService {
 //			put("askWar",askWar);
 //			put("anStr",anStr);
 //		}};
-		message.put("askStr",askStr);
-//		message.put("anWav",anWav);
-		message.put("jsonObject", jsonObject);
+//		message.put("askStr",askStr);
+		message.put("anWav",anWav);
+//		message.put("jsonObject", jsonObject);
 		//存入返回值
 		result.getResult().put("message", message);
 		result.setStatusCode(statusCode);

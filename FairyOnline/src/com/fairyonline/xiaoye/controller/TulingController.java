@@ -30,7 +30,7 @@ public class TulingController {
 	@PostMapping("/test")
 	public void test(HttpServletResponse response
 			/*@RequestParam(value="askWav") String askWav*/) {
-		ResponseJsonUtils.json(response, tuSer.test("E:\\Program Files\\JavaEE\\eclipse\\result.mp3"));
+		ResponseJsonUtils.json(response, tuSer.test(url+"mps\\result.mp3"));
 	}
 	
 	@PostMapping("/test1")
@@ -56,7 +56,7 @@ public class TulingController {
 		System.out.println("get test1");
         AudioUtils utils  = AudioUtils.getInstance();
         System.out.println("new utils success");
-        utils.convertMP32Pcm(url+"mps\\result.mp3",url+"pcms\\result1.pcm");
+        utils.convertMP32Pcm(url+"\\mps\\anName1.mp3",url+"pcms\\result1.pcm");
         System.out.println("out test1");
 	}
 	

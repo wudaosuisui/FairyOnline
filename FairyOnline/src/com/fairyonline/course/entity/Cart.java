@@ -25,6 +25,13 @@ public class Cart{
 	// private int count;
      private User userId;
    	 private Course courseId;
+   	 
+   	 public Cart() {}
+   	 public Cart(int id ) {
+   		 this.cartId = id;
+   	 }
+   	 
+   	 
    	@Id
 	@GeneratedValue(generator="my_gen")
     @GenericGenerator(name="my_gen", strategy="increment")  
@@ -86,8 +93,8 @@ public class Cart{
 //		public void setCount(int count) {
 //			this.count = count;
 //		}
-		@ManyToOne(cascade = { CascadeType.PERSIST,CascadeType.MERGE},optional = false,fetch = FetchType.LAZY)
-//     	@ManyToOne
+//		@ManyToOne(cascade = { CascadeType.PERSIST,CascadeType.MERGE},optional = false,fetch = FetchType.LAZY)
+     	@ManyToOne
 		@JoinColumn(name="userId")
 		public User getUserId() {
 			return userId;
@@ -96,7 +103,8 @@ public class Cart{
 		public void setUserId(User userId) {
 			this.userId = userId;
 		}
-		@ManyToOne
+		@ManyToOne(cascade = { CascadeType.PERSIST,CascadeType.MERGE},fetch=FetchType.EAGER)
+//		@ManyToOne(cascade = { CascadeType.PERSIST,CascadeType.MERGE}) 
 		@JoinColumn(name="courseId")
 		public Course getCourseId() {
 			return courseId;

@@ -226,27 +226,37 @@ public class CourseControllerImpl {
 //				HttpSession httpsession,
 				Model model,
 				HttpServletRequest request ) {
+			System.out.println("get  produceorders success");
 			if(sub.equals("提交订单")) {
+				
+//				Session session = (Session) sessionFactory.openSession();
 				//创建订单
-				Orders ord = new Orders(usi.findUserById(uid),new Date());
-				//获取catlist
-				List<Cart> cartList = csi.selectListById(cids);
-				// catlist -> OrdersList list
-				List<OrdersList> orList = csi.clTol(cartList,ord);
+				csi.produceOrders(cids, uid);
+//				Orders ord = new Orders(usi.findUserById(uid),new Date());
+				//获取catlist 
+//				List<Cart> list 	= csi.selectListById(iList);
+//				List<Cart> cartList = csi.selectListById(cids);
+				// cat Id list -> OrdersList list
+//				List<OrdersList> orList = csi.clTol(cids,ord);
+				System.out.println("new all success");
 				//存入
-				Session session = (Session) sessionFactory.openSession();
-				orDao.saveOrd(ord);
-				orDao.saveOrdList(orList);
-				//删除购物车内 内容
-				csi.deletCatByList(cartList);
-				try {
-					session.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				
+//				orDao.saveOrd(ord);
+//				orDao.saveOrdList(orList);
+//				System.out.println("save all success");
+//				//删除购物车内 内容
+				csi.deletCatByList(cids);
+//				System.out.println("delet  cart success");
+//				try {
+//					session.close();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+				System.out.println("go to payment");
 				return "course/payment";//前往支付界面
 			}else {
+				System.out.println("back to cart");
 				return selectAll(model,uid);//返回购物车界面
 			}
 //			List<OrdersList> ItemList  = (List<OrdersList>)session.getAttribute("ItemList");

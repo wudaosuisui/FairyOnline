@@ -25,6 +25,7 @@ import com.fairyonline.course.entity.FollowCourse;
 import com.fairyonline.course.entity.Orders;
 import com.fairyonline.course.entity.OrdersList;
 import com.fairyonline.course.entity.Video;
+import com.fairyonline.user.dao.UserDaoImpl;
 import com.fairyonline.user.entity.User;
 import com.fairyonline.user.entity.UserLogin;
 
@@ -35,6 +36,8 @@ public class CourseServiceImpl {
 	private SessionFactory sessionFactory;
 	@Resource
 	private CourseDaoImpl cdi;
+	@Resource
+	private UserDaoImpl usDao;
 	
 	/*添加对象*/
 	public void Add(Course course) {
@@ -90,14 +93,19 @@ public class CourseServiceImpl {
 	}
     
     public List<Cart> selectListById(int[] c){
-    	System.out.println("service  c is "+c[0]);
 			List<Cart> list = cdi.selectListById(c);
 			return list;
 	}
-    public void deletCatByList(List<Cart> clist) {
-    	cdi.deletCartByList(clist);
+    public void deletCatByList(int[] cids) {
+    	cdi.deletCartByList(cids);
     }
-    
+    public void  produceOrders(int[] cids,int uid) {
+    	Session session =  sessionFactory.openSession();
+    	Orders ord = new Orders(usDao.findUserById(uid),new Date());
+    	List<OrdersList> orList = this.clTol(cids, ord);
+    	
+    	session.close();
+    }
     public List<Cart> selectByUserId(int userId){
 		List<Cart> list = cdi.selectByUserId(userId);
 		return list;
@@ -159,10 +167,14 @@ public class CourseServiceImpl {
 	}
 	
 	//通过catlist -> orderlist list
-	public List<OrdersList> clTol(List<Cart> cartList,Orders ord){
-		List<OrdersList> orList = new ArrayList<OrdersList>();
+	public List<OrdersList> clTol(int[] cids,Orders ord){
+		List<OrdersList> orList = new ArrayList(cids.length);
+		//获取cart list
+		List<Cart> cartList =  cdi.selectListById(cids);
 		for(Cart c : cartList) {
-			orList.add(new OrdersList(c.getCourseId(),ord));
+			System.out.println("c.getCourseId() name is  "+c.getCourseId().getCName());
+//			OrdersList orl = new OrdersList(c.getCourseId(),ord);
+//			orList.add(orl);
 		}
 		return orList;
 	}

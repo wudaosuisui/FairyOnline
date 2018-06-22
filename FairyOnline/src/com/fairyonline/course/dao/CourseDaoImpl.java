@@ -202,26 +202,24 @@ public class CourseDaoImpl {
 	}
 	
 	public List<Cart> selectListById(int[] c){
-		Session session = sessionFactory.openSession();
-		List<Cart> list = new ArrayList<Cart>();
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tra = session.beginTransaction();
+		List<Cart> list = new ArrayList(c.length);
 		System.out.println("c is "+c[0]);
+		Cart cart=null;
 		for(int i :c) {
-//		for(int i =0; i < c.length; i ++) {
-//			Query query = session.createQuery("from Cart where cartId=?");
-//			query.setParameter(0, Integer.parseInt(c[i]));
-//			Cart cart = (Cart)query.uniqueResult();
-			Cart cart  = session.get(Cart.class, i);
+			cart  = session.get(Cart.class, i);
 			list.add(cart);
 		}
+		tra.commit();
 		return list;
 	}
 	
-	public void deletCartByList(List<Cart> clist) {
+	public void deletCartByList(int[] cids) {
 		Session session = sessionFactory.getCurrentSession();//获取sessio
 		Transaction tra = session.beginTransaction();//开启事务
-		for(Cart c : clist) {
-			session.delete(c);
-		}
+		for(int c : cids) 
+			session.delete(new Cart(c));
 		session.flush();
 		tra.commit();
 		System.out.println("out dao");

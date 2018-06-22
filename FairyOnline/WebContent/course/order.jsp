@@ -37,11 +37,11 @@
 		<div id="content">
 		    <div id="page">
 		    	<form action="../course/produceorders">
-		    	<input type="hidden" name="uid" value="${user.id}">
+		    	<input type="hidden" name="uid" value="${userLogin2.user.id }">
 		    	    <div id="o1">
 		    	     	<h2>订单号：</h2>
 		    	        <p>*********************</p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-		    	        <span><a href="../course/cartlist">返回</a></span>
+		    	        <span><a href="../course/cartlist">返回</a></span><!-- 返回到购物车界面 -->
 		    	    </div>
 		    	    <div id="o2">
 		    	        <table>
@@ -51,7 +51,7 @@
 		    	    	    </tr>
 		    	         <c:forEach var="o" items="${toorders }">
 		    	               <tr>
-		    	               	<input type="hidden" name="cid" value="${o.courseId.id}">
+		    	               	<input type="hidden" name="cid" value="${o.cartId }">
 		    	    	     	<td style="vertical-align:middle; text-align:center;">${o.courseId.cName }</td>
 		    	    	    	<td style="vertical-align:middle; text-align:center;">${o.courseId.price }元</td>
 		    	    	    </tr>
@@ -63,8 +63,8 @@
 		    	    	<h2>合计：${sum }元</h2>
 		    	    </div>
 		    	    <div id="submit">
-		    	    	<input type="button" value="取消订单"/>
-		    	    	<input type="submit" value="提交订单"/>
+		    	    	<input name="sub" type="button" value="取消订单"/>
+		    	    	<input name="sub" type="submit" value="提交订单"/>
 		    	    </div>
 		    	</form>
 		    </div>

@@ -1,5 +1,6 @@
 package com.fairyonline.course.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -93,6 +94,9 @@ public class CourseServiceImpl {
 			List<Cart> list = cdi.selectListById(c);
 			return list;
 	}
+    public void deletCatByList(List<Cart> clist) {
+    	cdi.deletCartByList(clist);
+    }
     
     public List<Cart> selectByUserId(int userId){
 		List<Cart> list = cdi.selectByUserId(userId);
@@ -152,6 +156,15 @@ public class CourseServiceImpl {
 			}
 		}
 		user.setCartSet(cartList);
+	}
+	
+	//通过catlist -> orderlist list
+	public List<OrdersList> clTol(List<Cart> cartList,Orders ord){
+		List<OrdersList> orList = new ArrayList<OrdersList>();
+		for(Cart c : cartList) {
+			orList.add(new OrdersList(c.getCourseId(),ord));
+		}
+		return orList;
 	}
 	
 //	/*往订单中 添加一本书*/

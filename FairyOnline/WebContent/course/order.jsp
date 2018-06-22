@@ -36,11 +36,12 @@
 		 <!--主体-->
 		<div id="content">
 		    <div id="page">
-		    	<form action="">
+		    	<form action="../course/produceorders">
+		    	<input type="hidden" name="uid" value="${user.id}">
 		    	    <div id="o1">
 		    	     	<h2>订单号：</h2>
 		    	        <p>*********************</p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-		    	        <span><a href="">返回</a></span>
+		    	        <span><a href="../course/cartlist">返回</a></span>
 		    	    </div>
 		    	    <div id="o2">
 		    	        <table>
@@ -50,6 +51,7 @@
 		    	    	    </tr>
 		    	         <c:forEach var="o" items="${toorders }">
 		    	               <tr>
+		    	               	<input type="hidden" name="cid" value="${o.courseId.id}">
 		    	    	     	<td style="vertical-align:middle; text-align:center;">${o.courseId.cName }</td>
 		    	    	    	<td style="vertical-align:middle; text-align:center;">${o.courseId.price }元</td>
 		    	    	    </tr>

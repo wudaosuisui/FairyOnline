@@ -215,7 +215,17 @@ public class CourseDaoImpl {
 		}
 		return list;
 	}
-
+	
+	public void deletCartByList(List<Cart> clist) {
+		Session session = sessionFactory.getCurrentSession();//获取sessio
+		Transaction tra = session.beginTransaction();//开启事务
+		for(Cart c : clist) {
+			session.delete(c);
+		}
+		session.flush();
+		tra.commit();
+		System.out.println("out dao");
+	}
 	
 	public List<Cart> selectByUserId(int userId) {
 		// TODO Auto-generated method stub

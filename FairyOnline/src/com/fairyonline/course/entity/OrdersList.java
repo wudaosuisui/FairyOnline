@@ -25,8 +25,7 @@ public class OrdersList {
 	
 	public OrdersList() {}
 
-	public OrdersList(int id, Course course,Orders order) {
-		this.id = id;
+	public OrdersList( Course course,Orders order) {
 		this.course = course;
 		this.order= order;
 	}

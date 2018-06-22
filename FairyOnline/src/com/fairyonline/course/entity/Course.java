@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -57,21 +58,25 @@ public class Course {
 	public Course(String Name, int price, java.sql.Date now, int tID) {
 		// TODO Auto-generated constructor stub
 	}
-	@Id
-	@GeneratedValue(generator="my_gen")
-    @GenericGenerator(name="my_gen", strategy="increment")
+//	@Id
+//	@GeneratedValue(generator="my_gen")
+//    @GenericGenerator(name="my_gen", strategy="increment")
+//	@Column(name="id")
 	public int getID() {
 		return ID;
 	}
 	public void setID(int iD) {
 		this.ID = iD;
 	}
-	
-	public String getCName() {
-		return cName;
+	@Id
+	@GeneratedValue(generator="my_gen")
+    @GenericGenerator(name="my_gen", strategy="increment")
+	@Column(name="id")
+	public int getId() {
+		return ID;
 	}
-	public void setCName(String cName) {
-		this.cName = cName;
+	public void setId(int iD) {
+		this.ID = iD;
 	}
 	public String getcName() {
 		return cName;
@@ -79,6 +84,18 @@ public class Course {
 	public void setcName(String cName) {
 		this.cName = cName;
 	}
+	public String getCName() {
+		return cName;
+	}
+	public void setCName(String cName) {
+		this.cName = cName;
+	}
+//	public String getcName() {
+//		return cName;
+//	}
+//	public void setcName(String cName) {
+//		this.cName = cName;
+//	}
 	public int getPrice() {
 		return price;
 	}

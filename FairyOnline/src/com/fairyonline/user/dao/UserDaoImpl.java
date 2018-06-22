@@ -104,6 +104,15 @@ public class UserDaoImpl {
 		return query.list();
 	}
 	
+	public User getUserById(int id){
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tra = session.beginTransaction();//¿ªÆôÊÂÎñ
+		User u = session.get(User.class, id);
+		session.flush();
+		tra.commit();
+		return u;
+	}
+	
 	public Teacher findTeacher(String Name) {
 		Query query = this.sessionFactory.getCurrentSession().createQuery("from Teacher where Name=?");
 		query.setParameter(0,Name);

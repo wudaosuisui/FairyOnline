@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fairyonline.course.dao.OrdersDao;
 import com.fairyonline.course.entity.Cart;
 import com.fairyonline.course.entity.Category;
 import com.fairyonline.course.entity.Chapters;
@@ -48,7 +50,8 @@ public class CourseControllerImpl {
 	private CourseServiceImpl csi;
 	@Resource
 	private SessionFactory sessionFactory;
-	
+	@Resource
+	private  OrdersDao orDao;
 	//添加
 	
 		@RequestMapping(value="/Add")/*方法对应地址*/
@@ -94,9 +97,9 @@ public class CourseControllerImpl {
 		}
 		//收藏课程
 		@RequestMapping("/collection")
-		public String collection(int id,int ID) {
+		public String collection(Model model,int id,int ID) {
 			csi.collection(id, ID);
-			return "course/CurriculumSpecial";
+			return getList(model);
 		}
 		//取消收藏
 		@RequestMapping("/uncollection")
@@ -161,7 +164,7 @@ public class CourseControllerImpl {
 			return getList(model);
 		}
 		
-		@RequestMapping("/carttoorders")
+		@RequestMapping("/carttoorders")//从购物车前往临时订单页面
 		public String toOrdersCourse(Model model,HttpServletRequest request,
 				@RequestParam(value = "cartId", required = false) int[] iList
 				) {
@@ -181,10 +184,8 @@ public class CourseControllerImpl {
 		//删除购物车列表信息
 		@RequestMapping("/deletecart")
 		public String deleteCrouse(Model model,int cartId,int uid) {//,int uid
-			System.out.println("------------------------------------delete");
 			csi.deleteCart(cartId);
 			return selectAll(model,uid);
-//			return "redirect:cart";//redirect:cart
 		}
 		//后台购物车列表
 		@RequestMapping("/cartlist1")
@@ -219,25 +220,40 @@ public class CourseControllerImpl {
 		/*生成订单*/
 		@RequestMapping("/produceorders")
 		public String produceOrders(
-//				@RequestParam("i") int[] iList,
-				@RequestParam(value = "i", required = false) int[] iList,
+				@RequestParam("uid") int uid,
+				@RequestParam(value = "cid", required = false) int[] cids,
 				@RequestParam("sub") String sub,
-				HttpSession session,
+//				HttpSession httpsession,
+				Model model,
 				HttpServletRequest request ) {
-			if(sub.equals("支付选中商品")) {//只支付部分商品
-//				if(session.getAttribute("ItemList")!=null)
-//					session.removeAttribute("ItemList");
-				List<OrdersList> ItemS = new ArrayList<OrdersList>();
-				List<OrdersList> ItemList  = (List<OrdersList>)session.getAttribute("ItemList");
-				for(int i : iList) 
-					ItemS.add(ItemList.get(i));
-				session.setAttribute("ItemList", ItemS);
+			if(sub.equals("提交订单")) {
+				//创建订单
+				Orders ord = new Orders(usi.findUserById(uid),new Date());
+				//获取catlist
+				List<Cart> cartList = csi.selectListById(cids);
+				// catlist -> OrdersList list
+				List<OrdersList> orList = csi.clTol(cartList,ord);
+				//存入
+				Session session = (Session) sessionFactory.openSession();
+				orDao.saveOrd(ord);
+				orDao.saveOrdList(orList);
+				//删除购物车内 内容
+				csi.deletCatByList(cartList);
+				try {
+					session.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return "course/payment";//前往支付界面
+			}else {
+				return selectAll(model,uid);//返回购物车界面
 			}
-			List<OrdersList> ItemList  = (List<OrdersList>)session.getAttribute("ItemList");
-			Orders orders = new Orders(new Date(),ItemList,(User)session.getAttribute("userInfo"));
-		//	orders.setPrice();//自动计算总价格
-			this.csi.save(orders,session);//将建立好的orders 和session交给 service进行后续处理
-			return "Shop/Orders";
+//			List<OrdersList> ItemList  = (List<OrdersList>)session.getAttribute("ItemList");
+//			Orders orders = new Orders(new Date(),ItemList,(User)session.getAttribute("userInfo"));
+//		//	orders.setPrice();//自动计算总价格
+//			this.csi.save(orders,session);//将建立好的orders 和session交给 service进行后续处理
+//			return "Shop/Orders";
 		}
 //		/*添加一本书*/
 //		@RequestMapping("/addone")
@@ -269,7 +285,11 @@ public class CourseControllerImpl {
 			return "Shop/paySuccess";
 		}
 		//保存订单
-		
+		@RequestMapping("/uporder")
+		public String	upOrder(HttpSession session) {
+			this.csi.havePay(session);
+			return "Shop/paySuccess";
+		}
 //		//往购物车中 添加商品（子订单）
 //		@RequestMapping("/addItem")
 //		public String addItem(@RequestParam("book") Book book,

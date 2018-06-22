@@ -31,17 +31,15 @@ public class Orders {
 	private User userId;
 	private Date time;
 	private Date Ptime;
-	private int state;
-	private Set<Course> courseSet = new HashSet<Course>();
+	private Boolean state;
 	private List<OrdersList> Item;//子订单列表  ont to many 单向
 
-    public Orders(Date time,List<OrdersList> Item,User userId) {
-    
+    public Orders(User userId,Date time) {
     	this.time = time;
-    	this.Item = Item;
     	this.userId = userId;
+    	this.state = false;
     }
-	
+    
 	@Id
 	@GeneratedValue(generator="my_gen")
     @GenericGenerator(name="my_gen", strategy="increment")  
@@ -71,19 +69,19 @@ public class Orders {
 	public void setPtime(Date ptime) {
 		this.Ptime = ptime;
 	}
-	public int getState() {
+	public Boolean getState() {
 		return state;
 	}
-	public void setState(int state) {
+	public void setState(Boolean state) {
 		this.state = state;
 	}
-	@ManyToMany//(mappedBy="Course")
-	public Set<Course> getCourseSet() {
-		return courseSet;
-	}
-	public void setCourseSet(Set<Course> courseSet) {
-		this.courseSet = courseSet;
-	}
+//	@ManyToMany//(mappedBy="Course")
+//	public Set<Course> getCourseSet() {
+//		return courseSet;
+//	}
+//	public void setCourseSet(Set<Course> courseSet) {
+//		this.courseSet = courseSet;
+//	}
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)//积极加载
    // @Cascade(value=CascadeType.ALL)
 	@JoinColumn(name="order")

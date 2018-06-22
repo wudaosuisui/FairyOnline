@@ -32,7 +32,7 @@
 		<!--主体-->
 		<div id="contend">
 			<p><a href="">返回</a></p>
-			<form action="">
+			<form action="../course/cartlist">
 		    <h1>总计金额：**元</h1>
 		    <h2>请输入6位密码</h2>
 		    <input style="height:30px;width:200px;" type="password" placeholder="单行输入"/>

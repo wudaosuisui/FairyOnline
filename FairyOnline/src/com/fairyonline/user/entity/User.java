@@ -48,7 +48,7 @@ public class User {
 	//private List<User> reportUserList1 = new ArrayList<User>();
 //=======
 	private Set<Cart> cartSet = new HashSet<Cart>();
-	private Set<Orders> orderSet = new HashSet<Orders>();
+//	private Set<Orders> orderSet = new HashSet<Orders>();
 	private Set<FollowCourse> fcSet = new HashSet<FollowCourse>();
 //>>>>>>> refs/remotes/origin/sy
 	
@@ -143,14 +143,14 @@ public class User {
 	public void setCartSet(Set<Cart> cartSet) {
 		this.cartSet = cartSet;
 	}
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name="UserId")
-	public Set<Orders> getOrderSet() {
-		return orderSet;
-	}
-	public void setOrderSet(Set<Orders> orderSet) {
-		this.orderSet = orderSet;
-	}
+//	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//	@JoinColumn(name="UserId")
+//	public Set<Orders> getOrderSet() {
+//		return orderSet;
+//	}
+//	public void setOrderSet(Set<Orders> orderSet) {
+//		this.orderSet = orderSet;
+//	}
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="fuid")
 	public Set<FollowCourse> getFcSet() {

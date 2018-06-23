@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.fairyonline.course.dao.CourseDaoImpl;
+import com.fairyonline.course.dao.OrdersDao;
 import com.fairyonline.course.entity.Cart;
 import com.fairyonline.course.entity.CartItem;
 import com.fairyonline.course.entity.Category;
@@ -38,6 +39,8 @@ public class CourseServiceImpl {
 	private CourseDaoImpl cdi;
 	@Resource
 	private UserDaoImpl usDao;
+	@Resource
+	private OrdersDao orDao;
 	
 	/*添加对象*/
 	public void Add(Course course) {
@@ -96,14 +99,24 @@ public class CourseServiceImpl {
 			List<Cart> list = cdi.selectListById(c);
 			return list;
 	}
-    public void deletCatByList(int[] cids) {
-    	cdi.deletCartByList(cids);
+    public void deletCatByList(int[] cids,int uid) {
+    	cdi.deletCartByList(cids,uid);
+    	System.out.println("deletCatByList success ");
     }
     public void  produceOrders(int[] cids,int uid) {
     	Session session =  sessionFactory.openSession();
-    	Orders ord = new Orders(usDao.findUserById(uid),new Date());
-    	List<OrdersList> orList = this.clTol(cids, ord);
-    	
+    	//创建 orders  orderlist
+//    	Orders ord = new Orders(usDao.findUserById(uid),new Date());
+    	Orders ord = orDao.getOrdById(1);
+    	System.out.println("get order id is " + ord.getID());
+    	List<OrdersList> orList = this.crlTorl(cids, ord);
+    	System.out.println("new all success ");
+    	//存入 orders orderlist
+//    	orDao.saveOrd(ord);
+//    	orDao.saveOrdList(orList);
+    	System.out.println("save all success ");
+    	//删除购物车内 内容
+    	this.deletCatByList(cids,uid);
     	session.close();
     }
     public List<Cart> selectByUserId(int userId){
@@ -149,32 +162,32 @@ public class CourseServiceImpl {
 		sessionh.setAttribute("orders", orders);//替换掉之前的订单
 		session.close();
 	}
-	/*HavePay*/  //删除购物车里 已经购买的内容
-	public void havePay(HttpSession session) {
-		User user = (User) session.getAttribute("user");
-		Orders orders = (Orders)session.getAttribute("orders");
-		Set<Cart> cartList = user.getCartSet();
-		List<OrdersList> ItemList = orders.getItem();
-		for(int i = 0 ; i<ItemList.size();i++) {
-			for(int j = 0 ; j<cartList.size();j++) {
-				if(cartList.iterator().next().getCartId()== ItemList.get(i).getCourse().getID()) {
-					cartList.remove(j);
-					j--;
-				}
-			}
-		}
-		user.setCartSet(cartList);
-	}
+//	/*HavePay*/  //删除购物车里 已经购买的内容
+//	public void havePay(HttpSession session) {
+//		User user = (User) session.getAttribute("user");
+//		Orders orders = (Orders)session.getAttribute("orders");
+//		Set<Cart> cartList = user.getCartSet();
+//		List<OrdersList> ItemList = orders.getItem();
+//		for(int i = 0 ; i<ItemList.size();i++) {
+//			for(int j = 0 ; j<cartList.size();j++) {
+//				if(cartList.iterator().next().getCartId()== ItemList.get(i).getCourse().getID()) {
+//					cartList.remove(j);
+//					j--;
+//				}
+//			}
+//		}
+//		user.setCartSet(cartList);
+//	}
 	
 	//通过catlist -> orderlist list
-	public List<OrdersList> clTol(int[] cids,Orders ord){
+	public List<OrdersList> crlTorl(int[] cids,Orders ord){
 		List<OrdersList> orList = new ArrayList(cids.length);
 		//获取cart list
 		List<Cart> cartList =  cdi.selectListById(cids);
 		for(Cart c : cartList) {
 			System.out.println("c.getCourseId() name is  "+c.getCourseId().getCName());
-//			OrdersList orl = new OrdersList(c.getCourseId(),ord);
-//			orList.add(orl);
+			OrdersList orl = new OrdersList(c.getCourseId(),ord);
+			orList.add(orl);
 		}
 		return orList;
 	}

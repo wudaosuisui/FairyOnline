@@ -47,8 +47,8 @@ $(function (){
 		    <div id="page">
 		    	<h1>登录</h1>
 		    	<form action="${ctx}/user/login">
-		    		<p>用户账户</p><input id="txtName" type="text" placeholder="请输入您的账户" name="UserName" required data-validation-required-message="Please enter your UserName."/>
-		    		<p>用户密码</p><input id="txtPass" type="password" placeholder="请输入您的密码" name="PassWord"  required data-validation-required-message="Please enter your PassWord."/>
+		    		<p>用户账户</p><input id="txtName" type="text" placeholder="请输入您的账户" name="UserName" value="name" required data-validation-required-message="Please enter your UserName."/>
+		    		<p>用户密码</p><input id="txtPass" type="password" placeholder="请输入您的密码" name="PassWord" value="123"  required data-validation-required-message="Please enter your PassWord."/>
 		    		</br>
 		    		<input id="login" type="submit" value="登录">
 		    		<a href="regist.html"><input id="regist" type="button" value="前往注册"></a>

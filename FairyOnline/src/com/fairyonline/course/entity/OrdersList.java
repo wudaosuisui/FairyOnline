@@ -19,7 +19,7 @@ public class OrdersList {
 	
 	private int id ;//流水号
 	private Course course;//对应的书 (noe to noe)
-	private Orders order;
+	private Orders orderId;
 //	private int number = 0;//购买的书的数量
 //	private int price;//购买对应数量书的总价
 	
@@ -27,7 +27,7 @@ public class OrdersList {
 
 	public OrdersList( Course course,Orders order) {
 		this.course = course;
-		this.order= order;
+		this.orderId= order;
 	}
 //	public OrdersItem(Book book, int number) {//price 自动计算
 //		this.book = book;
@@ -35,9 +35,12 @@ public class OrdersList {
 //		this.price = this.book.getPrice()*this.number;
 //	}
 	
+//	@Id
+//	@GeneratedValue(generator="id")
+//	@GenericGenerator(name="id",strategy="increment")
 	@Id
-	@GeneratedValue(generator="id")
-	@GenericGenerator(name="id",strategy="increment")
+	@GeneratedValue(generator="my_gen")
+    @GenericGenerator(name="my_gen", strategy="increment")  
 	public int getId() {
 		return id;
 	}
@@ -45,7 +48,7 @@ public class OrdersList {
 	public void setId(int id) {
 		this.id = id;
 	}
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="course")
 	public Course getCourse() {
 		return course;
@@ -55,15 +58,13 @@ public class OrdersList {
 		this.course = course;
 	}
     @ManyToOne
-    @JoinColumn(name="order")
-	public Orders getOrder() {
-		return order;
+    @JoinColumn(name="orderid")
+	public Orders getOrderId() {
+		return orderId;
     }
-	
-
-	public void setOrder(Orders order) {
-		this.order = order;
+	public void setOrderId(Orders orderId) {
+		this.orderId = orderId;
 	}
-    
+
 
 }

@@ -34,6 +34,7 @@ public class Orders {
 	private Boolean state;
 	private List<OrdersList> Item;//子订单列表  ont to many 单向
 
+	public Orders() {}
     public Orders(User userId,Date time) {
     	this.time = time;
     	this.userId = userId;
@@ -82,9 +83,8 @@ public class Orders {
 //	public void setCourseSet(Set<Course> courseSet) {
 //		this.courseSet = courseSet;
 //	}
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)//积极加载
-   // @Cascade(value=CascadeType.ALL)
-	@JoinColumn(name="order")
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)//积极加载  // @Cascade(value=CascadeType.ALL)
+	@JoinColumn(name="orderid")
 	public List<OrdersList> getItem() {
 		return Item;
 	}

@@ -14,7 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.fairyonline.user.entity.User;
 @Entity
-@Table(name="cart")
+//@Table(name="cart")
 public class Cart{
 	
 	 //private Map<String,Course> map = new LinkedHashMap<String, Course>(); 
@@ -42,6 +42,27 @@ public class Cart{
      public void setCartId(int cartId) {
 			this.cartId = cartId;
 		}
+//    @ManyToOne(cascade = CascadeType.REFRESH,fetch=FetchType.EAGER)
+     @ManyToOne(cascade = { CascadeType.PERSIST,CascadeType.MERGE}) 
+	@JoinColumn(name="userId")
+	public User getUserId() {
+		return userId;
+	}
+
+	public void setUserId(User userId) {
+		this.userId = userId;
+	}
+//	@ManyToOne(cascade = { CascadeType.PERSIST,CascadeType.MERGE},fetch=FetchType.EAGER)
+	@ManyToOne(cascade = { CascadeType.PERSIST,CascadeType.MERGE}) 
+//	@ManyToOne(cascade = CascadeType.REFRESH,fetch=FetchType.EAGER)
+	@JoinColumn(name="courseId")
+	public Course getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(Course courseId) {
+		this.courseId = courseId;
+	}
 //     public double getPrice() {
 //			return price;
 //		}
@@ -94,25 +115,7 @@ public class Cart{
 //			this.count = count;
 //		}
 //		@ManyToOne(cascade = { CascadeType.PERSIST,CascadeType.MERGE},optional = false,fetch = FetchType.LAZY)
-     	@ManyToOne
-		@JoinColumn(name="userId")
-		public User getUserId() {
-			return userId;
-		}
-
-		public void setUserId(User userId) {
-			this.userId = userId;
-		}
-		@ManyToOne(cascade = { CascadeType.PERSIST,CascadeType.MERGE},fetch=FetchType.EAGER)
-//		@ManyToOne(cascade = { CascadeType.PERSIST,CascadeType.MERGE}) 
-		@JoinColumn(name="courseId")
-		public Course getCourseId() {
-			return courseId;
-		}
-
-		public void setCourseId(Course courseId) {
-			this.courseId = courseId;
-		}
+     	
 		
 		 
 

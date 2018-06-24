@@ -1,10 +1,16 @@
 package com.fairyonline.xiaoye.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.fairyonline.statics.AudioUtils;
 import com.fairyonline.statics.ResponseJsonUtils;
 import com.fairyonline.xiaoye.service.TulingService;
+
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 
 @Controller//有关电台的所以controller
@@ -32,8 +41,25 @@ public class TulingController {
 			/*@RequestParam(value="askWav") String askWav*/) {
 		ResponseJsonUtils.json(response, tuSer.test(url+"mps\\result.mp3"));
 	}
-	
-	@PostMapping("/test1")
+	@PostMapping("/asktest")
+	public void ask(HttpServletResponse response,
+			@RequestParam(value="wav") String askWav) {
+		ResponseJsonUtils.json(response, tuSer.ask(url+"pcms\\"+askWav));
+	}
+	@PostMapping("/saytest")
+	public String say(Model model,
+			HttpServletResponse response,
+			@RequestParam(value="say") String say,
+			@RequestParam(value="name") String name
+			) {
+//		ResponseJsonUtils.json(response, );
+		tuSer.say(say,name);
+		model.addAttribute("say",say);
+//		return this.playMp3(model,name);
+		model.addAttribute("url",url+"mps\\"+name+".mp3");
+		return "Xiaoye/xiaoye";
+	}
+	@PostMapping("/test1")//播放mp3
     public void testPaly() throws Exception{
 		System.out.println("get test1");
         AudioUtils utils  = AudioUtils.getInstance();
@@ -42,7 +68,7 @@ public class TulingController {
         System.out.println("out test1");
 	}
 	
-	@PostMapping("/test12")
+	@PostMapping("/test12")//播放pcm3
     public void testPaly2() throws Exception{
 		System.out.println("get test1");
         AudioUtils utils  = AudioUtils.getInstance();
@@ -50,8 +76,13 @@ public class TulingController {
         utils.playMP3(url+"pcms\\result1.pcm");
         System.out.println("out test1");
 	}
+	@PostMapping("/test13")//success  can jumo to say.
+	public String playMp3(Model model,String name) {
+		model.addAttribute("url",url+"mps\\"+name+".mp3");
+		return "Xiaoye/xiaoye";
+	}
 	
-	@PostMapping("/test2")
+	@PostMapping("/test2")//mp3 - > pcm
     public void testConvert() throws Exception{
 		System.out.println("get test1");
         AudioUtils utils  = AudioUtils.getInstance();

@@ -6,7 +6,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Test</title>
 </head>
+
 <body>
+<h2>TuLing </h2>
+	<form action="../tuling/test1" method = "post"> 
+	<input type="text" name="id" value="1">
+	<input  type="submit" value="test"/>
+	</form>
+	<br>
 <!-- table -->
 <table border="1">
 <tr>

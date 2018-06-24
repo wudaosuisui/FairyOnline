@@ -28,6 +28,68 @@ import com.fairyonline.statics.TtsMain;
 public class TulingService {
 //	@Resource
 	//eeeeee
+	public HashMap<String, Object> say(String say,String name){
+		//返回值
+		Result result = new Result();
+		String statusCode =result.getStatusCode();//状态码
+		String desc = result.getDesc();//状态码描述
+		//执行操作
+		
+		//“答案文字”-》“答案音频”
+		String anWav=null;
+		try {
+			anWav = new TtsMain(say).run(name);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DemoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Map message =new HashMap<String, Object>(2);
+		message.put("anWav",anWav);
+//		message.put("jsonObject",jsonObject);
+//		System.out.println("askStr  is "+askStr);
+//				message.put("jsonObject", jsonObject);
+		//存入返回值
+		result.getResult().put("message", message);
+		result.setStatusCode(statusCode);
+		result.setDesc(desc);
+		return result.getRe();
+	}
+	public HashMap<String, Object> ask(String wav) {
+		//返回值
+		Result result = new Result();
+		String statusCode =result.getStatusCode();//状态码
+		String desc = result.getDesc();//状态码描述
+		//执行操作
+		//“询问音频”-》“询问文字”
+		System.out.println("wav is "+ wav);
+		String askStr = null;
+		JSONObject jsonObject =null;
+		try {
+			askStr = new AsrMain(wav).run();
+			jsonObject = JSONArray.parseObject(askStr);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DemoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Map message =new HashMap<String, Object>(2);
+		message.put("askStr",askStr);
+		message.put("jsonObject",jsonObject);
+		System.out.println("askStr  is "+askStr);
+//		message.put("jsonObject", jsonObject);
+		//存入返回值
+		result.getResult().put("message", message);
+		result.setStatusCode(statusCode);
+		result.setDesc(desc);
+		return result.getRe();
+	}
+	
 	public HashMap<String, Object> test(String askWar) {
 		//返回值
 		Result result = new Result();

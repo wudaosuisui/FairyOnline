@@ -35,11 +35,11 @@ public class AsrMain {
     private /*final*/ String filename = "corpus/16k_test.pcm";
 
     // 文件格式
-    private final String format = "pcm";
+    private final String format = "wav";
     
     //  1537 表示识别普通话，使用输入法模型。1536表示识别普通话，使用搜索模型。 其它语种参见文档
     //  英语   $dev_pid = 1737;
-    private final int dev_pid = 1537;
+    private final int dev_pid = 1536;
 
     private String cuid = "1234567JAVA";
  

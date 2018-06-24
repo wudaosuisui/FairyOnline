@@ -31,7 +31,7 @@ public class TtsMain {
     private /*final*/ String text = "欢迎使用百度语音";
 
     // 发音人选择, 0为普通女声，1为普通男生，3为情感合成-度逍遥，4为情感合成-度丫丫，默认为普通女声
-    private final int per = 0;
+    private final int per = 4;
     // 语速，取值0-9，默认为5中语速
     private final int spd = 5;
     // 音调，取值0-9，默认为5中语调

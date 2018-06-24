@@ -147,10 +147,11 @@ public class CourseControllerImpl {
 		}
 		//购物车
 		@RequestMapping("/cartlist")
-		public String selectAll(Model model,int id) {
+		public String selectAll(Model model,Integer  id) {
 //			List<Cart> list = csi.selectAll();
 //			model.addAttribute("cartlist",list);
 //			System.out.println(list.size());
+			System.out.println("user id is "+id);
 			User user = usi.findUserById(id);
 			model.addAttribute("user",user);
 			return "course/shoppingCart";
@@ -184,7 +185,7 @@ public class CourseControllerImpl {
 		//删除购物车列表信息
 		@RequestMapping("/deletecart")
 		public String deleteCrouse(Model model,int cartId,int uid) {//,int uid
-			csi.deleteCart(cartId);
+			csi.deleteCart(cartId,uid);
 			return selectAll(model,uid);
 		}
 		//后台购物车列表
@@ -223,12 +224,16 @@ public class CourseControllerImpl {
 				@RequestParam("uid") int uid,
 				@RequestParam(value = "cid", required = false) int[] cids,
 				@RequestParam("sub") String sub,
+				@RequestParam("sum") int sum,
 //				HttpSession httpsession,
 				Model model,
 				HttpServletRequest request ) {
 			System.out.println("get  produceorders success");
 			if(sub.equals("提交订单")) {
 				csi.produceOrders(cids, uid);
+//				User user = usi.findUserById(uid);
+				model.addAttribute("uid",uid);
+				model.addAttribute("sum",sum);
 				System.out.println("go to payment");
 				return "course/payment";//前往支付界面
 			}else {

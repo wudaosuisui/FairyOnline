@@ -106,14 +106,14 @@ public class CourseServiceImpl {
     public void  produceOrders(int[] cids,int uid) {
     	Session session =  sessionFactory.openSession();
     	//创建 orders  orderlist
-//    	Orders ord = new Orders(usDao.findUserById(uid),new Date());
-    	Orders ord = orDao.getOrdById(1);
+    	Orders ord = new Orders(usDao.findUserById(uid),new Date());
+//    	Orders ord = orDao.getOrdById(1);
     	System.out.println("get order id is " + ord.getID());
     	List<OrdersList> orList = this.crlTorl(cids, ord);
     	System.out.println("new all success ");
     	//存入 orders orderlist
-//    	orDao.saveOrd(ord);
-//    	orDao.saveOrdList(orList);
+    	orDao.saveOrd(ord);
+    	orDao.saveOrdList(orList);
     	System.out.println("save all success ");
     	//删除购物车内 内容
     	this.deletCatByList(cids,uid);
@@ -124,8 +124,8 @@ public class CourseServiceImpl {
 		return list;
 	}
     
-    public void deleteCart(int cartId) {
-			cdi.deleteCart(cartId);
+    public void deleteCart(int cartId,int uid) {
+			cdi.deleteCart(cartId,uid);
 	}
 		
 	public User addCount(int id) {

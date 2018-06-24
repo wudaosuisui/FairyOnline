@@ -31,9 +31,10 @@
 		</div>
 		<!--主体-->
 		<div id="contend">
-			<p><a href="">返回</a></p>
+			<p><a href="../course/cartlist?id=${uid }">返回</a></p>
 			<form action="../course/cartlist">
-		    <h1>总计金额：**元</h1>
+			<input type="hidden" name="id" value="${uid }">
+		    <h1>总计金额：${sum }元</h1>
 		    <h2>请输入6位密码</h2>
 		    <input style="height:30px;width:200px;" type="password" placeholder="单行输入"/>
 		    <input type="submit" value="确认" style="height:32px;width:65px;" />

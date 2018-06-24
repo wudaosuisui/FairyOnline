@@ -244,12 +244,15 @@ public class CourseDaoImpl {
 		return list;
 	}
 
-	public void deleteCart(int cartId) {
+	public void deleteCart(int cartId,int uid) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
+		User user = session.get(User.class,uid);
 		Cart cart = session.get(Cart.class,new Integer(cartId));
+		user.getCartSet().remove(cart);
 		session.delete(cart);
+		session.update(user);
 		tx.commit();
 		session.close();
 	}

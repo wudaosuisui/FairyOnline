@@ -38,10 +38,11 @@
 		    <div id="page">
 		    	<form action="../course/produceorders">
 		    	<input type="hidden" name="uid" value="${userLogin2.user.id }">
+		    	<input type="hidden" name="sum" value="${sum }">
 		    	    <div id="o1">
 		    	     	<h2>订单号：</h2>
 		    	        <p>*********************</p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-		    	        <span><a href="../course/cartlist">返回</a></span><!-- 返回到购物车界面 -->
+		    	        <span><a href="../course/cartlist?id=${userLogin2.user.id }">返回</a></span><!-- 返回到购物车界面 -->
 		    	    </div>
 		    	    <div id="o2">
 		    	        <table>

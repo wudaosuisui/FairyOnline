@@ -6,7 +6,56 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>AddVertex</title>
 </head>
+
 <body>
+<h2>TuLing </h2>
+	<form action="../tuling/test1" method = "post"> 
+	<input type="text" name="id" value="1">
+	<input  type="submit" value="test"/>
+	</form>
+	<br>
+<!-- table -->
+<table border="1">
+<tr>
+<td>
+<h1>====&nbsp;&nbsp;Vertex&nbsp;&nbsp;===</h1>
+</td>
+<td>
+<h1>====&nbsp;&nbsp;Side&nbsp;&nbsp;===</h1>
+</td>
+<td>
+<h1>====&nbsp;&nbsp;File&nbsp;&nbsp;===</h1>
+</td>
+</tr>
+<tr>
+<!-- get -->
+<td>
+	<h2>get Vertex List</h2>
+	<form action="../vertex/getList" method = "post"> 
+	<input type="text" name="id" value="1">
+	<input  type="submit" value="test"/>
+	</form>
+	
+	<h2>get Vertex By Id</h2>
+	<form action="../vertex/getVertexById" method = "post"> 
+	<input type="text" name="id" value="19">
+	<input  type="submit" value="test"/>
+	</form>
+	
+	<h2>only Add Vertex</h2>
+	<form action="../vertex/AddVertex" method = "post"> 
+	<!-- <input type="text" name="name" value="name"> -->
+	<input  type="submit" value="test"/>
+	</form>
+</td>
+<!-- add -->
+<td>
+	<h2>only Add Side</h2>
+	<form action="../vertex/AddSide" method = "post"> 
+	<!-- <input type="text" name="name" value="name"> -->
+	<input  type="submit" value="test"/>
+	</form>
+
 
 <h1>====&nbsp;&nbsp;Get&nbsp;&nbsp;===</h1>
 <h2>get Vertex List</h2>
